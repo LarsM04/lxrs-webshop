@@ -106,6 +106,26 @@ docker compose exec -u root laravel.test chmod -R 777 storage bootstrap/cache
 
 ---
 
+## Recente edits op de homepage
+
+De 'Recente edits'-sectie toont TikTok-video's. De links staan in
+[`config/edits.php`](config/edits.php) — plakken en opslaan is genoeg,
+er hoeft niets aan de code te veranderen.
+
+```php
+'reels' => [
+    'https://www.tiktok.com/@lxrs2004/video/7301234567890123456',
+],
+```
+
+Zo'n link haal je via **Delen → Link kopiëren**. Een korte link
+(`https://vm.tiktok.com/...`) werkt niet, want daar staat het videonummer niet in:
+open die eerst in je browser en kopieer dan de link uit de adresbalk.
+
+Staat de lijst leeg, dan toont de sectie je drie TikTok-accounts.
+
+---
+
 ## Voortgang
 
 Het snapshotlogboek — wat er wanneer werkend was, met screenshots en git tags —

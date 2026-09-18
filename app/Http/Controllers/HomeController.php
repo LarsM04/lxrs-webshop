@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\Edits;
 use App\Support\PresetCatalog;
 use Illuminate\View\View;
 
@@ -16,6 +17,7 @@ class HomeController extends Controller
             'categorieen' => PresetCatalog::categories(),
             'aantalPresets' => $presets->count(),
             'aantalPerCategorie' => $presets->groupBy('category_id')->map->count(),
+            'edits' => Edits::all(),
         ]);
     }
 }

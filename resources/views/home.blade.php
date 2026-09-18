@@ -137,6 +137,32 @@
                 </p>
             </div>
 
+            @if ($edits->isNotEmpty())
+                {{-- Er staan edits in config/edits.php, dus die tonen we. --}}
+                <ul class="reels">
+                    @foreach ($edits as $edit)
+                        <li class="reel">
+                            @if ($edit->label)
+                                <span class="reel__label">{{ $edit->label }}</span>
+                            @endif
+                            <iframe
+                                src="{{ $edit->embed }}"
+                                title="TikTok-edit van {{ '@' . $edit->account }}"
+                                loading="lazy"
+                                allow="encrypted-media; fullscreen"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                scrolling="no"></iframe>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <div style="margin-top:28px">
+                    <a class="knop knop--rand" href="https://www.tiktok.com/@lxrs2004" target="_blank" rel="noopener">
+                        Meer op TikTok
+                    </a>
+                </div>
+            @else
+            {{-- Nog geen links ingevuld: dan maar de accounts zelf. --}}
             <div class="tegels">
                 <a class="tegel" href="https://www.tiktok.com/@lxrs2004" target="_blank" rel="noopener">
                     <strong>@lxrs2004</strong>
@@ -154,6 +180,7 @@
                     <em>Voetbal →</em>
                 </a>
             </div>
+            @endif
         </div>
     </section>
 

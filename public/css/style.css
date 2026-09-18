@@ -758,6 +758,56 @@ section { padding-block: var(--sectie); }
 }
 
 /* --------------------------------------------------------------------------
+   Recente edits (TikTok-embeds)
+   -------------------------------------------------------------------------- */
+
+.reels {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reel {
+  position: relative;
+  /* TikTok's embed is het filmpje plus een strook met naam, tekst en muziek.
+     Vandaar smaller dan 9/16 -- anders moet je in het kaartje scrollen. */
+  aspect-ratio: 9 / 19;
+  background: var(--vlak);
+  border: 1px solid var(--lijn);
+  border-radius: var(--r-groot);
+  overflow: hidden;
+  transition: border-color var(--normaal);
+}
+.reel:hover { border-color: var(--lijn-sterk); }
+
+.reel iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.reel__label {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 2;
+  padding: 5px 12px;
+  background: rgba(7, 6, 12, 0.82);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--lijn-sterk);
+  border-radius: var(--r-pil);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paars-licht);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
    Vertrouwensbalk
    -------------------------------------------------------------------------- */
 
