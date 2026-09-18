@@ -72,28 +72,12 @@ Zorg dat MySQL draait in XAMPP en dat er een database `lxrs_webshop` bestaat.
 
 ---
 
-## Voortgang / Snapshots
+## Voortgang
 
-Bewijs van vordering. Elke regel = een moment waarop er iets nieuws werkt, met screenshot
-in [`docs/snapshots/`](docs/snapshots/) en een git tag om naar terug te springen.
+Het snapshotlogboek — wat er wanneer werkend was, met screenshots en git tags —
+staat in [`docs/VOORTGANG.md`](docs/VOORTGANG.md).
 
-| # | Datum | Fase | Wat werkt er nu | Snapshot | Tag |
-|---|---|---|---|---|---|
-| 00 | 2026-09-18 | Setup | Repo aangemaakt, ontwerp geanalyseerd, plan vastgelegd | — | `v0.0-setup` |
-
-<!-- Nieuwe regel toevoegen bij elke milestone. Format snapshot: ![](docs/snapshots/2026-10-05-presets-overzicht.png) -->
-
-### Hoe ik een snapshot maak
-
-1. Screenshot van wat er nieuw werkt → opslaan als `docs/snapshots/JJJJ-MM-DD-korte-omschrijving.png`
-2. Regel toevoegen aan de tabel hierboven
-3. Committen en taggen:
-   ```bash
-   git add .
-   git commit -m "Snapshot: presets-overzicht laadt live uit database"
-   git tag v0.3-overzicht
-   git push && git push --tags
-   ```
+**Laatste milestone:** `v0.0-setup` — plan van aanpak vastgelegd (18 september 2026)
 
 ---
 
@@ -119,7 +103,7 @@ De volledige fasering staat in [`docs/PLAN.md`](docs/PLAN.md).
 - [ ] Live demo: preset toevoegen, bewerken en verwijderen in de beheeromgeving
 - [ ] Laten zien dat een wijziging direct zichtbaar is op de website
 - [ ] Toelichting op de databasestructuur en de koppeling tussen de tabellen
-- [ ] Snapshotlogboek in deze README als bewijs van vordering
+- [ ] Snapshotlogboek in `docs/VOORTGANG.md` als bewijs van vordering
 
 ---
 
@@ -130,6 +114,7 @@ lxrs-webshop/
 ├── design/          Origineel ontwerp (Claude artifact-export, referentie)
 ├── docs/
 │   ├── PLAN.md      Gefaseerde planning
+│   ├── VOORTGANG.md Snapshotlogboek en milestones
 │   └── snapshots/   Screenshots per milestone
 └── ...              Laravel-project (volgt in fase 0)
 ```

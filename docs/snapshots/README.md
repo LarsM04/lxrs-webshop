@@ -10,4 +10,4 @@ Voorbeelden:
 - `2026-11-16-presets-overzicht.png`
 - `2026-12-07-admin-crud.png`
 
-Elke snapshot krijgt ook een regel in het voortgangslogboek in de hoofd-README.
+Elke snapshot krijgt ook een regel in het logboek in [../VOORTGANG.md](../VOORTGANG.md).

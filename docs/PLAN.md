@@ -4,7 +4,7 @@ Van ontwerp naar werkende full-stack webshop. Startdatum 18 september 2026,
 deadline eind januari 2027 — ongeveer 19 weken.
 
 Elke fase eindigt met een **snapshot**: iets dat aantoonbaar werkt, een screenshot in
-`docs/snapshots/`, een regel in het voortgangslogboek van de README en een git tag.
+`docs/snapshots/`, een regel in het logboek van [VOORTGANG.md](VOORTGANG.md) en een git tag.
 
 ---
 
@@ -146,7 +146,7 @@ meest zichtbaar bij een demo.
 ## Fase 6 — Afronden en demo (half januari – eind januari)
 
 - [ ] Alles nalopen op fouten en losse eindjes
-- [ ] README compleet, met het volledige snapshotlogboek
+- [ ] README en VOORTGANG.md compleet, met het volledige snapshotlogboek
 - [ ] Databasediagram tekenen voor de toelichting
 - [ ] Demo oefenen: presets bekijken → preset toevoegen → live zichtbaar
 - [ ] Back-up van de database-export in de repo
