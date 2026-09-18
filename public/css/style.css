@@ -454,6 +454,12 @@ section { padding-block: var(--sectie); }
   flex: 1;
 }
 
+.kaart__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .kaart__tag {
   align-self: flex-start;
   padding: 4px 11px;
@@ -464,6 +470,12 @@ section { padding-block: var(--sectie); }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--paars-licht);
+}
+
+.kaart__tag--pack {
+  border-color: var(--lijn-sterk);
+  background: rgba(107, 75, 247, 0.16);
+  color: var(--paars-bleek);
 }
 
 .kaart__titel { font-size: 21px; }
@@ -524,6 +536,18 @@ section { padding-block: var(--sectie); }
 .plaatshouder[data-cat='text-presets']      { background: linear-gradient(135deg, #14122b, #3d3560 55%, #8b74ff); }
 .plaatshouder[data-cat='shakes']            { background: linear-gradient(135deg, #1a1030, #4b2bd6 60%, #2f8fd8); }
 .plaatshouder[data-cat='zooms']             { background: linear-gradient(135deg, #0f1533, #2b4bd6 55%, #74c6ff); }
+.plaatshouder[data-cat='effects']           { background: linear-gradient(135deg, #241340, #7b3bd6 55%, #d86fb0); }
+.plaatshouder[data-cat='twixtor']           { background: linear-gradient(135deg, #101a38, #2f6bd6 55%, #5fd8c6); }
+.plaatshouder[data-cat='audio']             { background: linear-gradient(135deg, #1d1235, #5b3bd6 55%, #b874ff); }
+
+/* De bundel is het vlaggenschip, dus die krijgt het opvallendste vlak. */
+.plaatshouder[data-cat='bundels'] {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #6b4bf7, #b4478f 55%, #ff9a5c);
+  color: #fff;
+  font-size: 15px;
+}
 
 /* --------------------------------------------------------------------------
    Filterbalk
@@ -566,6 +590,24 @@ section { padding-block: var(--sectie); }
 }
 .zoek input::placeholder { color: var(--tekst-dim); }
 .zoek input:focus { outline: none; }
+
+.filterrij {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+}
+.filterrij__label {
+  flex: none;
+  min-width: 68px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tekst-dim);
+}
+.filterrij:last-of-type { margin-bottom: 24px; }
 
 .pillen {
   display: flex;

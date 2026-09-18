@@ -14,11 +14,19 @@ class PresetController extends Controller
     {
         $categorieSlug = $request->query('categorie');
         $zoekterm = trim((string) $request->query('zoek', ''));
+        $soort = $request->query('soort');
+
+        // Alleen soorten die we kennen; de rest negeren we stilzwijgend.
+        if (! in_array($soort, ['los', 'pack', 'bundel'], true)) {
+            $soort = null;
+        }
 
         return view('presets.index', [
-            'presets' => PresetCatalog::filter($categorieSlug, $zoekterm ?: null),
+            'presets' => PresetCatalog::filter($categorieSlug, $zoekterm ?: null, $soort),
             'categorieen' => PresetCatalog::categories(),
+            'soorten' => PresetCatalog::soorten(),
             'actieveCategorie' => PresetCatalog::findCategory($categorieSlug),
+            'actieveSoort' => $soort,
             'zoekterm' => $zoekterm,
         ]);
     }

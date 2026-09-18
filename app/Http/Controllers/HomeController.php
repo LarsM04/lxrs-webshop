@@ -15,8 +15,8 @@ class HomeController extends Controller
         return view('home', [
             'uitgelicht' => PresetCatalog::featured(),
             'categorieen' => PresetCatalog::categories(),
-            'aantalPresets' => $presets->count(),
-            'aantalPerCategorie' => $presets->groupBy('category_id')->map->count(),
+            'aantalPresets' => $presets->where('soort', 'los')->count(),
+            'aantalPerCategorie' => PresetCatalog::aantalPerCategorie(),
             'edits' => Edits::all(),
         ]);
     }

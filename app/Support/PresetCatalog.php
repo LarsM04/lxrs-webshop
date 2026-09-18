@@ -5,28 +5,57 @@ namespace App\Support;
 use Illuminate\Support\Collection;
 
 /**
- * Tijdelijke catalogus met vaste data.
+ * De catalogus van het LXRS Edit Pack.
  *
- * In fase 1 wordt de binnenkant van deze klasse vervangen door Eloquent
- * (Preset::with('category')->get() en zo). De buitenkant blijft hetzelfde,
- * dus de Blade-views hoeven dan niet mee te veranderen: ze gebruiken nu al
- * objecten met -> in plaats van arrays met [].
+ * De producten komen uit preset-data.php, dat gegenereerd wordt uit de
+ * mappenstructuur van het echte pack:
+ *
+ *     node tools/catalogus-genereren.mjs "<pad naar het uitgepakte pack>"
+ *
+ * Er zijn drie soorten producten:
+ *   los     - een enkele .ffx-preset
+ *   pack    - alle presets uit een categorie
+ *   bundel  - het complete pack
+ *
+ * In fase 1 wordt de binnenkant van deze klasse Eloquent. De buitenkant blijft
+ * hetzelfde, dus de Blade-views hoeven niet mee te veranderen.
  */
 class PresetCatalog
 {
-    /** Alle categorieen, in de volgorde waarin ze op de site staan. */
+    /**
+     * De categorieen. Deze lijst moet gelijk lopen met CATEGORIEEN bovenin
+     * tools/catalogus-genereren.mjs -- pas je daar iets aan, doe het hier ook.
+     */
     public static function categories(): Collection
     {
         return collect([
-            ['id' => 1, 'slug' => 'color-corrections', 'name' => "Color Corrections", 'afkorting' => "CC's",
+            ['id' => 1, 'slug' => 'color-corrections', 'name' => 'Color Corrections', 'afkorting' => "CC's",
              'omschrijving' => 'Kleurgrades die je hele edit in een klap laten kloppen.'],
             ['id' => 2, 'slug' => 'text-presets', 'name' => 'Text Presets', 'afkorting' => 'Text',
-             'omschrijving' => 'Titels en kickers die op de beat binnenkomen.'],
-            ['id' => 3, 'slug' => 'shakes', 'name' => 'Shakes', 'afkorting' => 'Shakes',
-             'omschrijving' => 'Camera shakes met gewicht, zonder dat het misselijk maakt.'],
-            ['id' => 4, 'slug' => 'zooms', 'name' => 'Zooms', 'afkorting' => 'Zooms',
-             'omschrijving' => 'Velocity zooms en punch-ins, klaar om te slepen.'],
+             'omschrijving' => 'Titels, glows en fades die op de beat binnenkomen.'],
+            ['id' => 3, 'slug' => 'zooms', 'name' => 'Zooms', 'afkorting' => 'Zooms',
+             'omschrijving' => 'Smooth zooms en punch-ins, klaar om te slepen.'],
+            ['id' => 4, 'slug' => 'shakes', 'name' => 'Shakes', 'afkorting' => 'Shakes',
+             'omschrijving' => 'Camera shakes met gewicht, van subtiel tot een dreun.'],
+            ['id' => 5, 'slug' => 'effects', 'name' => 'Effects', 'afkorting' => 'FX',
+             'omschrijving' => 'Halftone, panning, motion blur en transities.'],
+            ['id' => 6, 'slug' => 'twixtor', 'name' => 'Twixtor', 'afkorting' => 'Twixtor',
+             'omschrijving' => 'Mijn twixtor-instellingen voor slow motion zonder artefacten.'],
+            ['id' => 7, 'slug' => 'audio', 'name' => 'Audio', 'afkorting' => 'Audio',
+             'omschrijving' => 'Audio spectrum, wiggle en fades voor je intro en outro.'],
+            ['id' => 8, 'slug' => 'bundels', 'name' => 'Bundels', 'afkorting' => 'Bundel',
+             'omschrijving' => 'Alles bij elkaar, voor de beste prijs per preset.'],
         ])->map(fn ($c) => (object) $c);
+    }
+
+    /** De drie soorten, voor het filter op de overzichtspagina. */
+    public static function soorten(): Collection
+    {
+        return collect([
+            ['slug' => 'los', 'naam' => 'Losse presets'],
+            ['slug' => 'pack', 'naam' => 'Packs'],
+            ['slug' => 'bundel', 'naam' => 'Complete pack'],
+        ])->map(fn ($s) => (object) $s);
     }
 
     public static function findCategory(?string $slug): ?object
@@ -34,22 +63,32 @@ class PresetCatalog
         return $slug ? static::categories()->firstWhere('slug', $slug) : null;
     }
 
-    /** Alle presets, met hun categorie eraan gekoppeld. */
+    /** Alle producten, met hun categorie eraan gekoppeld. */
     public static function all(): Collection
     {
-        $categories = static::categories()->keyBy('id');
+        static $alles = null;
 
-        return collect(static::data())
-            ->map(function ($p) use ($categories) {
-                $p['category'] = $categories->get($p['category_id']);
+        if ($alles === null) {
+            $categories = static::categories()->keyBy('id');
 
-                return (object) $p;
-            });
+            $alles = collect(require __DIR__ . '/preset-data.php')
+                ->map(function ($p) use ($categories) {
+                    $p['category'] = $categories->get($p['category_id']);
+
+                    return (object) $p;
+                });
+        }
+
+        return $alles;
     }
 
+    /** Wat er op de homepage uitgelicht staat: de bundel en een paar packs. */
     public static function featured(): Collection
     {
-        return static::all()->where('is_featured', true)->values();
+        return static::all()
+            ->where('is_featured', true)
+            ->sortBy(fn ($p) => $p->soort === 'bundel' ? 0 : 1)
+            ->values();
     }
 
     public static function findBySlug(string $slug): ?object
@@ -57,21 +96,43 @@ class PresetCatalog
         return static::all()->firstWhere('slug', $slug);
     }
 
-    /** Presets uit dezelfde categorie, zonder de preset zelf. */
-    public static function related(object $preset, int $limit = 3): Collection
+    /**
+     * Wat er bij een product past.
+     *
+     * Bij een los product: andere losse presets uit dezelfde categorie.
+     * Bij een pack of bundel: wat erin zit, oftewel de losse presets zelf.
+     */
+    public static function related(object $preset, int $limit = 4): Collection
     {
-        return static::all()
+        $zelfdeCategorie = static::all()
             ->where('category_id', $preset->category_id)
-            ->where('id', '!=', $preset->id)
-            ->take($limit)
-            ->values();
+            ->where('id', '!=', $preset->id);
+
+        if ($preset->soort === 'los') {
+            // Het pack van deze categorie eerst: dat is de logische upsell.
+            $pack = $zelfdeCategorie->firstWhere('soort', 'pack');
+
+            return collect([$pack])
+                ->filter()
+                ->concat($zelfdeCategorie->where('soort', 'los')->shuffle())
+                ->take($limit)
+                ->values();
+        }
+
+        if ($preset->soort === 'pack') {
+            return $zelfdeCategorie->where('soort', 'los')->take($limit)->values();
+        }
+
+        // De bundel: laat de packs zien die erin zitten.
+        return static::all()->where('soort', 'pack')->take($limit)->values();
     }
 
     /**
-     * Filteren op categorie en zoekterm. Dit is precies wat in fase 2 een
-     * Eloquent-query wordt met ->where() en ->when().
+     * Filteren op categorie, soort en zoekterm.
+     *
+     * Dit wordt in fase 1 een Eloquent-query met ->when() en ->where().
      */
-    public static function filter(?string $categorySlug = null, ?string $zoekterm = null): Collection
+    public static function filter(?string $categorySlug = null, ?string $zoekterm = null, ?string $soort = null): Collection
     {
         $presets = static::all();
 
@@ -79,113 +140,32 @@ class PresetCatalog
             $presets = $presets->filter(fn ($p) => $p->category->slug === $categorySlug);
         }
 
+        if ($soort) {
+            $presets = $presets->filter(fn ($p) => $p->soort === $soort);
+        }
+
         if ($zoekterm) {
             $naald = mb_strtolower(trim($zoekterm));
             $presets = $presets->filter(function ($p) use ($naald) {
                 return str_contains(mb_strtolower($p->name), $naald)
-                    || str_contains(mb_strtolower($p->description), $naald)
+                    || str_contains(mb_strtolower($p->tagline), $naald)
                     || str_contains(mb_strtolower($p->category->name), $naald);
             });
         }
 
-        return $presets->values();
+        // Packs en de bundel bovenaan: dat is wat je wilt verkopen.
+        return $presets
+            ->sortBy(fn ($p) => match ($p->soort) {
+                'bundel' => 0,
+                'pack' => 1,
+                default => 2,
+            })
+            ->values();
     }
 
-    /** De ruwe rijen — dit wordt straks de seeder. */
-    private static function data(): array
+    /** Hoeveel producten er per categorie zijn, voor de tegels op de homepage. */
+    public static function aantalPerCategorie(): Collection
     {
-        return [
-            [
-                'id' => 1, 'category_id' => 1, 'slug' => 'neon-grade',
-                'name' => 'Neon Grade', 'price' => 14.00, 'is_featured' => true,
-                'tagline' => 'De look uit m\'n F1-edits',
-                'description' => 'De grade die onder bijna al m\'n race-edits ligt: diepe blauwzwarte schaduwen, '
-                    . 'magenta in de highlights en net genoeg contrast om beelden van slechte kwaliteit te laten werken. '
-                    . 'Sleep \'m op je adjustment layer en draai aan een schuif.',
-                'includes' => ['8 grades als .aep', '3 adjustment-varianten', 'LUT-versie (.cube)'],
-                'ae_version' => 'After Effects 2021 of nieuwer',
-                'bestandsgrootte' => '24 MB',
-            ],
-            [
-                'id' => 2, 'category_id' => 1, 'slug' => 'film-burn-cc',
-                'name' => 'Film Burn CC', 'price' => 12.00, 'is_featured' => false,
-                'tagline' => 'Warme filmlook met korrel',
-                'description' => 'Zachte halation, warme korrel en een lichte lift in de zwarten. Gemaakt voor '
-                    . 'filmedits waar het beeld moet ademen in plaats van knallen.',
-                'includes' => ['6 grades als .aep', 'Korrel-overlay (4K)', 'Halation-preset'],
-                'ae_version' => 'After Effects 2020 of nieuwer',
-                'bestandsgrootte' => '48 MB',
-            ],
-            [
-                'id' => 3, 'category_id' => 1, 'slug' => 'midnight-teal',
-                'name' => 'Midnight Teal', 'price' => 12.00, 'is_featured' => false,
-                'tagline' => 'Koel en clean',
-                'description' => 'Strakke teal-orange zonder dat huidtinten oranje worden. Werkt goed op '
-                    . 'avondbeelden en stadionlicht.',
-                'includes' => ['5 grades als .aep', 'Skin-protect masker'],
-                'ae_version' => 'After Effects 2021 of nieuwer',
-                'bestandsgrootte' => '18 MB',
-            ],
-            [
-                'id' => 4, 'category_id' => 2, 'slug' => 'impact-kicker',
-                'name' => 'Impact Kicker', 'price' => 16.00, 'is_featured' => true,
-                'tagline' => 'Titels die op de beat landen',
-                'description' => 'Tien teksten die inkomen met een snap, een lichte overshoot en een blur die '
-                    . 'precies op de eerste frame zit. Je zet je eigen tekst erin en de timing blijft kloppen.',
-                'includes' => ['10 tekstanimaties', 'In- en uit-varianten', 'Handleiding (pdf)'],
-                'ae_version' => 'After Effects 2022 of nieuwer',
-                'bestandsgrootte' => '12 MB',
-            ],
-            [
-                'id' => 5, 'category_id' => 2, 'slug' => 'type-snap',
-                'name' => 'Type Snap', 'price' => 11.00, 'is_featured' => false,
-                'tagline' => 'Letter voor letter, strak getimed',
-                'description' => 'Typemachine-animaties met variabele snelheid, plus een cursor die je aan of '
-                    . 'uit kunt zetten. Handig voor quotes en commentaar-edits.',
-                'includes' => ['7 tekstanimaties', 'Cursor-preset'],
-                'ae_version' => 'After Effects 2020 of nieuwer',
-                'bestandsgrootte' => '6 MB',
-            ],
-            [
-                'id' => 6, 'category_id' => 3, 'slug' => 'beat-shake',
-                'name' => 'Beat Shake', 'price' => 9.00, 'is_featured' => true,
-                'tagline' => 'Shakes met gewicht',
-                'description' => 'Twaalf camera shakes van subtiel tot hard, allemaal met een echte afname in '
-                    . 'plaats van een loop. Zet \'m op je adjustment layer en stem de sterkte af op je beat.',
-                'includes' => ['12 shakes als .aep', 'Loopbare varianten', 'Sterkte-schuif'],
-                'ae_version' => 'After Effects 2020 of nieuwer',
-                'bestandsgrootte' => '4 MB',
-            ],
-            [
-                'id' => 7, 'category_id' => 3, 'slug' => 'impact-shake',
-                'name' => 'Impact Shake', 'price' => 9.00, 'is_featured' => false,
-                'tagline' => 'Voor die ene frame',
-                'description' => 'Korte, harde klappen voor momenten waar het beeld even moet schrikken. '
-                    . 'Zes varianten, van tik tot dreun.',
-                'includes' => ['6 shakes als .aep'],
-                'ae_version' => 'After Effects 2020 of nieuwer',
-                'bestandsgrootte' => '3 MB',
-            ],
-            [
-                'id' => 8, 'category_id' => 4, 'slug' => 'velocity-zoom',
-                'name' => 'Velocity Zoom', 'price' => 13.00, 'is_featured' => true,
-                'tagline' => 'Zoom met motion blur die klopt',
-                'description' => 'Zooms met echte directional blur in plaats van een gauss-waas. Acht snelheden, '
-                    . 'van trage push-in tot een zoom die je nauwelijks ziet gebeuren.',
-                'includes' => ['8 zooms als .aep', 'Blur-controle', 'In- en uit-varianten'],
-                'ae_version' => 'After Effects 2021 of nieuwer',
-                'bestandsgrootte' => '9 MB',
-            ],
-            [
-                'id' => 9, 'category_id' => 4, 'slug' => 'punch-zoom',
-                'name' => 'Punch Zoom', 'price' => 9.00, 'is_featured' => false,
-                'tagline' => 'Eén frame, volle klap',
-                'description' => 'De klassieke punch-in op de beat, met een lichte overshoot zodat het niet '
-                    . 'mechanisch aanvoelt. Vijf sterktes.',
-                'includes' => ['5 zooms als .aep'],
-                'ae_version' => 'After Effects 2020 of nieuwer',
-                'bestandsgrootte' => '3 MB',
-            ],
-        ];
+        return static::all()->groupBy('category_id')->map->count();
     }
 }

@@ -74,7 +74,13 @@
                 {{-- Uitleg --}}
                 <div class="detail__tekst">
                     <div class="blok">
-                        <h2 class="kop-klein">Over deze preset</h2>
+                        <h2 class="kop-klein">
+                            @switch ($preset->soort)
+                                @case('bundel') Over dit pack @break
+                                @case('pack') Over dit pack @break
+                                @default Over deze preset
+                            @endswitch
+                        </h2>
                         <p style="color:var(--tekst-zacht)">{{ $preset->description }}</p>
                     </div>
 
@@ -101,8 +107,8 @@
             <div class="omhulsel">
                 <div class="sectiekop">
                     <div>
-                        <span class="oogje">Meer uit {{ $preset->category->name }}</span>
-                        <h2>Past hier goed bij</h2>
+                        <span class="oogje">{{ $preset->soort === 'los' ? 'Meer uit ' . $preset->category->name : 'Wat er in zit' }}</span>
+                        <h2>{{ $preset->soort === 'los' ? 'Past hier goed bij' : 'Los te koop' }}</h2>
                     </div>
                 </div>
 

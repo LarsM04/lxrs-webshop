@@ -18,7 +18,12 @@
     </div>
 
     <div class="kaart__body">
-        <span class="kaart__tag">{{ $preset->category->name }}</span>
+        <div class="kaart__tags">
+            <span class="kaart__tag">{{ $preset->category->name }}</span>
+            @if ($preset->soort !== 'los')
+                <span class="kaart__tag kaart__tag--pack">{{ $preset->aantal }} presets</span>
+            @endif
+        </div>
 
         <h{{ $niveau }} class="kaart__titel kop-klein">
             <a class="kaart__link" href="{{ route('presets.show', $preset->slug) }}">{{ $preset->name }}</a>

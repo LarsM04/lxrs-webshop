@@ -33,7 +33,7 @@
         </div>
     </section>
 
-    <section>
+    <section style="padding-top:clamp(20px,3vw,32px)">
         <div class="omhulsel">
 
             {{-- Filterbalk. Gewoon een GET-formulier, dus filters blijven deelbaar via de URL. --}}
@@ -50,29 +50,54 @@
                 @if ($actieveCategorie)
                     <input type="hidden" name="categorie" value="{{ $actieveCategorie->slug }}">
                 @endif
+                @if ($actieveSoort)
+                    <input type="hidden" name="soort" value="{{ $actieveSoort }}">
+                @endif
 
                 <button class="knop knop--vol" type="submit">Zoeken</button>
             </form>
 
-            <ul class="pillen" style="margin-bottom:24px">
-                <li>
-                    <a class="pil" href="{{ route('presets.index', array_filter(['zoek' => $zoekterm])) }}"
-                       @if(! $actieveCategorie) aria-current="true" @endif>Alles</a>
-                </li>
-                @foreach ($categorieen as $categorie)
+            <div class="filterrij">
+                <span class="filterrij__label">Categorie</span>
+                <ul class="pillen">
                     <li>
-                        <a class="pil"
-                           href="{{ route('presets.index', array_filter(['categorie' => $categorie->slug, 'zoek' => $zoekterm])) }}"
-                           @if($actieveCategorie && $actieveCategorie->id === $categorie->id) aria-current="true" @endif>
-                            {{ $categorie->name }}
-                        </a>
+                        <a class="pil" href="{{ route('presets.index', array_filter(['zoek' => $zoekterm, 'soort' => $actieveSoort])) }}"
+                           @if(! $actieveCategorie) aria-current="true" @endif>Alles</a>
                     </li>
-                @endforeach
-            </ul>
+                    @foreach ($categorieen as $categorie)
+                        <li>
+                            <a class="pil"
+                               href="{{ route('presets.index', array_filter(['categorie' => $categorie->slug, 'zoek' => $zoekterm, 'soort' => $actieveSoort])) }}"
+                               @if($actieveCategorie && $actieveCategorie->id === $categorie->id) aria-current="true" @endif>
+                                {{ $categorie->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="filterrij">
+                <span class="filterrij__label">Soort</span>
+                <ul class="pillen">
+                    <li>
+                        <a class="pil" href="{{ route('presets.index', array_filter(['zoek' => $zoekterm, 'categorie' => $actieveCategorie?->slug])) }}"
+                           @if(! $actieveSoort) aria-current="true" @endif>Alles</a>
+                    </li>
+                    @foreach ($soorten as $s)
+                        <li>
+                            <a class="pil"
+                               href="{{ route('presets.index', array_filter(['soort' => $s->slug, 'zoek' => $zoekterm, 'categorie' => $actieveCategorie?->slug])) }}"
+                               @if($actieveSoort === $s->slug) aria-current="true" @endif>
+                                {{ $s->naam }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
             <p class="telling" role="status">
                 {{ $presets->count() }}
-                {{ $presets->count() === 1 ? 'preset' : 'presets' }}
+                {{ $presets->count() === 1 ? 'product' : 'producten' }}
                 @if ($zoekterm) gevonden voor &ldquo;{{ $zoekterm }}&rdquo; @endif
             </p>
 

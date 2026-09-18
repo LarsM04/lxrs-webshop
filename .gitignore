@@ -40,5 +40,11 @@ Thumbs.db
 desktop.ini
 .DS_Store
 
-# --- Geüploade presets (bestanden horen niet in git) ---
+# --- Het product zelf hoort NOOIT in een publieke repo ---
+# De .ffx- en .jsxbin-bestanden zijn wat je verkoopt. Belanden die hier,
+# dan kan iedereen die de repo vindt ze gratis downloaden.
+*.ffx
+*.jsxbin
+*.aep
 /storage/app/public/presets
+/storage/app/private/downloads

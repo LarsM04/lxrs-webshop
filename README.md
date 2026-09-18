@@ -51,6 +51,8 @@ updated_at                      description
                                 image_path
                                 download_path
                                 is_featured       BOOLEAN
+                                soort             los|pack|bundel
+                                aantal            hoeveel presets erin zitten
                                 includes          JSON  'wat je krijgt'
                                 ae_version        welke AE-versie
                                 bestandsgrootte
@@ -65,7 +67,24 @@ webshop verkoopt niet zonder te vertellen wat je krijgt en waar het mee werkt.
 worden (`preset_items`), maar het keuzedeel vraagt om twee gekoppelde tabellen en
 JSON houdt het simpel.
 
-**Categorieën:** Color Corrections (CC's) · Text Presets · Shakes · Zooms
+**Categorieën:** Color Corrections · Text Presets · Zooms · Shakes · Effects · Twixtor · Audio · Bundels
+
+**Drie soorten producten**, want je kunt op drie manieren kopen:
+
+| soort | wat het is | voorbeeld |
+|---|---|---|
+| `los` | één preset | Midnight CC — €4 |
+| `pack` | alle presets uit één categorie | Shakes Pack (8 presets) — €10 |
+| `bundel` | het complete pack | LXRS Complete Pack (55 presets) — €39 |
+
+De catalogus wordt gegenereerd uit de mappenstructuur van het echte edit pack:
+
+```bash
+node tools/catalogus-genereren.mjs "<pad naar het uitgepakte pack>"
+```
+
+Dat schrijft `app/Support/preset-data.php`. De `.ffx`-bestanden zelf komen
+**niet** in deze repo — dat is het product. Ze staan in `.gitignore`.
 
 ---
 

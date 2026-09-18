@@ -66,6 +66,15 @@ const MILESTONES = {
       { name: 'home-met-edits', url: 'http://localhost:8000', traag: true },
     ],
   },
+  'v0.6-catalogus': {
+    fase: '3 · Front-end',
+    shots: [
+      { name: 'shop-alles', url: 'http://localhost:8000/presets' },
+      { name: 'shop-packs', url: 'http://localhost:8000/presets?soort=pack' },
+      { name: 'product-complete-pack', url: 'http://localhost:8000/presets/complete-pack' },
+      { name: 'product-los', url: 'http://localhost:8000/presets/midnight-cc-color-corrections' },
+    ],
+  },
   'v1.0-crud': {
     fase: '4 · Admin CRUD',
     shots: [
