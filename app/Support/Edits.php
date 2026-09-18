@@ -50,11 +50,57 @@ class Edits
             ])
             ->filter(fn ($edit) => $edit['id'] !== null)
             ->values()
-            ->map(function ($edit, $i) use ($labels) {
-                $edit['label'] = $labels ? $labels[$i % count($labels)] : null;
+            ->map(function ($edit) use ($labels) {
+                // Label hoort bij het account, niet bij de volgorde. Anders
+                // krijgt de tweede F1-edit op rij het label 'Film'.
+                $edit['label'] = $labels[$edit['account']] ?? null;
                 $edit['embed'] = 'https://www.tiktok.com/embed/v2/' . $edit['id'];
+
+                // Lokale thumbnail en titel, opgehaald met `php artisan edits:thumbnails`.
+                $meta = static::index()[$edit['id']] ?? null;
+                $bestand = 'images/edits/' . $edit['id'] . '.jpg';
+                $edit['thumb'] = file_exists(public_path($bestand)) ? $bestand : null;
+                $edit['titel'] = $meta['titel'] ?? null;
+                $edit['bijschrift'] = static::bijschrift($meta['titel'] ?? null);
 
                 return (object) $edit;
             });
+    }
+
+    /**
+     * TikTok-titels zien er zo uit:
+     *
+     *   "Can he win this weekend in monza?? || #formula1 #f1 ・ Upload Method → @editingnews.com"
+     *
+     * Het stuk dat je zelf typte staat altijd vooraan, tot de eerste hashtag
+     * of de eerste ||. Al het andere is hashtags en credits, en dat wil je
+     * niet als bijschrift op je eigen site.
+     */
+    public static function bijschrift(?string $titel): ?string
+    {
+        if (! $titel) {
+            return null;
+        }
+
+        $schoon = preg_split('/\s*(\|\||#)/u', $titel)[0] ?? '';
+
+        // Zero-width tekens komen mee uit TikTok en maken een lege regel niet leeg.
+        $schoon = preg_replace('/[\x{200B}-\x{200D}\x{FEFF}]/u', '', $schoon);
+        $schoon = trim(preg_replace('/\s{2,}/u', ' ', $schoon));
+
+        return $schoon !== '' ? $schoon : null;
+    }
+
+    /** De opgehaalde titels, geschreven door het artisan-commando. */
+    private static function index(): array
+    {
+        static $index = null;
+
+        if ($index === null) {
+            $pad = public_path('images/edits/index.json');
+            $index = file_exists($pad) ? (json_decode(file_get_contents($pad), true) ?: []) : [];
+        }
+
+        return $index;
     }
 }

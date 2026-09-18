@@ -16,23 +16,33 @@ return [
     | daar het videonummer niet in staat. Open die eerst in je browser en
     | kopieer dan de volledige link uit de adresbalk.
     |
+    | Staat er ?is_from_webapp=... achter je link? Die mag eraf. Daar zit een
+    | web_id in dat aan jouw browser hangt, en dat hoort niet in een publieke
+    | repo. Alles t/m het videonummer is genoeg.
+    |
     | Staat de lijst leeg, dan toont de homepage in plaats daarvan je drie
     | TikTok-accounts. Je hoeft dus niets te veranderen aan de code.
     |
     */
 
     'reels' => [
-        // 'https://www.tiktok.com/@lxrs2004/video/0000000000000000000',
-        // 'https://www.tiktok.com/@lamu.aep/video/0000000000000000000',
-        // 'https://www.tiktok.com/@lxrs.ft/video/0000000000000000000',
-        // 'https://www.tiktok.com/@lxrs2004/video/0000000000000000000',
+        'https://www.tiktok.com/@lxrs2004/video/7680600960892194070',
+        'https://www.tiktok.com/@lxrs2004/video/7681602773791558934',
+        'https://www.tiktok.com/@lxrs2004/video/7682129275708886294',
+        'https://www.tiktok.com/@lxrs2004/video/7684685214383148310',
     ],
 
     /*
-    | Labeltje linksboven op elke edit. Wordt op volgorde gebruikt; zijn er
-    | meer edits dan labels, dan begint hij weer vooraan.
+    | Labeltje linksboven op elke edit, per account. De sectie leest het
+    | account uit de link, dus een edit krijgt altijd het juiste label —
+    | ook als je vier video's van hetzelfde kanaal achter elkaar zet.
+    | Staat een account hier niet bij, dan komt er geen label op.
     */
 
-    'labels' => ['F1', 'Film', 'Voetbal'],
+    'labels' => [
+        'lxrs2004' => 'F1',
+        'lamu.aep' => 'Film',
+        'lxrs.ft' => 'Voetbal',
+    ],
 
 ];

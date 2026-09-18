@@ -89,6 +89,30 @@
   }
 
   /* ------------------------------------------------------------------
+     Recente edits: pas bij een klik laden we de TikTok-embed. Daarvoor
+     staat er alleen een lokale thumbnail, dus er gaat niets naar TikTok
+     zolang de bezoeker er niet om vraagt.
+     ------------------------------------------------------------------ */
+  document.querySelectorAll('.reel__start').forEach((knop) => {
+    knop.addEventListener('click', () => {
+      const reel = knop.closest('.reel');
+      if (!reel || reel.dataset.speelt === 'true') return;
+
+      const frame = document.createElement('iframe');
+      frame.src = knop.dataset.embed + '?autoplay=1';
+      frame.title = knop.dataset.titel || 'TikTok-edit';
+      frame.allow = 'autoplay; encrypted-media; fullscreen';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.setAttribute('scrolling', 'no');
+
+      reel.dataset.speelt = 'true';
+      knop.remove();
+      reel.appendChild(frame);
+      frame.focus();
+    });
+  });
+
+  /* ------------------------------------------------------------------
      Scroll-reveal: kaarten komen op zodra ze in beeld schuiven.
      Bij prefers-reduced-motion slaan we dit over; de CSS zet ze dan
      meteen zichtbaar.

@@ -17,6 +17,7 @@ Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
 | 00 | 2026-09-18 | Setup | Repo aangemaakt, ontwerp geanalyseerd, plan van aanpak vastgelegd | — | `v0.0-setup` |
 | 01 | 2026-09-18 | 0 · Setup | Laravel 13 draait in Docker met MySQL en phpMyAdmin | [bekijk](snapshots/2026-09-18-laravel-welkom.png) | `v0.1-laravel` |
 | 02 | 2026-09-18 | 3 · Front-end | Front-end af: homepage, presets-overzicht met filter en zoek, en productdetailpagina | [bekijk](snapshots/2026-09-18-home.png) · [mobiel](snapshots/2026-09-18-home-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-overzicht.png) · [mobiel](snapshots/2026-09-18-presets-overzicht-mobiel.png) · [bekijk](snapshots/2026-09-18-preset-detail.png) · [mobiel](snapshots/2026-09-18-preset-detail-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-gefilterd.png) · [mobiel](snapshots/2026-09-18-presets-gefilterd-mobiel.png) | `v0.4-frontend` |
+| 03 | 2026-09-18 | 3 · Front-end | Recente edits op de homepage, met klik-om-te-spelen in plaats van automatische embeds | [bekijk](snapshots/2026-09-18-home-met-edits.png) · [mobiel](snapshots/2026-09-18-home-met-edits-mobiel.png) | `v0.5-edits` |
 
 <!-- Nieuwe regel bovenaan of onderaan toevoegen bij elke milestone.
      Snapshot-kolom: [bekijk](snapshots/2026-10-05-presets-overzicht.png) -->

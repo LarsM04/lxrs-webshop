@@ -139,19 +139,46 @@
 
             @if ($edits->isNotEmpty())
                 {{-- Er staan edits in config/edits.php, dus die tonen we. --}}
+                {{-- Klik-om-te-spelen: de thumbnail staat lokaal, TikTok wordt pas
+                     geladen als iemand op play drukt. Scheelt de bezoeker vier
+                     cookiebanners en een hoop laadtijd. --}}
                 <ul class="reels">
                     @foreach ($edits as $edit)
                         <li class="reel">
                             @if ($edit->label)
                                 <span class="reel__label">{{ $edit->label }}</span>
                             @endif
-                            <iframe
-                                src="{{ $edit->embed }}"
-                                title="TikTok-edit van {{ '@' . $edit->account }}"
-                                loading="lazy"
-                                allow="encrypted-media; fullscreen"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                scrolling="no"></iframe>
+
+                            <button class="reel__start" type="button"
+                                    data-embed="{{ $edit->embed }}"
+                                    data-titel="TikTok-edit van {{ '@' . $edit->account }}">
+                                @if ($edit->thumb)
+                                    <img src="{{ asset($edit->thumb) }}" alt="" loading="lazy" width="540" height="540">
+                                @else
+                                    <span class="plaatshouder" data-cat="shakes" aria-hidden="true">Edit</span>
+                                @endif
+
+                                <span class="reel__play" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </span>
+
+                                <span class="visueel-verborgen">
+                                    Edit afspelen{{ $edit->bijschrift ? ': ' . $edit->bijschrift : '' }}
+                                </span>
+                            </button>
+
+                            @if ($edit->bijschrift)
+                                <span class="reel__bijschrift" aria-hidden="true">{{ $edit->bijschrift }}</span>
+                            @endif
+
+                            {{-- Zonder JavaScript kun je hem alsnog op TikTok bekijken. --}}
+                            <noscript>
+                                <a class="reel__noscript" href="{{ $edit->url }}" target="_blank" rel="noopener">
+                                    Bekijk op TikTok
+                                </a>
+                            </noscript>
                         </li>
                     @endforeach
                 </ul>

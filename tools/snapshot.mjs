@@ -54,10 +54,16 @@ const MILESTONES = {
   'v0.4-frontend': {
     fase: '3 · Front-end',
     shots: [
-      { name: 'home', url: 'http://localhost:8000' },
+      { name: 'home', url: 'http://localhost:8000', traag: true },
       { name: 'presets-overzicht', url: 'http://localhost:8000/presets' },
       { name: 'preset-detail', url: 'http://localhost:8000/presets/neon-grade' },
       { name: 'presets-gefilterd', url: 'http://localhost:8000/presets?categorie=shakes' },
+    ],
+  },
+  'v0.5-edits': {
+    fase: '3 · Front-end',
+    shots: [
+      { name: 'home-met-edits', url: 'http://localhost:8000', traag: true },
     ],
   },
   'v1.0-crud': {
@@ -111,7 +117,12 @@ function parseArgs(argv) {
 async function bereikbaar(url) {
   try {
     const u = new URL(url);
-    await fetch(u.protocol + '//' + u.host, { signal: AbortSignal.timeout(4000) });
+    const res = await fetch(u.protocol + '//' + u.host, { signal: AbortSignal.timeout(4000) });
+
+    /* Body altijd afsluiten. Laat je 'm openstaan, dan klapt undici in Node 24
+       er even later op met een assertion zodra de socket dichtgaat. */
+    await res.body?.cancel().catch(() => {});
+
     return true;
   } catch {
     return false;
@@ -163,7 +174,11 @@ async function paginaShot(context, shot, datum, viewport, achtervoegsel) {
   const page = await context.newPage();
   await page.setViewportSize(viewport);
   await page.emulateMedia({ reducedMotion: 'reduce' }); // stabiele, niet-bewegende opname
-  await page.goto(shot.url, { waitUntil: 'networkidle', timeout: 30000 });
+
+  /* Niet op 'networkidle' wachten: TikTok-embeds blijven verkeer maken, dus
+     dat moment komt nooit. 'load' plus even laten bezinken is genoeg. */
+  await page.goto(shot.url, { waitUntil: 'load', timeout: 45000 });
+  await page.evaluate(() => document.fonts.ready).catch(() => {});
 
   /* Chromium haalt bij een fullPage-opname de verkeerde inhoud onder een
      backdrop-filter vandaan, waardoor er een spookbeeld van de footer
@@ -171,7 +186,7 @@ async function paginaShot(context, shot, datum, viewport, achtervoegsel) {
      we het filter alleen tijdens het fotograferen uit. */
   await page.addStyleTag({ content: '*, *::before, *::after { backdrop-filter: none !important; }' });
 
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(shot.traag ? 6000 : 900);
   const bestand = path.join(SNAPDIR, datum + '-' + shot.name + achtervoegsel + '.png');
   await page.screenshot({ path: bestand, fullPage: true });
   await page.close();

@@ -122,6 +122,17 @@ Zo'n link haal je via **Delen → Link kopiëren**. Een korte link
 (`https://vm.tiktok.com/...`) werkt niet, want daar staat het videonummer niet in:
 open die eerst in je browser en kopieer dan de link uit de adresbalk.
 
+Haal daarna de thumbnails op:
+
+```bash
+docker compose exec laravel.test php artisan edits:thumbnails
+```
+
+Dat zet de voorbeeldafbeelding en de titel lokaal neer in `public/images/edits/`.
+De homepage laadt dus niks van TikTok tot een bezoeker op play drukt — dat scheelt
+ruim 150 verzoeken per paginabezoek, en je bezoekers krijgen geen vier
+cookiebanners van TikTok over je edits heen.
+
 Staat de lijst leeg, dan toont de sectie je drie TikTok-accounts.
 
 ---
