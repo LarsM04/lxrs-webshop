@@ -21,20 +21,106 @@ Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
 
 ---
 
-## Hoe ik een snapshot vastleg
+## Snapshot maken — automatisch
 
-1. **Screenshot maken** van wat er nieuw werkt
-   Opslaan als `docs/snapshots/JJJJ-MM-DD-korte-omschrijving.png`
+Eenmalig, na het clonen van de repo:
 
-2. **Regel toevoegen** aan het logboek hierboven
+```bash
+cd tools
+npm install
+```
 
-3. **Committen en taggen:**
-   ```bash
-   git add .
-   git commit -m "Snapshot: presets-overzicht laadt live uit database"
-   git tag -a v0.3-overzicht -m "Presets-overzicht werkt met database-data"
-   git push && git push --tags
-   ```
+Daarna, telkens als een milestone af is. **Zorg dat je app draait** (`php artisan serve`),
+en voor databaseschermen ook Apache en MySQL in XAMPP:
+
+```bash
+node tools/snapshot.mjs v0.4-frontend "Presets-overzicht laadt live uit de database"
+```
+
+Dat doet in één keer:
+
+1. Screenshots van alle pagina's die bij die milestone horen — desktop **en** telefoon
+2. Een regel toevoegen aan het logboek hierboven
+3. Een commit maken met een git tag
+
+Nog niet gepusht. Controleer de screenshots en push daarna zelf:
+
+```bash
+git push && git push --tags
+```
+
+Of laat het script het meteen doen met `--push`.
+
+### Vlaggen
+
+| Vlag | Wat het doet |
+|---|---|
+| `--push` | Pusht commit en tag direct naar GitHub |
+| `--no-git` | Alleen screenshots maken, niets committen |
+| `--url <u> --name <n>` | Losse pagina vastleggen, buiten de vaste milestones om |
+| `--json` | Behandel de URL als API-endpoint: response opslaan én netjes renderen |
+
+Voorbeeld van een losse opname:
+
+```bash
+node tools/snapshot.mjs --url http://localhost:8000/presets?categorie=shakes --name filter v0.5-filter "Filter op categorie werkt"
+```
+
+### Adminpaneel
+
+Het adminpaneel zit achter een login. Zet je gegevens in de omgeving voordat je het
+script draait, dan logt Playwright zelf in:
+
+```bash
+ADMIN_EMAIL="lars@lxrs2004.com" ADMIN_PASSWORD="..." node tools/snapshot.mjs v1.0-crud "Admin CRUD werkt"
+```
+
+Staan die niet ingesteld, dan slaat het script de adminpagina over en gaat de rest gewoon door.
+
+### Als de URL's niet kloppen
+
+De pagina's per milestone staan bovenin [`tools/snapshot.mjs`](../tools/snapshot.mjs)
+in `MILESTONES`. Heten je routes anders, pas ze daar aan.
+
+---
+
+## Snapshot maken — handmatig
+
+Nodig wanneer het script er niet bij kan: alles buiten de browser (VS Code, After Effects,
+een foutmelding in je terminal) of iets waar je zelf doorheen moet klikken.
+
+**1. Screenshot maken**
+
+- Windows: `Win + Shift + S` → sleep het gebied → plakken en opslaan
+- Hele venster: `Alt + PrtScn`
+
+**2. Opslaan in `docs/snapshots/`** met deze naam:
+
+```
+JJJJ-MM-DD-korte-omschrijving.png
+```
+
+Dus bijvoorbeeld `2026-11-16-presets-overzicht.png`. De datum vooraan zorgt dat ze
+vanzelf op volgorde staan.
+
+**3. Regel toevoegen** aan het logboek bovenin dit bestand. Kopieer de vorige regel en
+pas hem aan — nummer één omhoog:
+
+```
+| 04 | 2026-11-16 | 3 · Front-end | Wat er nu werkt | [bekijk](snapshots/2026-11-16-presets-overzicht.png) | `v0.4-frontend` |
+```
+
+**4. Committen en taggen:**
+
+```bash
+git add docs/
+git commit -m "Snapshot v0.4-frontend: presets-overzicht laadt live uit database"
+git tag -a v0.4-frontend -m "Presets-overzicht werkt met database-data"
+git push && git push --tags
+```
+
+> Tag-naam al gebruikt? Kies dan een nieuwe (`v0.4.1-frontend`). Een bestaande tag
+> verplaatsen kan, maar dan raak je het moment kwijt dat je juist wilde vastleggen.
 
 ---
 

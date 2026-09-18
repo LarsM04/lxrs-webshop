@@ -112,6 +112,7 @@ De volledige fasering staat in [`docs/PLAN.md`](docs/PLAN.md).
 ```
 lxrs-webshop/
 ├── design/          Origineel ontwerp (Claude artifact-export, referentie)
+├── tools/           Snapshot-script (Playwright)
 ├── docs/
 │   ├── PLAN.md      Gefaseerde planning
 │   ├── VOORTGANG.md Snapshotlogboek en milestones

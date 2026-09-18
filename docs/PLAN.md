@@ -39,6 +39,7 @@ Drie dingen om te weten voordat we beginnen:
 - [ ] `.env` instellen op de lokale database
 - [ ] `php artisan serve` draait op `localhost:8000`
 - [ ] `.gitignore` controleren (`vendor/`, `.env` en `node_modules/` eruit)
+- [x] Snapshot-tool opgezet in `tools/` — zie [VOORTGANG.md](VOORTGANG.md)
 
 **Snapshot:** screenshot van de Laravel-welkomstpagina · tag `v0.1-laravel`
 

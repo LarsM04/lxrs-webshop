@@ -1,0 +1,13 @@
+{
+  "name": "lxrs-webshop-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hulpscripts voor het keuzedeel — automatische snapshots van milestones",
+  "scripts": {
+    "snapshot": "node snapshot.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.56.0"
+  }
+}
