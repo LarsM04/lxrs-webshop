@@ -13,9 +13,9 @@
     <meta property="og:description" content="@yield('omschrijving', 'Edit presets en tools voor short-form editors.')">
     <meta property="og:url" content="{{ url()->current() }}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    {{-- Font wordt lokaal geserveerd, dus vast inladen in plaats van wachten
+         tot de CSS geparsed is. --}}
+    <link rel="preload" href="{{ asset('fonts/manrope-variable.woff2') }}" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>

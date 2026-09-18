@@ -3,6 +3,17 @@
    Kleuren en typografie komen uit het oorspronkelijke ontwerp.
    ========================================================================== */
 
+/* Manrope als variabele font: alle gewichten van 200 t/m 800 in één bestand
+   van 53 KB. Lokaal gehost, dus er gaat geen verzoek naar Google en er lekken
+   geen IP-adressen van bezoekers weg. Licentie: public/fonts/Manrope-OFL.txt */
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/manrope-variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Achtergronden */
   --bg: #07060c;
@@ -54,11 +65,18 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--tekst);
-  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+}
+
+/* De decoratieve gloed in de hero steekt bewust buiten beeld. Zonder dit
+   scrolt de pagina zijwaarts. 'clip' in plaats van 'hidden', want 'hidden'
+   maakt er een scroll-container van en dan werkt de sticky header niet meer. */
+html, body {
+  overflow-x: hidden; /* terugval voor oude browsers */
+  overflow-x: clip;
 }
 
 img { max-width: 100%; display: block; }
@@ -107,7 +125,7 @@ a:hover { color: var(--tekst); }
    -------------------------------------------------------------------------- */
 
 h1, h2, h3, h4 {
-  font-family: 'Saira Condensed', 'Space Grotesk', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.01em;
@@ -125,7 +143,7 @@ h3 { font-size: clamp(20px, 2.4vw, 26px); }
 .kop-pagina { font-size: clamp(30px, 5vw, 54px); }
 .kop-klein { font-size: clamp(20px, 2.4vw, 26px); text-transform: none; }
 .kop-mini {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -138,7 +156,7 @@ p:last-child { margin-bottom: 0; }
 
 .oogje {
   display: inline-block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.24em;
@@ -214,8 +232,8 @@ section { padding-block: var(--sectie); }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Saira Condensed', sans-serif;
-  font-weight: 900;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 800;
   font-size: 22px;
   letter-spacing: 0.04em;
   color: var(--tekst);
@@ -363,7 +381,7 @@ section { padding-block: var(--sectie); }
 }
 .hero__cijfer strong {
   display: block;
-  font-family: 'Saira Condensed', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 30px;
   font-weight: 800;
   color: var(--tekst);
@@ -467,13 +485,13 @@ section { padding-block: var(--sectie); }
 }
 
 .prijs {
-  font-family: 'Saira Condensed', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 26px;
   font-weight: 800;
   color: var(--tekst);
 }
 .prijs small {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 400;
   color: var(--tekst-dim);
@@ -495,7 +513,7 @@ section { padding-block: var(--sectie); }
   width: 100%; height: 100%;
   display: grid;
   place-items: center;
-  font-family: 'Saira Condensed', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -740,7 +758,7 @@ section { padding-block: var(--sectie); }
 }
 .tegel strong {
   display: block;
-  font-family: 'Saira Condensed', sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   font-size: 24px;
   font-weight: 800;
   text-transform: uppercase;

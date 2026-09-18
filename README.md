@@ -25,6 +25,7 @@ beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 | Laag | Keuze | Waarom |
 |---|---|---|
 | Front-end | Blade + HTML/CSS/JS (geen framework) | Mijn bestaande ontwerp uitwerken, zoals in mijn portfolio-website |
+| Typografie | Manrope (variabel, lokaal) | Één bestand van 53 KB voor alle gewichten; geen verzoek naar Google Fonts |
 | Backend | Laravel 13 (PHP 8.5) | Sluit aan bij de module OOP & Laravel; migrations en Eloquent schelen veel handwerk |
 | API | Eigen endpoints in `routes/api.php` | Zelf geschreven, zoals in mijn kiosk-project (Happy Herbivore) |
 | Database | MySQL 8.4 | Bekend vanuit eerdere schoolprojecten |
