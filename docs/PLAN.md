@@ -33,13 +33,18 @@ Drie dingen om te weten voordat we beginnen:
 
 **Doel:** werkende Laravel-omgeving en een vastgelegd databaseontwerp.
 
-- [ ] Composer installeren (PHP 8.2 staat al in XAMPP)
-- [ ] `composer create-project laravel/laravel .` in deze map
-- [ ] MySQL-database `lxrs_webshop` aanmaken via phpMyAdmin
-- [ ] `.env` instellen op de lokale database
-- [ ] `php artisan serve` draait op `localhost:8000`
-- [ ] `.gitignore` controleren (`vendor/`, `.env` en `node_modules/` eruit)
+- [x] Laravel 13 aangemaakt met Composer in een Docker-container (PHP 8.4)
+- [x] Laravel Sail toegevoegd met MySQL 8.4
+- [x] phpMyAdmin als extra service in `compose.yaml`
+- [x] `.env` ingesteld: database `lxrs_webshop`, app op poort 8000
+- [x] Containers draaien: app `:8000`, phpMyAdmin `:8080`, MySQL `:3307`
+- [x] Migraties gedraaid
+- [x] `.gitignore` samengevoegd met die van Laravel
 - [x] Snapshot-tool opgezet in `tools/` — zie [VOORTGANG.md](VOORTGANG.md)
+
+> **Waarom Docker en niet XAMPP:** de XAMPP-installatie had PHP 8.2.12 uit 2023, wat
+> Laravel 13 niet accepteert. In een container draaien we PHP 8.5 en MySQL 8.4, en kan
+> iedereen het project met één commando opstarten.
 
 **Snapshot:** screenshot van de Laravel-welkomstpagina · tag `v0.1-laravel`
 

@@ -40,8 +40,8 @@ const MILESTONES = {
   'v0.2-database': {
     fase: '1 · Database',
     shots: [
-      { name: 'db-presets', url: 'http://localhost/phpmyadmin/index.php?route=/sql&db=lxrs_webshop&table=presets', mobiel: false },
-      { name: 'db-categories', url: 'http://localhost/phpmyadmin/index.php?route=/sql&db=lxrs_webshop&table=categories', mobiel: false },
+      { name: 'db-presets', url: 'http://localhost:8080/index.php?route=/sql&db=lxrs_webshop&table=presets', mobiel: false },
+      { name: 'db-categories', url: 'http://localhost:8080/index.php?route=/sql&db=lxrs_webshop&table=categories', mobiel: false },
     ],
   },
   'v0.3-api': {
@@ -190,11 +190,15 @@ async function logboekBijwerken({ datum, fase, beschrijving, bestanden, tag }) {
   const inhoud = await readFile(LOGBOEK, 'utf8');
   const regels = inhoud.split(/\r?\n/);
 
-  let laatste = -1;
-  for (let i = 0; i < regels.length; i++) {
-    if (/^\|\s*\d+\s*\|/.test(regels[i])) laatste = i;
-  }
-  if (laatste === -1) throw new Error('Logboektabel niet gevonden in docs/VOORTGANG.md');
+  /* Anker op de koprij van de logboektabel en loop alleen de regels af die er
+     direct op volgen. Zonder dat anker pikt hij ook het voorbeeld op dat
+     verderop in de handleiding in een code-blok staat. */
+  const kop = regels.findIndex((r) => /^\|\s*#\s*\|\s*Datum\s*\|/.test(r));
+  if (kop === -1) throw new Error('Logboektabel niet gevonden in docs/VOORTGANG.md');
+
+  let laatste = kop + 1; // de |---|---| scheidingsregel
+  while (laatste + 1 < regels.length && /^\|\s*\d+\s*\|/.test(regels[laatste + 1])) laatste++;
+  if (laatste === kop + 1) throw new Error('Logboektabel heeft nog geen regel om op verder te tellen');
 
   const vorigNr = parseInt(regels[laatste].split('|')[1].trim(), 10);
   const nr = String(vorigNr + 1).padStart(2, '0');
@@ -252,7 +256,7 @@ async function main() {
   const eerste = config.shots[0].url;
   if (!(await bereikbaar(eerste))) {
     console.error('\nServer niet bereikbaar op ' + new URL(eerste).host + '.');
-    console.error('Start je app eerst:  php artisan serve');
+    console.error('Start je containers eerst:  docker compose up -d');
     console.error('Voor phpMyAdmin: start Apache en MySQL in het XAMPP-configuratiescherm.\n');
     process.exit(1);
   }

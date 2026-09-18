@@ -25,9 +25,10 @@ beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 | Laag | Keuze | Waarom |
 |---|---|---|
 | Front-end | Blade + HTML/CSS/JS (geen framework) | Mijn bestaande ontwerp uitwerken, zoals in mijn portfolio-website |
-| Backend | Laravel 12 (PHP 8.2) | Sluit aan bij de module OOP & Laravel; migrations en Eloquent schelen veel handwerk |
+| Backend | Laravel 13 (PHP 8.5) | Sluit aan bij de module OOP & Laravel; migrations en Eloquent schelen veel handwerk |
 | API | Eigen endpoints in `routes/api.php` | Zelf geschreven, zoals in mijn kiosk-project (Happy Herbivore) |
-| Database | MySQL (XAMPP) | Bekend vanuit eerdere schoolprojecten |
+| Database | MySQL 8.4 | Bekend vanuit eerdere schoolprojecten |
+| Omgeving | Docker (Laravel Sail) | Iedereen draait exact dezelfde versies; één commando om op te starten |
 | Admin | Filament | Eigen beheeromgeving, vergelijkbaar met het CMS van mijn U Festival App |
 
 ---
@@ -58,17 +59,39 @@ updated_at                      description
 
 ## Installatie (lokaal draaien)
 
+Je hebt alleen **Docker Desktop** nodig. PHP, MySQL en phpMyAdmin draaien in containers,
+dus er hoeft niets op je eigen computer geïnstalleerd te worden.
+
 ```bash
 git clone https://github.com/LarsM04/lxrs-webshop.git
 cd lxrs-webshop
-composer install
 cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
+docker compose up -d
+docker compose exec laravel.test php artisan key:generate
+docker compose exec laravel.test php artisan migrate --seed
 ```
 
-Zorg dat MySQL draait in XAMPP en dat er een database `lxrs_webshop` bestaat.
+Daarna draait alles:
+
+| Wat | Waar |
+|---|---|
+| De website | http://localhost:8000 |
+| phpMyAdmin | http://localhost:8080 |
+| MySQL (extern) | `localhost:3307`, gebruiker `sail`, wachtwoord `password` |
+
+Stoppen doe je met `docker compose down`.
+
+### Veelvoorkomende problemen
+
+**`Permission denied` op `storage/logs/laravel.log`** — op Windows staan bind-mounted
+bestanden op `root`, terwijl de webserver als `sail` draait:
+
+```bash
+docker compose exec -u root laravel.test chmod -R 777 storage bootstrap/cache
+```
+
+**`port is already allocated`** — er draait al iets op die poort. De poorten staan in
+`.env` (`APP_PORT`, `FORWARD_DB_PORT`, `FORWARD_PHPMYADMIN_PORT`), pas ze daar aan.
 
 ---
 

@@ -15,6 +15,7 @@ Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
 | # | Datum | Fase | Wat werkt er nu | Snapshot | Tag |
 |---|---|---|---|---|---|
 | 00 | 2026-09-18 | Setup | Repo aangemaakt, ontwerp geanalyseerd, plan van aanpak vastgelegd | — | `v0.0-setup` |
+| 01 | 2026-09-18 | 0 · Setup | Laravel 13 draait in Docker met MySQL en phpMyAdmin | [bekijk](snapshots/2026-09-18-laravel-welkom.png) | `v0.1-laravel` |
 
 <!-- Nieuwe regel bovenaan of onderaan toevoegen bij elke milestone.
      Snapshot-kolom: [bekijk](snapshots/2026-10-05-presets-overzicht.png) -->
@@ -30,8 +31,13 @@ cd tools
 npm install
 ```
 
-Daarna, telkens als een milestone af is. **Zorg dat je app draait** (`php artisan serve`),
-en voor databaseschermen ook Apache en MySQL in XAMPP:
+Daarna, telkens als een milestone af is. **Zorg dat je containers draaien**:
+
+```bash
+docker compose up -d
+```
+
+En draai dan het script met de tag van de milestone:
 
 ```bash
 node tools/snapshot.mjs v0.4-frontend "Presets-overzicht laadt live uit de database"
@@ -131,7 +137,7 @@ De tags die er aan het eind van het traject moeten staan:
 | Tag | Fase | Wanneer | Waar de snapshot van is |
 |---|---|---|---|
 | `v0.0-setup` | 0 | sep 2026 | Plan en repo — ✅ behaald |
-| `v0.1-laravel` | 0 | sep 2026 | Laravel-welkomstpagina op localhost |
+| `v0.1-laravel` | 0 | sep 2026 | Laravel draait in Docker — ✅ behaald |
 | `v0.2-database` | 1 | okt 2026 | Beide tabellen met data in phpMyAdmin |
 | `v0.3-api` | 2 | okt 2026 | `GET /api/presets`-response in Postman |
 | `v0.4-frontend` | 3 | nov 2026 | Presets-overzicht met database-data |
