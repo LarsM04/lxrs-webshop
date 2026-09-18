@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #07060c; }
+  * { box-sizing: border-box; }
+  a { color: #b4a4ff; text-decoration: none; }
+  a:hover { color: #ffffff; }
+  ::selection { background: #6b4bf7; color: #fff; }
+  @keyframes lxrsMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes lxrsScan { 0% { transform: translateY(0); } 100% { transform: translateY(320px); } }
+  @keyframes lxrsGlow { 0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; } 50% { transform: translateX(-50%) scale(1.12); opacity: 1; } }
+  @keyframes lxrsFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes lxrsSpinRing { to { transform: rotate(360deg); } }
+  @keyframes lxrsRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  [data-hero] { animation: lxrsRise .8s cubic-bezier(.2,.7,.2,1) both; }
+  [data-hero="2"] { animation-delay: .1s; }
+  [data-hero="3"] { animation-delay: .2s; }
+  [data-hero="4"] { animation-delay: .3s; }
+  a, article, [data-reveal] { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .3s ease, background-color .3s ease, color .2s ease; }
+  @keyframes lxrsGridPan { to { transform: translate3d(-80px, -80px, 0); } }
+  @keyframes lxrsStreak { 0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; } 12% { opacity: 1; } 100% { transform: translateX(220%) skewX(-18deg); opacity: 0; } }
+  @keyframes lxrsShine { 0% { transform: translateX(-140%) rotate(8deg); } 100% { transform: translateX(240%) rotate(8deg); } }
+  @keyframes lxrsGradText { to { background-position: 220% 50%; } }
+  @keyframes lxrsPulse { 0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(139,116,255,0.6); } 50% { transform: scale(1.5); opacity: 0.7; box-shadow: 0 0 0 8px rgba(139,116,255,0); } }
+  @keyframes lxrsMarqueeRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @keyframes lxrsBorderGlow { 0%, 100% { border-color: rgba(139,116,255,0.2); } 50% { border-color: rgba(139,116,255,0.55); } }
+
+</style>
+</helmet>
+<div style="position:relative; background:#07060c; color:#efedf7; font-family:'Space Grotesk',system-ui,sans-serif; overflow-x:hidden; min-height:100vh">
+
+  <div aria-hidden="true" style="position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden">
+    <div style="position:absolute; inset:-100px; background-image:linear-gradient(rgba(139,116,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(139,116,255,0.07) 1px, transparent 1px); background-size:80px 80px; animation:lxrsGridPan 6s linear infinite; mask-image:radial-gradient(ellipse at 50% 30%, #000, transparent 75%); -webkit-mask-image:radial-gradient(ellipse at 50% 30%, #000, transparent 75%)"></div>
+  </div>
+
+  <header style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px clamp(16px,4vw,56px); background:rgba(7,6,12,0.78); backdrop-filter:blur(14px); border-bottom:1px solid rgba(139,116,255,0.16)">
+    <a href="#top" style="display:flex; align-items:center; gap:12px; color:#fff">
+      <img src="assets/lxrs-logo.jpeg" alt="LXRS2004" style="width:38px; height:38px; border-radius:50%; border:1px solid rgba(139,116,255,0.5)" />
+      <span style="font-family:'Saira Condensed',sans-serif; font-weight:900; font-size:20px; letter-spacing:0.06em; text-transform:uppercase">LXRS<span style="color:#8b74ff">2004</span></span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:clamp(14px,2vw,32px); font-size:13px; letter-spacing:0.14em; text-transform:uppercase; flex-wrap:wrap">
+      <a href="#shop" style="color:#b9b3cf">Shop</a>
+      <a href="#werk" style="color:#b9b3cf">Werk</a>
+      <a href="#accounts" style="color:#b9b3cf">Accounts</a>
+      <a href="#contact" style="display:inline-flex; align-items:center; height:36px; padding:0 18px; border-radius:999px; background:#6b4bf7; color:#fff; font-weight:700">Contact</a>
+    </nav>
+  </header>
+
+  <section id="top" style="position:relative; z-index:1; padding:clamp(56px,9vw,120px) clamp(16px,4vw,56px) clamp(40px,6vw,80px)">
+    <div style="position:absolute; top:-160px; left:50%; transform:translateX(-50%); width:min(1100px,120vw); height:560px; background:radial-gradient(ellipse at center, rgba(107,75,247,0.30), rgba(7,6,12,0) 68%); pointer-events:none; animation:lxrsGlow 9s ease-in-out infinite"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,5vw,64px); align-items:center">
+      <div style="min-width:0">
+        <div data-hero="1" style="display:inline-flex; align-items:center; gap:10px; padding:6px 14px; border:1px solid rgba(139,116,255,0.35); border-radius:999px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#b4a4ff">
+          <span style="width:6px; height:6px; border-radius:50%; background:#8b74ff; animation:lxrsPulse 1.6s ease-in-out infinite"></span>
+          Open voor edits &amp; samenwerkingen
+        </div>
+        <h1 data-hero="2" style="font-family:'Saira Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(52px,9vw,116px); line-height:0.86; letter-spacing:-0.01em; margin:22px 0 0; text-wrap:balance">
+          Edits die<br />
+          <span style="background:linear-gradient(100deg, #6b4bf7 0%, #cfc4ff 22%, #6b4bf7 44%, #8b74ff 70%, #cfc4ff 100%); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:lxrsGradText 3.2s linear infinite">niet stilstaan</span>
+        </h1>
+        <p data-hero="3" style="margin:24px 0 0; max-width:46ch; font-size:clamp(15px,1.4vw,18px); line-height:1.65; color:#b9b3cf">
+          Ik ben Lars — TikTok editor voor F1, film en voetbal. Naast m'n edits bouw ik extensies voor After Effects en verkoop ik de presets, clips en tools waar ik zelf elke dag mee werk.
+        </p>
+        <div data-hero="4" style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px">
+          <a href="#shop" style="display:inline-flex; align-items:center; height:50px; padding:0 26px; border-radius:8px; background:#6b4bf7; color:#fff; font-weight:700; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; box-shadow:0 12px 40px -14px rgba(107,75,247,0.9)" style-hover="transform:translateY(-3px); box-shadow:0 20px 54px -14px rgba(107,75,247,1)">Bekijk de shop</a>
+          <a href="#werk" style="display:inline-flex; align-items:center; height:50px; padding:0 26px; border-radius:8px; border:1px solid rgba(139,116,255,0.4); color:#efedf7; font-weight:700; font-size:14px; letter-spacing:0.08em; text-transform:uppercase" style-hover="transform:translateY(-3px); border-color:#8b74ff; background:rgba(139,116,255,0.1)">Recente edits</a>
+        </div>
+      </div>
+      <div style="min-width:0; display:flex; justify-content:center">
+        <div style="position:relative; width:min(420px,100%); aspect-ratio:1; animation:lxrsFloat 7s ease-in-out infinite">
+          <div style="position:absolute; inset:-16px; border-radius:50%; border:1px dashed rgba(139,116,255,0.3); border-top-color:rgba(139,116,255,0.85); animation:lxrsSpinRing 18s linear infinite"></div>
+          <div style="position:absolute; inset:0; border-radius:50%; overflow:hidden; box-shadow:0 0 0 1px rgba(139,116,255,0.35), 0 40px 120px rgba(107,75,247,0.35)">
+            <img src="assets/lxrs-logo.jpeg" alt="LXRS2004 logo" style="width:100%; height:100%; object-fit:cover; display:block" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="position:relative; z-index:1; background:#07060c; border-top:1px solid rgba(139,116,255,0.16); border-bottom:1px solid rgba(139,116,255,0.16); overflow:hidden; padding:14px 0">
+    <div style="display:flex; width:max-content; animation:lxrsMarquee 14s linear infinite">
+      <div style="display:flex; gap:48px; padding-right:48px; font-family:'Saira Condensed',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; font-size:15px; color:#6f6a86; white-space:nowrap">
+        <span>After Effects extensies</span><span style="color:#6b4bf7">/</span>
+        <span>Edit presets</span><span style="color:#6b4bf7">/</span>
+        <span>Clip packs</span><span style="color:#6b4bf7">/</span>
+        <span>F1 · Film · Voetbal</span><span style="color:#6b4bf7">/</span>
+        <span>Sound design</span><span style="color:#6b4bf7">/</span>
+      </div>
+      <div style="display:flex; gap:48px; padding-right:48px; font-family:'Saira Condensed',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; font-size:15px; color:#6f6a86; white-space:nowrap">
+        <span>After Effects extensies</span><span style="color:#6b4bf7">/</span>
+        <span>Edit presets</span><span style="color:#6b4bf7">/</span>
+        <span>Clip packs</span><span style="color:#6b4bf7">/</span>
+        <span>F1 · Film · Voetbal</span><span style="color:#6b4bf7">/</span>
+        <span>Sound design</span><span style="color:#6b4bf7">/</span>
+      </div>
+    </div>
+    <div style="display:flex; width:max-content; animation:lxrsMarqueeRev 18s linear infinite; margin-top:10px; opacity:0.55">
+      <div style="display:flex; gap:48px; padding-right:48px; font-family:'Saira Condensed',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; font-size:15px; color:#8b74ff; white-space:nowrap">
+        <span>Beat sync</span><span style="color:#3d3560">/</span>
+        <span>Velocity edits</span><span style="color:#3d3560">/</span>
+        <span>Transitions</span><span style="color:#3d3560">/</span>
+        <span>Color grades</span><span style="color:#3d3560">/</span>
+        <span>Shake packs</span><span style="color:#3d3560">/</span>
+      </div>
+      <div style="display:flex; gap:48px; padding-right:48px; font-family:'Saira Condensed',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; font-size:15px; color:#8b74ff; white-space:nowrap">
+        <span>Beat sync</span><span style="color:#3d3560">/</span>
+        <span>Velocity edits</span><span style="color:#3d3560">/</span>
+        <span>Transitions</span><span style="color:#3d3560">/</span>
+        <span>Color grades</span><span style="color:#3d3560">/</span>
+        <span>Shake packs</span><span style="color:#3d3560">/</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="shop" style="position:relative; z-index:1; padding:clamp(64px,8vw,110px) clamp(16px,4vw,56px)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:clamp(28px,4vw,48px)">
+        <div>
+          <div style="font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#8b74ff">01 — Shop</div>
+          <h2 style="font-family:'Saira Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(34px,5vw,64px); line-height:0.95; margin:12px 0 0">Mijn toolkit, jouw timeline</h2>
+        </div>
+        <p style="max-width:34ch; margin:0; color:#b9b3cf; font-size:15px; line-height:1.6">Alles wat ik zelf gebruik: getest op honderden edits, direct te downloaden na aankoop.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+          <article data-reveal="1" style="display:flex; flex-direction:column; padding:26px; border:1px solid rgba(139,116,255,0.18); border-radius:14px; background:linear-gradient(180deg, rgba(139,116,255,0.07), rgba(7,6,12,0))" style-hover="border-color:rgba(139,116,255,0.5); transform:translateY(-3px)">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+              <span style="font-family:'Saira Condensed',sans-serif; font-weight:900; font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:#8b74ff">{{ p.tag }}</span>
+              <span style="font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#6f6a86">{{ p.status }}</span>
+            </div>
+            <div style="position:relative; overflow:hidden; margin:20px 0 18px; height:150px; border-radius:10px; border:1px solid rgba(139,116,255,0.18); background-image:repeating-linear-gradient(135deg, rgba(139,116,255,0.14) 0 10px, rgba(7,6,12,0) 10px 20px); display:flex; align-items:flex-end; padding:12px">
+              <span style="position:absolute; top:-30%; left:0; width:45%; height:160%; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(169,150,255,0.22), rgba(255,255,255,0)); animation:lxrsShine 3.8s ease-in-out infinite"></span>
+              <span style="position:relative; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; color:#8880a3">{{ p.slot }}</span>
+            </div>
+            <h3 style="font-family:'Saira Condensed',sans-serif; font-weight:800; text-transform:uppercase; font-size:26px; line-height:1.05; margin:0">{{ p.title }}</h3>
+            <p style="margin:10px 0 24px; color:#b9b3cf; font-size:14px; line-height:1.6">{{ p.body }}</p>
+            <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:18px; border-top:1px solid rgba(139,116,255,0.14)">
+              <span style="font-family:'Saira Condensed',sans-serif; font-weight:900; font-size:24px">{{ p.price }}</span>
+              <a href="#contact" style="display:inline-flex; align-items:center; height:40px; padding:0 18px; border-radius:6px; background:#6b4bf7; color:#fff; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase">{{ p.cta }}</a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="werk" style="position:relative; z-index:1; padding:clamp(40px,6vw,80px) clamp(16px,4vw,56px) clamp(64px,8vw,110px)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#8b74ff">02 — Werk</div>
+      <h2 style="font-family:'Saira Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(34px,5vw,64px); line-height:0.95; margin:12px 0 clamp(28px,4vw,44px)">Recente edits</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:14px">
+        <sc-for list="{{ reels }}" as="r" hint-placeholder-count="4">
+          <div data-reveal="1" style="position:relative; aspect-ratio:9/16; border-radius:12px; overflow:hidden; border:1px solid rgba(139,116,255,0.2); background:#0b0916; background-image:repeating-linear-gradient(135deg, rgba(139,116,255,0.12) 0 10px, rgba(10,8,18,0) 10px 20px); box-shadow:0 0 0 0 rgba(107,75,247,0); animation:lxrsBorderGlow 2.6s ease-in-out infinite" style-hover="border-color:rgba(139,116,255,0.6); box-shadow:0 24px 60px -20px rgba(107,75,247,0.65); transform:translateY(-6px) scale(1.015)">
+            <sc-if value="{{ r.hasEmbed }}" hint-placeholder-val="{{ false }}">
+              <iframe src="{{ r.embed }}" title="TikTok edit" loading="lazy" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" style="position:absolute; inset:0; width:100%; height:100%; border:0"></iframe>
+            </sc-if>
+            <sc-if value="{{ r.noEmbed }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:14px">
+                <span style="align-self:flex-start; padding:4px 10px; border-radius:999px; background:rgba(7,6,12,0.7); border:1px solid rgba(139,116,255,0.3); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#b4a4ff">{{ r.tag }}</span>
+                <span style="position:absolute; left:0; right:0; top:0; height:2px; background:linear-gradient(90deg, rgba(107,75,247,0), #8b74ff, rgba(107,75,247,0)); animation:lxrsScan 3.4s linear infinite; opacity:0.7"></span>
+                <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px; color:#8880a3">{{ r.slot }}</span>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="accounts" style="position:relative; z-index:1; padding:0 clamp(16px,4vw,56px) clamp(64px,8vw,110px)">
+    <div style="max-width:1240px; margin:0 auto">
+      <div style="font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#8b74ff">03 — Accounts</div>
+      <h2 style="font-family:'Saira Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(34px,5vw,64px); line-height:0.95; margin:12px 0 clamp(28px,4vw,44px)">Drie kanalen, één editor</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:18px">
+        <sc-for list="{{ accounts }}" as="a" hint-placeholder-count="3">
+          <a data-reveal="1" href="{{ a.url }}" target="_blank" rel="noopener" style="display:flex; flex-direction:column; gap:14px; padding:26px; border:1px solid rgba(139,116,255,0.18); border-radius:14px; color:#efedf7" style-hover="border-color:rgba(139,116,255,0.55); background:rgba(139,116,255,0.06)">
+            <span style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#8b74ff">{{ a.niche }}</span>
+            <span style="font-family:'Saira Condensed',sans-serif; font-weight:900; font-size:30px; letter-spacing:0.01em">{{ a.handle }}</span>
+            <span style="color:#b9b3cf; font-size:14px; line-height:1.6">{{ a.body }}</span>
+            <span style="margin-top:6px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#b4a4ff">Bekijk op TikTok →</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="position:relative; z-index:1; padding:0 clamp(16px,4vw,56px) clamp(72px,9vw,120px)">
+    <div style="max-width:1240px; margin:0 auto; position:relative; overflow:hidden; border:1px solid rgba(139,116,255,0.24); border-radius:18px; padding:clamp(32px,5vw,64px); background:radial-gradient(120% 140% at 15% 0%, rgba(107,75,247,0.30), rgba(7,6,12,0) 60%)">
+      <h2 style="font-family:'Saira Condensed',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(32px,5vw,60px); line-height:0.95; margin:0; max-width:22ch">Een edit, extensie of samenwerking?</h2>
+      <p style="margin:18px 0 30px; max-width:48ch; color:#cfc9e2; font-size:16px; line-height:1.65">Stuur me een DM of mail met wat je nodig hebt — deadline, platform en stijl. Ik reageer meestal binnen een dag.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:12px">
+        <a href="mailto:hello@lxrs2004.com" style="display:inline-flex; align-items:center; height:50px; padding:0 26px; border-radius:8px; background:#6b4bf7; color:#fff; font-weight:700; font-size:14px; letter-spacing:0.08em; text-transform:uppercase">Mail me</a>
+        <a href="https://www.tiktok.com/@lxrs2004?lang=en" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:50px; padding:0 26px; border-radius:8px; border:1px solid rgba(139,116,255,0.4); color:#efedf7; font-weight:700; font-size:14px; letter-spacing:0.08em; text-transform:uppercase">DM op TikTok</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative; z-index:1; background:#07060c; border-top:1px solid rgba(139,116,255,0.16); padding:26px clamp(16px,4vw,56px); display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#6f6a86">
+    <span>© 2026 LXRS2004 — Editor</span>
+    <span style="display:flex; gap:20px; flex-wrap:wrap">
+      <a href="https://www.tiktok.com/@lxrs2004?lang=en" target="_blank" rel="noopener">@lxrs2004</a>
+      <a href="https://www.tiktok.com/@lamu.aep?lang=en" target="_blank" rel="noopener">@lamu.aep</a>
+      <a href="https://www.tiktok.com/@lxrs.ft?lang=en" target="_blank" rel="noopener">@lxrs.ft</a>
+    </span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;shopLive&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Shop&quot;},&quot;reelCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:3,&quot;max&quot;:8,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Werk&quot;},&quot;reel1Url&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Werk&quot;},&quot;reel2Url&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Werk&quot;},&quot;reel3Url&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Werk&quot;},&quot;reel4Url&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Werk&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.initCursor();
+    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    els.forEach((el, i) => {
+      el.style.transition = "opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)";
+      el.style.transitionDelay = ((i % 4) * 70) + "ms";
+      el.style.opacity = "0";
+      el.style.transform = "translateY(26px)";
+    });
+    const show = (el) => { el.style.opacity = "1"; el.style.transform = "none"; el.dataset.revealed = "1"; };
+    let pending = els.slice();
+    const tick = () => {
+      pending = pending.filter((el) => {
+        const t = el.getBoundingClientRect().top;
+        if (t < (window.innerHeight || 800) * 0.94) { show(el); return false; }
+        return true;
+      });
+      if (pending.length && !this._revealStopped && !this._unmounted) this._raf = requestAnimationFrame(tick);
+    };
+    tick();
+    this._failsafe = setTimeout(() => { els.forEach(show); this._revealStopped = true; }, 2500);
+  }
+  componentWillUnmount() {
+    this._unmounted = true;
+    this._revealStopped = true;
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._failsafe) clearTimeout(this._failsafe);
+    if (this._cursorRaf) cancelAnimationFrame(this._cursorRaf);
+    if (this._cursorCleanup) this._cursorCleanup();
+  }
+  initCursor() {
+    if (window.matchMedia("(hover: none)").matches) return;
+    const mk = (css) => { const d = document.createElement("div"); d.setAttribute("data-lxrs-cursor", "1"); d.style.cssText = "position:fixed;top:0;left:0;z-index:80;pointer-events:none;opacity:0;transition:opacity .3s ease;" + css; document.body.appendChild(d); return d; };
+    document.querySelectorAll("[data-lxrs-cursor]").forEach((n) => n.remove());
+    const glow = mk("width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle, rgba(107,75,247,0.20), rgba(107,75,247,0.06) 42%, rgba(7,6,12,0) 68%);mix-blend-mode:screen");
+    const ring = mk("width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:1px solid rgba(169,150,255,0.75);transition:opacity .3s ease, width .2s ease, height .2s ease, margin .2s ease, background-color .2s ease");
+    const dot = mk("width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#cfc4ff");
+    let mx = innerWidth / 2, my = innerHeight / 2, gx = mx, gy = my, rx = mx, ry = my;
+    const move = (e) => {
+      mx = e.clientX; my = e.clientY;
+      [glow, ring, dot].forEach((n) => { n.style.opacity = "1"; });
+      const hot = e.target.closest && e.target.closest("a, article, button, [data-reveal]");
+      ring.style.width = ring.style.height = hot ? "54px" : "30px";
+      ring.style.margin = hot ? "-27px 0 0 -27px" : "-15px 0 0 -15px";
+      ring.style.backgroundColor = hot ? "rgba(139,116,255,0.16)" : "transparent";
+    };
+    const leave = () => { [glow, ring, dot].forEach((n) => { n.style.opacity = "0"; }); };
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("pointerdown", move, { passive: true });
+    document.addEventListener("mouseleave", leave);
+    const loop = () => {
+      gx += (mx - gx) * 0.07; gy += (my - gy) * 0.07;
+      rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22;
+      glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0)";
+      ring.style.transform = "translate3d(" + rx + "px," + ry + "px,0)";
+      dot.style.transform = "translate3d(" + mx + "px," + my + "px,0)";
+      if (!this._unmounted) this._cursorRaf = requestAnimationFrame(loop);
+    };
+    loop();
+    this._cursorCleanup = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerdown", move);
+      document.removeEventListener("mouseleave", leave);
+      [glow, ring, dot].forEach((n) => n.remove());
+    };
+  }
+  tiktokId(url) {
+    const m = String(url || "").match(/\/video\/(\d+)/);
+    return m ? m[1] : "";
+  }
+  renderVals() {
+    const live = this.props.shopLive ?? false;
+    const status = live ? "Beschikbaar" : "Binnenkort";
+    const cta = live ? "Kopen" : "Wachtlijst";
+    const reelCount = this.props.reelCount ?? 4;
+    const tags = ["F1", "Film", "Voetbal", "F1", "Film", "Voetbal", "F1", "Film"];
+    return {
+      products: [
+        { tag: "Extensie", status, cta, price: "€24", title: "AE Extensie", slot: "[ ui-screenshot ]",
+          body: "Mijn eigen After Effects panel: shake, glow en transitions in één klik, gebouwd voor snelle short-form edits." },
+        { tag: "Presets", status, cta, price: "€14", title: "Edit Presets", slot: "[ preset-preview ]",
+          body: "De looks uit m'n F1-edits — color, blur en text animaties. Drag, drop, klaar." },
+        { tag: "Clips", status, cta, price: "€9", title: "Clip Packs", slot: "[ clip-grid ]",
+          body: "Schone 4K clips en overlays die ik zelf verzamel en cut. Per pack gesorteerd op sport of scene." }
+      ],
+      reels: Array.from({ length: reelCount }, (_, i) => {
+        const url = this.props["reel" + (i + 1) + "Url"] || "";
+        const id = this.tiktokId(url);
+        return {
+          tag: tags[i % tags.length],
+          slot: "[ edit " + (i + 1) + " · 9:16 ]",
+          hasEmbed: !!id,
+          noEmbed: !id,
+          embed: id ? "https://www.tiktok.com/embed/v2/" + id : ""
+        };
+      }),
+      accounts: [
+        { niche: "Hoofdaccount · F1", handle: "@lxrs2004", url: "https://www.tiktok.com/@lxrs2004?lang=en",
+          body: "Race weekends, driver edits en alles rond de grid." },
+        { niche: "Film & serie", handle: "@lamu.aep", url: "https://www.tiktok.com/@lamu.aep?lang=en",
+          body: "Cinematische edits van films en series, met focus op sfeer en sound." },
+        { niche: "Voetbal", handle: "@lxrs.ft", url: "https://www.tiktok.com/@lxrs.ft?lang=en",
+          body: "Goals, skills en spelers — snel gecut op de beat." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
