@@ -56,7 +56,8 @@ const MILESTONES = {
     shots: [
       { name: 'home', url: 'http://localhost:8000' },
       { name: 'presets-overzicht', url: 'http://localhost:8000/presets' },
-      { name: 'preset-detail', url: 'http://localhost:8000/presets/1' },
+      { name: 'preset-detail', url: 'http://localhost:8000/presets/neon-grade' },
+      { name: 'presets-gefilterd', url: 'http://localhost:8000/presets?categorie=shakes' },
     ],
   },
   'v1.0-crud': {
@@ -163,6 +164,13 @@ async function paginaShot(context, shot, datum, viewport, achtervoegsel) {
   await page.setViewportSize(viewport);
   await page.emulateMedia({ reducedMotion: 'reduce' }); // stabiele, niet-bewegende opname
   await page.goto(shot.url, { waitUntil: 'networkidle', timeout: 30000 });
+
+  /* Chromium haalt bij een fullPage-opname de verkeerde inhoud onder een
+     backdrop-filter vandaan, waardoor er een spookbeeld van de footer
+     bovenaan verschijnt. In een echte browser gebeurt dat niet, dus zetten
+     we het filter alleen tijdens het fotograferen uit. */
+  await page.addStyleTag({ content: '*, *::before, *::after { backdrop-filter: none !important; }' });
+
   await page.waitForTimeout(600);
   const bestand = path.join(SNAPDIR, datum + '-' + shot.name + achtervoegsel + '.png');
   await page.screenshot({ path: bestand, fullPage: true });

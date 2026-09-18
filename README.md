@@ -40,18 +40,29 @@ Twee gekoppelde tabellen (één-op-veel: een categorie heeft veel presets).
 ```
 categories                      presets
 ----------                      -------
-id            PK        1 ---┐  id             PK
-name                         └- category_id    FK -> categories.id
+id            PK        1 ---┐  id                PK
+name                         └- category_id       FK -> categories.id
 slug                    ∞       name
-created_at                      slug
+omschrijving                    slug
+created_at                      tagline           korte regel op de kaart
 updated_at                      description
-                                price          DECIMAL(8,2)
+                                price             DECIMAL(8,2)
                                 image_path
                                 download_path
-                                is_featured    BOOLEAN
+                                is_featured       BOOLEAN
+                                includes          JSON  'wat je krijgt'
+                                ae_version        welke AE-versie
+                                bestandsgrootte
                                 created_at
                                 updated_at
 ```
+
+De laatste vijf velden zijn erbij gekomen tijdens het bouwen van de front-end: een
+webshop verkoopt niet zonder te vertellen wat je krijgt en waar het mee werkt.
+
+`includes` is een lijstje, dus dat wordt een JSON-kolom. Kan ook een derde tabel
+worden (`preset_items`), maar het keuzedeel vraagt om twee gekoppelde tabellen en
+JSON houdt het simpel.
 
 **Categorieën:** Color Corrections (CC's) · Text Presets · Shakes · Zooms
 

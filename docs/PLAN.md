@@ -62,6 +62,7 @@ Drie dingen om te weten voordat we beginnen:
 - [ ] Seeder met de vier categorieën: Color Corrections, Text Presets, Shakes, Zooms
 - [ ] Seeder met een stuk of acht voorbeeldpresets
 - [ ] `php artisan migrate:fresh --seed` draait zonder fouten
+- [ ] `PresetCatalog` van binnen vervangen door Eloquent — de views blijven gelijk
 
 > Dit is het stuk waar je bij de demo de databasestructuur op uitlegt. De foreign key
 > `presets.category_id → categories.id` ís de koppeling waar het keuzedeel om vraagt.
@@ -88,30 +89,36 @@ Drie dingen om te weten voordat we beginnen:
 
 ---
 
-## Fase 3 — Front-end omzetten (eind oktober – half november)
+## Fase 3 — Front-end (gedaan op 18 september)
 
-**Doel:** het ontwerp wordt een echte website die live uit de database leest.
-Dit is de grootste fase — plan er ruim tijd voor.
+> **Let op: deze fase is naar voren gehaald.** Op mijn eigen verzoek heb ik eerst de
+> front-end goed neergezet, met een vaste lijst presets in `app/Support/PresetCatalog.php`.
+> In fase 1 wordt alleen de binnenkant van die klasse vervangen door Eloquent; de
+> Blade-views hoeven dan niet mee te veranderen.
 
 ### 3a. Ontwerp overzetten
-- [ ] Layout uit het ontwerp naar `resources/views/layouts/app.blade.php`
-- [ ] Inline styles uit de export naar een echt `public/css/style.css`
-- [ ] JavaScript (custom cursor, scroll-reveal, marquee) naar `public/js/main.js`
-- [ ] Logo optimaliseren — die is nu 415 KB als JPEG, kan naar WebP onder de 50 KB
-- [ ] Controleren dat alles werkt zonder de `x-dc` runtime en zonder React
+- [x] Layout uit het ontwerp naar `resources/views/layouts/app.blade.php`
+- [x] Inline styles uit de export naar een echt `public/css/style.css`
+- [x] JavaScript (custom cursor, scroll-reveal, mobiel menu) naar `public/js/main.js`
+- [x] Logo geoptimaliseerd: 405 KB JPEG → 14 KB WebP met JPEG-fallback
+- [x] Werkt zonder de `x-dc` runtime en zonder React
 
 ### 3b. Pagina's bouwen
-- [ ] **Homepage** — hero en uitgelicht aanbod (presets met `is_featured = true`)
-- [ ] **Presets-overzicht** — alle presets uit de database, in de grid van het ontwerp
-- [ ] **Productdetailpagina** — naam, beschrijving, prijs, afbeelding, categorie
+- [x] **Homepage** — hero, uitgelicht aanbod, categorie-tegels, vertrouwensbalk
+- [x] **Presets-overzicht** — alle presets, met categoriefilter en zoekveld
+- [x] **Productdetailpagina** — beeld, prijs, wat je krijgt, specs, gerelateerde presets
+- [ ] Data uit de database halen in plaats van uit `PresetCatalog` (volgt in fase 1)
 
-### 3c. Verbeteringen meenemen
-- [ ] `prefers-reduced-motion` toevoegen (er zijn nu 12 animaties en geen ontsnapping)
-- [ ] Custom cursor uitzetten op touchscreens
-- [ ] Echte `alt`-teksten op alle afbeeldingen
-- [ ] Testen op telefoonbreedte — de layout is fluid, maar de header is nog niet getest
+### 3c. Verbeteringen meegenomen
+- [x] `prefers-reduced-motion` — ontbrak volledig bij 12 animaties
+- [x] Custom cursor alleen bij een echte muis, niet op touchscreens
+- [x] Zichtbare focus-states voor toetsenbordgebruikers, plus een skiplink
+- [x] Eén `h1` per pagina en geen sprongen in de koppenstructuur
+- [x] Mobiel menu, en op de detailpagina staat de prijs direct onder het beeld
+- [x] Lege staat als een filter niets oplevert
+- [x] Kruimelpad, paginatitels en meta-omschrijvingen
 
-**Snapshot:** screenshot van het overzicht met database-data · tag `v0.4-frontend`
+**Snapshot:** tag `v0.4-frontend` · 8 screenshots, desktop en telefoon
 
 ---
 

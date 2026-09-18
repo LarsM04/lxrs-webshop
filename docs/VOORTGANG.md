@@ -16,6 +16,7 @@ Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
 |---|---|---|---|---|---|
 | 00 | 2026-09-18 | Setup | Repo aangemaakt, ontwerp geanalyseerd, plan van aanpak vastgelegd | — | `v0.0-setup` |
 | 01 | 2026-09-18 | 0 · Setup | Laravel 13 draait in Docker met MySQL en phpMyAdmin | [bekijk](snapshots/2026-09-18-laravel-welkom.png) | `v0.1-laravel` |
+| 02 | 2026-09-18 | 3 · Front-end | Front-end af: homepage, presets-overzicht met filter en zoek, en productdetailpagina | [bekijk](snapshots/2026-09-18-home.png) · [mobiel](snapshots/2026-09-18-home-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-overzicht.png) · [mobiel](snapshots/2026-09-18-presets-overzicht-mobiel.png) · [bekijk](snapshots/2026-09-18-preset-detail.png) · [mobiel](snapshots/2026-09-18-preset-detail-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-gefilterd.png) · [mobiel](snapshots/2026-09-18-presets-gefilterd-mobiel.png) | `v0.4-frontend` |
 
 <!-- Nieuwe regel bovenaan of onderaan toevoegen bij elke milestone.
      Snapshot-kolom: [bekijk](snapshots/2026-10-05-presets-overzicht.png) -->
@@ -140,7 +141,7 @@ De tags die er aan het eind van het traject moeten staan:
 | `v0.1-laravel` | 0 | sep 2026 | Laravel draait in Docker — ✅ behaald |
 | `v0.2-database` | 1 | okt 2026 | Beide tabellen met data in phpMyAdmin |
 | `v0.3-api` | 2 | okt 2026 | `GET /api/presets`-response in Postman |
-| `v0.4-frontend` | 3 | nov 2026 | Presets-overzicht met database-data |
+| `v0.4-frontend` | 3 | sep 2026 | Drie pagina's, filter en zoek — ✅ behaald |
 | `v1.0-crud` | 4 | dec 2026 | Adminpaneel naast de bijgewerkte website |
 | `v1.1-shop` | 5 | jan 2027 | Winkelwagen tot en met download |
 | `v1.0-oplevering` | 6 | jan 2027 | Eindversie |
