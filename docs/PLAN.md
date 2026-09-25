@@ -92,7 +92,7 @@ Drie dingen om te weten voordat we beginnen:
 - [x] API Resource zodat de JSON-uitvoer netjes en voorspelbaar is
 - [x] Schrijven alleen met API-sleutel (header `X-API-Key`), lezen is open
 - [x] Feature tests voor alle endpoints, validatie en de sleutel
-- [ ] Alle vijf endpoints getest met Postman — collectie staat klaar in `docs/postman/`
+- [x] Alle endpoints getest met Postman, met de collectie uit `docs/postman/` (25 september)
 
 > **Keuze:** toevoegen, bewerken en verwijderen vragen om een sleutel uit `.env`.
 > Zonder die sleutel kan iedereen die de URL kent je producten wissen. Een
