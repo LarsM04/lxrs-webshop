@@ -1,0 +1,1697 @@
+{
+  "data": [
+    {
+      "id": 63,
+      "name": "LXRS Complete Pack",
+      "slug": "complete-pack",
+      "soort": "bundel",
+      "aantal": 55,
+      "price": 39,
+      "tagline": "Alle 55 presets, plus m'n render- en export-instellingen",
+      "description": "Alles wat in m'n edit pack zit: 55 presets verdeeld over 7 categorieën, plus de instellingen waarmee ik render en exporteer.",
+      "includes": [
+        "Color Corrections — 8 presets",
+        "Text Presets — 15 presets",
+        "Zooms — 11 presets",
+        "Shakes — 8 presets",
+        "Effects — 5 presets",
+        "Twixtor — 3 presets",
+        "Audio — 5 presets",
+        "M’n Handbrake-, Topaz- en render-instellingen"
+      ],
+      "bestandsgrootte": "5,4 MB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": true,
+      "url": "http://localhost:8000/presets/complete-pack",
+      "category": {
+        "id": 8,
+        "name": "Bundels",
+        "slug": "bundels",
+        "afkorting": "Bundel",
+        "omschrijving": "Alles bij elkaar, voor de beste prijs per preset."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 56,
+      "name": "Color Corrections Pack",
+      "slug": "color-corrections-pack",
+      "soort": "pack",
+      "aantal": 8,
+      "price": 14,
+      "tagline": "Alle 8 color corrections-presets in één keer",
+      "description": "Alle 8 presets uit m'n color corrections-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Black and White Grunge CC",
+        "Clean Quality CC",
+        "Cold CC",
+        "Darkened CC",
+        "Midnight CC",
+        "Nightmare CC",
+        "Prem Style CC",
+        "Main Quality CC"
+      ],
+      "bestandsgrootte": "2,9 MB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": true,
+      "url": "http://localhost:8000/presets/color-corrections-pack",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 57,
+      "name": "Text Presets Pack",
+      "slug": "text-presets-pack",
+      "soort": "pack",
+      "aantal": 15,
+      "price": 18,
+      "tagline": "Alle 15 text-presets in één keer",
+      "description": "Alle 15 presets uit m'n text-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Aesthetic Glow Settings",
+        "Audio Muffle Intro / End",
+        "Blood Text",
+        "Blur Fade Out",
+        "Blur Fade Up Words",
+        "Gradient Text",
+        "Lava Text 2",
+        "Lava Text 3",
+        "Plasma Text",
+        "Rough Text",
+        "Stripe Text",
+        "Text Expansion",
+        "Text Glow",
+        "Text Shake",
+        "Watermark Text"
+      ],
+      "bestandsgrootte": "808 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": true,
+      "url": "http://localhost:8000/presets/text-presets-pack",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 58,
+      "name": "Zooms Pack",
+      "slug": "zooms-pack",
+      "soort": "pack",
+      "aantal": 11,
+      "price": 13,
+      "tagline": "Alle 11 zooms-presets in één keer",
+      "description": "Alle 11 presets uit m'n zooms-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Simple Scale Zoom In",
+        "Simple Scale Zoom Out",
+        "Smooth Zoom In 1",
+        "Smooth Zoom Out 1",
+        "Time Reverse Zoom",
+        "Zoom In 1",
+        "Zoom In 2",
+        "Zoom In 3",
+        "Zoom Out 1",
+        "Zoom Out 2",
+        "Zoom Out 3"
+      ],
+      "bestandsgrootte": "188 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": true,
+      "url": "http://localhost:8000/presets/zooms-pack",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 59,
+      "name": "Shakes Pack",
+      "slug": "shakes-pack",
+      "soort": "pack",
+      "aantal": 8,
+      "price": 10,
+      "tagline": "Alle 8 shakes-presets in één keer",
+      "description": "Alle 8 presets uit m'n shakes-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Halftone Shake",
+        "Hard Shake 2",
+        "Hard Shake",
+        "Hard Y Shake",
+        "Main Twitch Shake",
+        "Normal Shake",
+        "RGB Shake",
+        "Shake Zoom"
+      ],
+      "bestandsgrootte": "864 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/shakes-pack",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 60,
+      "name": "Effects Pack",
+      "slug": "effects-pack",
+      "soort": "pack",
+      "aantal": 5,
+      "price": 8,
+      "tagline": "Alle 5 effects-presets in één keer",
+      "description": "Alle 5 presets uit m'n effects-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Audio Equalizer",
+        "Halftone",
+        "Panning",
+        "RSMB",
+        "Blur Transition"
+      ],
+      "bestandsgrootte": "371 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/effects-pack",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 61,
+      "name": "Twixtor Pack",
+      "slug": "twixtor-pack",
+      "soort": "pack",
+      "aantal": 3,
+      "price": 9,
+      "tagline": "Alle 3 twixtor-presets in één keer",
+      "description": "Alle 3 presets uit m'n twixtor-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Fast Smooth Twixtor",
+        "Main Twixtor",
+        "Smooth Twixtor"
+      ],
+      "bestandsgrootte": "190 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/twixtor-pack",
+      "category": {
+        "id": 6,
+        "name": "Twixtor",
+        "slug": "twixtor",
+        "afkorting": "Twixtor",
+        "omschrijving": "Mijn twixtor-instellingen voor slow motion zonder artefacten."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 62,
+      "name": "Audio Pack",
+      "slug": "audio-pack",
+      "soort": "pack",
+      "aantal": 5,
+      "price": 6,
+      "tagline": "Alle 5 audio-presets in één keer",
+      "description": "Alle 5 presets uit m'n audio-map, in één download. Goedkoper dan ze los kopen.",
+      "includes": [
+        "Audio Image Opacity",
+        "Audio Image Settings",
+        "Audio Spectrum Setting On Solid",
+        "Audio Start End",
+        "Audio Wiggle Settings For Text and Image"
+      ],
+      "bestandsgrootte": "78 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-pack",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 1,
+      "name": "Black and White Grunge CC",
+      "slug": "black-and-white-grunge-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "23 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/black-and-white-grunge-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "Clean Quality CC",
+      "slug": "clean-quality-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "217 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/clean-quality-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 3,
+      "name": "Cold CC",
+      "slug": "cold-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "1,1 MB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/cold-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 4,
+      "name": "Darkened CC",
+      "slug": "darkened-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "626 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/darkened-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 5,
+      "name": "Midnight CC",
+      "slug": "midnight-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "144 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/midnight-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 6,
+      "name": "Nightmare CC",
+      "slug": "nightmare-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "181 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/nightmare-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 7,
+      "name": "Prem Style CC",
+      "slug": "prem-style-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "551 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/prem-style-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 8,
+      "name": "Main Quality CC",
+      "slug": "main-quality-cc-color-corrections",
+      "soort": "los",
+      "aantal": 1,
+      "price": 4,
+      "tagline": "Losse color corrections-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "122 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/main-quality-cc-color-corrections",
+      "category": {
+        "id": 1,
+        "name": "Color Corrections",
+        "slug": "color-corrections",
+        "afkorting": "CC's",
+        "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 9,
+      "name": "Aesthetic Glow Settings",
+      "slug": "aesthetic-glow-settings-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "66 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/aesthetic-glow-settings-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 10,
+      "name": "Audio Muffle Intro / End",
+      "slug": "audio-muffle-intro-end-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "8 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-muffle-intro-end-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 11,
+      "name": "Blood Text",
+      "slug": "blood-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "95 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/blood-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 12,
+      "name": "Blur Fade Out",
+      "slug": "blur-fade-out-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/blur-fade-out-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 13,
+      "name": "Blur Fade Up Words",
+      "slug": "blur-fade-up-words-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "38 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/blur-fade-up-words-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 14,
+      "name": "Gradient Text",
+      "slug": "gradient-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "68 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/gradient-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 15,
+      "name": "Lava Text 2",
+      "slug": "lava-text-2-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "85 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/lava-text-2-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 16,
+      "name": "Lava Text 3",
+      "slug": "lava-text-3-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "85 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/lava-text-3-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 17,
+      "name": "Plasma Text",
+      "slug": "plasma-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "85 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/plasma-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 18,
+      "name": "Rough Text",
+      "slug": "rough-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "85 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/rough-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 19,
+      "name": "Stripe Text",
+      "slug": "stripe-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "84 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/stripe-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 20,
+      "name": "Text Expansion",
+      "slug": "text-expansion-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/text-expansion-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 21,
+      "name": "Text Glow",
+      "slug": "text-glow-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "54 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/text-glow-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 22,
+      "name": "Text Shake",
+      "slug": "text-shake-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "23 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/text-shake-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 23,
+      "name": "Watermark Text",
+      "slug": "watermark-text-text-presets",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse text-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "21 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/watermark-text-text-presets",
+      "category": {
+        "id": 2,
+        "name": "Text Presets",
+        "slug": "text-presets",
+        "afkorting": "Text",
+        "omschrijving": "Titels, glows en fades die op de beat binnenkomen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 24,
+      "name": "Simple Scale Zoom In",
+      "slug": "simple-scale-zoom-in-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "12 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/simple-scale-zoom-in-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 25,
+      "name": "Simple Scale Zoom Out",
+      "slug": "simple-scale-zoom-out-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "12 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/simple-scale-zoom-out-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 26,
+      "name": "Smooth Zoom In 1",
+      "slug": "smooth-zoom-in-1-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/smooth-zoom-in-1-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 27,
+      "name": "Smooth Zoom Out 1",
+      "slug": "smooth-zoom-out-1-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/smooth-zoom-out-1-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 28,
+      "name": "Time Reverse Zoom",
+      "slug": "time-reverse-zoom-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/time-reverse-zoom-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 29,
+      "name": "Zoom In 1",
+      "slug": "zoom-in-1-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-in-1-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 30,
+      "name": "Zoom In 2",
+      "slug": "zoom-in-2-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-in-2-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 31,
+      "name": "Zoom In 3",
+      "slug": "zoom-in-3-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-in-3-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 32,
+      "name": "Zoom Out 1",
+      "slug": "zoom-out-1-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-out-1-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 33,
+      "name": "Zoom Out 2",
+      "slug": "zoom-out-2-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-out-2-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 34,
+      "name": "Zoom Out 3",
+      "slug": "zoom-out-3-zooms",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse zooms-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/zoom-out-3-zooms",
+      "category": {
+        "id": 3,
+        "name": "Zooms",
+        "slug": "zooms",
+        "afkorting": "Zooms",
+        "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 35,
+      "name": "Halftone Shake",
+      "slug": "halftone-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "115 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/halftone-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 36,
+      "name": "Hard Shake 2",
+      "slug": "hard-shake-2-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "158 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/hard-shake-2-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 37,
+      "name": "Hard Shake",
+      "slug": "hard-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "158 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/hard-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 38,
+      "name": "Hard Y Shake",
+      "slug": "hard-y-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "226 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/hard-y-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 39,
+      "name": "Main Twitch Shake",
+      "slug": "main-twitch-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "6 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/main-twitch-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 40,
+      "name": "Normal Shake",
+      "slug": "normal-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "6 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/normal-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 41,
+      "name": "RGB Shake",
+      "slug": "rgb-shake-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "7 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/rgb-shake-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 42,
+      "name": "Shake Zoom",
+      "slug": "shake-zoom-shakes",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse shakes-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "186 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/shake-zoom-shakes",
+      "category": {
+        "id": 4,
+        "name": "Shakes",
+        "slug": "shakes",
+        "afkorting": "Shakes",
+        "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 43,
+      "name": "Audio Equalizer",
+      "slug": "audio-equalizer-effects",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse effects-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "12 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-equalizer-effects",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 44,
+      "name": "Halftone",
+      "slug": "halftone-effects",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse effects-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "23 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/halftone-effects",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 45,
+      "name": "Panning",
+      "slug": "panning-effects",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse effects-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "46 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/panning-effects",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 46,
+      "name": "RSMB",
+      "slug": "rsmb-effects",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse effects-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "163 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/rsmb-effects",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:01.000000Z",
+      "updated_at": "2026-09-25T11:58:01.000000Z"
+    },
+    {
+      "id": 47,
+      "name": "Fast Smooth Twixtor",
+      "slug": "fast-smooth-twixtor-twixtor",
+      "soort": "los",
+      "aantal": 1,
+      "price": 5,
+      "tagline": "Losse twixtor-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/fast-smooth-twixtor-twixtor",
+      "category": {
+        "id": 6,
+        "name": "Twixtor",
+        "slug": "twixtor",
+        "afkorting": "Twixtor",
+        "omschrijving": "Mijn twixtor-instellingen voor slow motion zonder artefacten."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 48,
+      "name": "Main Twixtor",
+      "slug": "main-twixtor-twixtor",
+      "soort": "los",
+      "aantal": 1,
+      "price": 5,
+      "tagline": "Losse twixtor-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "180 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/main-twixtor-twixtor",
+      "category": {
+        "id": 6,
+        "name": "Twixtor",
+        "slug": "twixtor",
+        "afkorting": "Twixtor",
+        "omschrijving": "Mijn twixtor-instellingen voor slow motion zonder artefacten."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 49,
+      "name": "Smooth Twixtor",
+      "slug": "smooth-twixtor-twixtor",
+      "soort": "los",
+      "aantal": 1,
+      "price": 5,
+      "tagline": "Losse twixtor-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/smooth-twixtor-twixtor",
+      "category": {
+        "id": 6,
+        "name": "Twixtor",
+        "slug": "twixtor",
+        "afkorting": "Twixtor",
+        "omschrijving": "Mijn twixtor-instellingen voor slow motion zonder artefacten."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 50,
+      "name": "Audio Image Opacity",
+      "slug": "audio-image-opacity-audio",
+      "soort": "los",
+      "aantal": 1,
+      "price": 2.5,
+      "tagline": "Losse audio-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "5 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-image-opacity-audio",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 51,
+      "name": "Audio Image Settings",
+      "slug": "audio-image-settings-audio",
+      "soort": "los",
+      "aantal": 1,
+      "price": 2.5,
+      "tagline": "Losse audio-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "18 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-image-settings-audio",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 52,
+      "name": "Audio Spectrum Setting On Solid",
+      "slug": "audio-spectrum-setting-on-solid-audio",
+      "soort": "los",
+      "aantal": 1,
+      "price": 2.5,
+      "tagline": "Losse audio-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "17 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-spectrum-setting-on-solid-audio",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 53,
+      "name": "Audio Start End",
+      "slug": "audio-start-end-audio",
+      "soort": "los",
+      "aantal": 1,
+      "price": 2.5,
+      "tagline": "Losse audio-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "9 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-start-end-audio",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 54,
+      "name": "Audio Wiggle Settings For Text and Image",
+      "slug": "audio-wiggle-settings-for-text-and-image-audio",
+      "soort": "los",
+      "aantal": 1,
+      "price": 2.5,
+      "tagline": "Losse audio-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "29 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/audio-wiggle-settings-for-text-and-image-audio",
+      "category": {
+        "id": 7,
+        "name": "Audio",
+        "slug": "audio",
+        "afkorting": "Audio",
+        "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    },
+    {
+      "id": 55,
+      "name": "Blur Transition",
+      "slug": "blur-transition-effects",
+      "soort": "los",
+      "aantal": 1,
+      "price": 3,
+      "tagline": "Losse effects-preset",
+      "description": "Eén losse preset uit m'n eigen edit pack. Importeer 'm via de Effects & Presets-map in After Effects en sleep 'm op je layer.",
+      "includes": [
+        "1 preset als .ffx"
+      ],
+      "bestandsgrootte": "127 KB",
+      "ae_version": "After Effects 2020 of nieuwer",
+      "is_featured": false,
+      "url": "http://localhost:8000/presets/blur-transition-effects",
+      "category": {
+        "id": 5,
+        "name": "Effects",
+        "slug": "effects",
+        "afkorting": "FX",
+        "omschrijving": "Halftone, panning, motion blur en transities."
+      },
+      "created_at": "2026-09-25T11:58:02.000000Z",
+      "updated_at": "2026-09-25T11:58:02.000000Z"
+    }
+  ]
+}

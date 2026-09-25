@@ -1,0 +1,68 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Color Corrections",
+      "slug": "color-corrections",
+      "afkorting": "CC's",
+      "omschrijving": "Kleurgrades die je hele edit in een klap laten kloppen.",
+      "presets_count": 9
+    },
+    {
+      "id": 2,
+      "name": "Text Presets",
+      "slug": "text-presets",
+      "afkorting": "Text",
+      "omschrijving": "Titels, glows en fades die op de beat binnenkomen.",
+      "presets_count": 16
+    },
+    {
+      "id": 3,
+      "name": "Zooms",
+      "slug": "zooms",
+      "afkorting": "Zooms",
+      "omschrijving": "Smooth zooms en punch-ins, klaar om te slepen.",
+      "presets_count": 12
+    },
+    {
+      "id": 4,
+      "name": "Shakes",
+      "slug": "shakes",
+      "afkorting": "Shakes",
+      "omschrijving": "Camera shakes met gewicht, van subtiel tot een dreun.",
+      "presets_count": 9
+    },
+    {
+      "id": 5,
+      "name": "Effects",
+      "slug": "effects",
+      "afkorting": "FX",
+      "omschrijving": "Halftone, panning, motion blur en transities.",
+      "presets_count": 6
+    },
+    {
+      "id": 6,
+      "name": "Twixtor",
+      "slug": "twixtor",
+      "afkorting": "Twixtor",
+      "omschrijving": "Mijn twixtor-instellingen voor slow motion zonder artefacten.",
+      "presets_count": 4
+    },
+    {
+      "id": 7,
+      "name": "Audio",
+      "slug": "audio",
+      "afkorting": "Audio",
+      "omschrijving": "Audio spectrum, wiggle en fades voor je intro en outro.",
+      "presets_count": 6
+    },
+    {
+      "id": 8,
+      "name": "Bundels",
+      "slug": "bundels",
+      "afkorting": "Bundel",
+      "omschrijving": "Alles bij elkaar, voor de beste prijs per preset.",
+      "presets_count": 1
+    }
+  ]
+}
