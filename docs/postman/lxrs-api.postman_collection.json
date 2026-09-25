@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "LXRS Webshop API",
+    "description": "Alle endpoints van de eigen API. Vul bij Variables je API-sleutel in (LXRS_API_KEY uit .env).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000/api" },
+    { "key": "api_key", "value": "" },
+    { "key": "preset_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Alle presets",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{base_url}}/presets"
+      }
+    },
+    {
+      "name": "Presets gefilterd (packs)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{base_url}}/presets?soort=pack",
+          "host": ["{{base_url}}"],
+          "path": ["presets"],
+          "query": [{ "key": "soort", "value": "pack" }]
+        }
+      }
+    },
+    {
+      "name": "Eén preset",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{base_url}}/presets/{{preset_id}}"
+      }
+    },
+    {
+      "name": "Preset toevoegen",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    pm.collectionVariables.set('preset_id', pm.response.json().data.id);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Key", "value": "{{api_key}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"category_id\": 3,\n    \"name\": \"Demo Zoom\",\n    \"soort\": \"los\",\n    \"price\": 2.50,\n    \"tagline\": \"Toegevoegd via de API\",\n    \"description\": \"Deze preset is live toegevoegd met Postman.\",\n    \"includes\": [\"1 preset als .ffx\"]\n}"
+        },
+        "url": "{{base_url}}/presets"
+      }
+    },
+    {
+      "name": "Preset bewerken (alleen de prijs)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Key", "value": "{{api_key}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n    \"price\": 3.00\n}" },
+        "url": "{{base_url}}/presets/{{preset_id}}"
+      }
+    },
+    {
+      "name": "Preset verwijderen",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "X-API-Key", "value": "{{api_key}}" }
+        ],
+        "url": "{{base_url}}/presets/{{preset_id}}"
+      }
+    },
+    {
+      "name": "Alle categorieën",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{base_url}}/categories"
+      }
+    }
+  ]
+}

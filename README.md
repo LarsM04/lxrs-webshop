@@ -88,6 +88,29 @@ Dat schrijft `database/data/presets.php`. De `.ffx`-bestanden zelf komen
 
 ---
 
+## API
+
+Dezelfde data als de website, maar als JSON. Alles staat onder `/api`.
+
+| Methode | Endpoint | Wat | Sleutel nodig |
+|---|---|---|---|
+| `GET` | `/api/presets` | alle presets; filter met `?categorie=`, `?soort=`, `?zoek=` | nee |
+| `GET` | `/api/presets/{id}` | één preset | nee |
+| `POST` | `/api/presets` | preset toevoegen → `201` | ja |
+| `PUT` / `PATCH` | `/api/presets/{id}` | bewerken (PUT: alles, PATCH: alleen wat verandert) | ja |
+| `DELETE` | `/api/presets/{id}` | verwijderen → `204` | ja |
+| `GET` | `/api/categories` | alle categorieën, met aantal presets | nee |
+
+**Sleutel:** schrijven kan alleen met de header `X-API-Key`, met de waarde van
+`LXRS_API_KEY` uit `.env`. Zonder of met een foute sleutel: `401`. Foute invoer
+(geen naam, prijs geen getal, categorie bestaat niet): `422` met per veld wat er mis is.
+
+**Postman:** importeer [`docs/postman/lxrs-api.postman_collection.json`](docs/postman/lxrs-api.postman_collection.json)
+en vul bij *Variables* je `api_key` in. Na *Preset toevoegen* onthoudt de collectie het
+nieuwe id, dus bewerken en verwijderen werken daarna direct op die preset.
+
+---
+
 ## Installatie (lokaal draaien)
 
 Je hebt alleen **Docker Desktop** nodig. PHP, MySQL en phpMyAdmin draaien in containers,
@@ -101,6 +124,9 @@ docker compose up -d
 docker compose exec laravel.test php artisan key:generate
 docker compose exec laravel.test php artisan migrate --seed
 ```
+
+Wil je via de API kunnen toevoegen of verwijderen, zet dan een eigen sleutel bij
+`LXRS_API_KEY` in `.env` (zie [API](#api)).
 
 Daarna draait alles:
 

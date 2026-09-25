@@ -82,15 +82,21 @@ Drie dingen om te weten voordat we beginnen:
 
 **Doel:** eigen endpoints, net als in het kiosk-project, maar nu met Laravel eronder.
 
-- [ ] `GET    /api/presets`          — alle presets, met categorie erbij
-- [ ] `GET    /api/presets/{id}`     — één preset
-- [ ] `POST   /api/presets`          — toevoegen
-- [ ] `PUT    /api/presets/{id}`     — bewerken
-- [ ] `DELETE /api/presets/{id}`     — verwijderen
-- [ ] `GET    /api/categories`       — alle categorieën
-- [ ] Validatie via een Form Request (naam verplicht, prijs numeriek, categorie bestaat)
-- [ ] API Resource zodat de JSON-uitvoer netjes en voorspelbaar is
-- [ ] Alle vijf endpoints getest met Postman of Thunder Client
+- [x] `GET    /api/presets`          — alle presets, met categorie erbij (en dezelfde filters als de site)
+- [x] `GET    /api/presets/{id}`     — één preset
+- [x] `POST   /api/presets`          — toevoegen
+- [x] `PUT    /api/presets/{id}`     — bewerken (PATCH kan ook, dan alleen wat verandert)
+- [x] `DELETE /api/presets/{id}`     — verwijderen
+- [x] `GET    /api/categories`       — alle categorieën, met aantal presets
+- [x] Validatie via een Form Request (naam verplicht, prijs numeriek, categorie bestaat)
+- [x] API Resource zodat de JSON-uitvoer netjes en voorspelbaar is
+- [x] Schrijven alleen met API-sleutel (header `X-API-Key`), lezen is open
+- [x] Feature tests voor alle endpoints, validatie en de sleutel
+- [ ] Alle vijf endpoints getest met Postman — collectie staat klaar in `docs/postman/`
+
+> **Keuze:** toevoegen, bewerken en verwijderen vragen om een sleutel uit `.env`.
+> Zonder die sleutel kan iedereen die de URL kent je producten wissen. Een
+> sleutel is voor nu genoeg; in fase 4 komt er een echte login voor de beheeromgeving.
 
 **Snapshot:** screenshot van een `GET /api/presets`-response in Postman · tag `v0.3-api`
 

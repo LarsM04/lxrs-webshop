@@ -26,6 +26,20 @@ class Preset extends Model
     public const SOORTEN = ['los', 'pack', 'bundel'];
 
     /**
+     * Standaardwaarden voor een nieuwe preset, voor als de API ze niet meestuurt.
+     * aantal en is_featured staan ook als default in de migration, maar het
+     * model moet ze direct na aanmaken al kennen, anders antwoordt de API met null.
+     * includes heeft in de database geen default, dus die moet hier.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'aantal' => 1,
+        'includes' => '[]',
+        'is_featured' => false,
+    ];
+
+    /**
      * De categorie waar deze preset bij hoort.
      *
      * @return BelongsTo<Category, $this>
