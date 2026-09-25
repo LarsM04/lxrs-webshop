@@ -2,50 +2,30 @@
 
 namespace App\Support;
 
+use App\Models\Category;
+use App\Models\Preset;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 /**
- * De catalogus van het LXRS Edit Pack.
+ * De catalogus van het LXRS Edit Pack, live uit de database.
  *
- * De producten komen uit preset-data.php, dat gegenereerd wordt uit de
- * mappenstructuur van het echte pack:
- *
- *     node tools/catalogus-genereren.mjs "<pad naar het uitgepakte pack>"
+ * Tot fase 1 kwam alles uit een PHP-array. Nu zitten de producten in de
+ * tabellen categories en presets (zie database/seeders), maar de methodes
+ * hieronder heten nog precies hetzelfde. Daardoor hoefden de controllers en
+ * Blade-views niet mee te veranderen.
  *
  * Er zijn drie soorten producten:
  *   los     - een enkele .ffx-preset
  *   pack    - alle presets uit een categorie
  *   bundel  - het complete pack
- *
- * In fase 1 wordt de binnenkant van deze klasse Eloquent. De buitenkant blijft
- * hetzelfde, dus de Blade-views hoeven niet mee te veranderen.
  */
 class PresetCatalog
 {
-    /**
-     * De categorieen. Deze lijst moet gelijk lopen met CATEGORIEEN bovenin
-     * tools/catalogus-genereren.mjs -- pas je daar iets aan, doe het hier ook.
-     */
+    /** @return Collection<int, Category> */
     public static function categories(): Collection
     {
-        return collect([
-            ['id' => 1, 'slug' => 'color-corrections', 'name' => 'Color Corrections', 'afkorting' => "CC's",
-             'omschrijving' => 'Kleurgrades die je hele edit in een klap laten kloppen.'],
-            ['id' => 2, 'slug' => 'text-presets', 'name' => 'Text Presets', 'afkorting' => 'Text',
-             'omschrijving' => 'Titels, glows en fades die op de beat binnenkomen.'],
-            ['id' => 3, 'slug' => 'zooms', 'name' => 'Zooms', 'afkorting' => 'Zooms',
-             'omschrijving' => 'Smooth zooms en punch-ins, klaar om te slepen.'],
-            ['id' => 4, 'slug' => 'shakes', 'name' => 'Shakes', 'afkorting' => 'Shakes',
-             'omschrijving' => 'Camera shakes met gewicht, van subtiel tot een dreun.'],
-            ['id' => 5, 'slug' => 'effects', 'name' => 'Effects', 'afkorting' => 'FX',
-             'omschrijving' => 'Halftone, panning, motion blur en transities.'],
-            ['id' => 6, 'slug' => 'twixtor', 'name' => 'Twixtor', 'afkorting' => 'Twixtor',
-             'omschrijving' => 'Mijn twixtor-instellingen voor slow motion zonder artefacten.'],
-            ['id' => 7, 'slug' => 'audio', 'name' => 'Audio', 'afkorting' => 'Audio',
-             'omschrijving' => 'Audio spectrum, wiggle en fades voor je intro en outro.'],
-            ['id' => 8, 'slug' => 'bundels', 'name' => 'Bundels', 'afkorting' => 'Bundel',
-             'omschrijving' => 'Alles bij elkaar, voor de beste prijs per preset.'],
-        ])->map(fn ($c) => (object) $c);
+        return Category::query()->orderBy('id')->get();
     }
 
     /** De drie soorten, voor het filter op de overzichtspagina. */
@@ -58,42 +38,26 @@ class PresetCatalog
         ])->map(fn ($s) => (object) $s);
     }
 
-    public static function findCategory(?string $slug): ?object
+    public static function findCategory(?string $slug): ?Category
     {
-        return $slug ? static::categories()->firstWhere('slug', $slug) : null;
+        return $slug ? Category::query()->where('slug', $slug)->first() : null;
     }
 
-    /** Alle producten, met hun categorie eraan gekoppeld. */
+    /** @return Collection<int, Preset> */
     public static function all(): Collection
     {
-        static $alles = null;
-
-        if ($alles === null) {
-            $categories = static::categories()->keyBy('id');
-
-            $alles = collect(require __DIR__ . '/preset-data.php')
-                ->map(function ($p) use ($categories) {
-                    $p['category'] = $categories->get($p['category_id']);
-
-                    return (object) $p;
-                });
-        }
-
-        return $alles;
+        return Preset::query()->with('category')->orderBy('id')->get();
     }
 
     /** Wat er op de homepage uitgelicht staat: de bundel en een paar packs. */
     public static function featured(): Collection
     {
-        return static::all()
-            ->where('is_featured', true)
-            ->sortBy(fn ($p) => $p->soort === 'bundel' ? 0 : 1)
-            ->values();
+        return static::gesorteerd(Preset::query()->with('category')->where('is_featured', true))->get();
     }
 
-    public static function findBySlug(string $slug): ?object
+    public static function findBySlug(string $slug): ?Preset
     {
-        return static::all()->firstWhere('slug', $slug);
+        return Preset::query()->with('category')->where('slug', $slug)->first();
     }
 
     /**
@@ -102,70 +66,66 @@ class PresetCatalog
      * Bij een los product: andere losse presets uit dezelfde categorie.
      * Bij een pack of bundel: wat erin zit, oftewel de losse presets zelf.
      */
-    public static function related(object $preset, int $limit = 4): Collection
+    public static function related(Preset $preset, int $limit = 4): Collection
     {
-        $zelfdeCategorie = static::all()
-            ->where('category_id', $preset->category_id)
-            ->where('id', '!=', $preset->id);
+        $zelfdeCategorie = fn () => Preset::query()
+            ->with('category')
+            ->whereBelongsTo($preset->category)
+            ->whereKeyNot($preset->id);
 
         if ($preset->soort === 'los') {
             // Het pack van deze categorie eerst: dat is de logische upsell.
-            $pack = $zelfdeCategorie->firstWhere('soort', 'pack');
+            $pack = $zelfdeCategorie()->where('soort', 'pack')->first();
 
             return collect([$pack])
                 ->filter()
-                ->concat($zelfdeCategorie->where('soort', 'los')->shuffle())
+                ->concat($zelfdeCategorie()->where('soort', 'los')->inRandomOrder()->limit($limit)->get())
                 ->take($limit)
                 ->values();
         }
 
         if ($preset->soort === 'pack') {
-            return $zelfdeCategorie->where('soort', 'los')->take($limit)->values();
+            return $zelfdeCategorie()->where('soort', 'los')->orderBy('id')->limit($limit)->get();
         }
 
         // De bundel: laat de packs zien die erin zitten.
-        return static::all()->where('soort', 'pack')->take($limit)->values();
+        return Preset::query()->with('category')->where('soort', 'pack')->orderBy('id')->limit($limit)->get();
     }
 
-    /**
-     * Filteren op categorie, soort en zoekterm.
-     *
-     * Dit wordt in fase 1 een Eloquent-query met ->when() en ->where().
-     */
+    /** Filteren op categorie, soort en zoekterm. */
     public static function filter(?string $categorySlug = null, ?string $zoekterm = null, ?string $soort = null): Collection
     {
-        $presets = static::all();
+        $query = Preset::query()
+            ->with('category')
+            ->when($categorySlug, fn (Builder $q) => $q->whereRelation('category', 'slug', $categorySlug))
+            ->when($soort, fn (Builder $q) => $q->where('soort', $soort))
+            ->when($zoekterm, function (Builder $q) use ($zoekterm) {
+                $naald = '%'.trim($zoekterm).'%';
 
-        if ($categorySlug) {
-            $presets = $presets->filter(fn ($p) => $p->category->slug === $categorySlug);
-        }
-
-        if ($soort) {
-            $presets = $presets->filter(fn ($p) => $p->soort === $soort);
-        }
-
-        if ($zoekterm) {
-            $naald = mb_strtolower(trim($zoekterm));
-            $presets = $presets->filter(function ($p) use ($naald) {
-                return str_contains(mb_strtolower($p->name), $naald)
-                    || str_contains(mb_strtolower($p->tagline), $naald)
-                    || str_contains(mb_strtolower($p->category->name), $naald);
+                // Tussen haakjes, anders gaat de OR voor de filters hierboven.
+                $q->where(fn (Builder $q) => $q
+                    ->whereLike('name', $naald)
+                    ->orWhereLike('tagline', $naald)
+                    ->orWhereRelation('category', 'name', 'like', $naald));
             });
-        }
 
-        // Packs en de bundel bovenaan: dat is wat je wilt verkopen.
-        return $presets
-            ->sortBy(fn ($p) => match ($p->soort) {
-                'bundel' => 0,
-                'pack' => 1,
-                default => 2,
-            })
-            ->values();
+        return static::gesorteerd($query)->get();
     }
 
     /** Hoeveel producten er per categorie zijn, voor de tegels op de homepage. */
     public static function aantalPerCategorie(): Collection
     {
-        return static::all()->groupBy('category_id')->map->count();
+        return Preset::query()
+            ->selectRaw('category_id, count(*) as aantal')
+            ->groupBy('category_id')
+            ->pluck('aantal', 'category_id');
+    }
+
+    /** Packs en de bundel bovenaan: dat is wat je wilt verkopen. */
+    private static function gesorteerd(Builder $query): Builder
+    {
+        return $query
+            ->orderByRaw("case soort when 'bundel' then 0 when 'pack' then 1 else 2 end")
+            ->orderBy('id');
     }
 }

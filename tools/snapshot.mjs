@@ -42,6 +42,7 @@ const MILESTONES = {
     shots: [
       { name: 'db-presets', url: 'http://localhost:8080/index.php?route=/sql&db=lxrs_webshop&table=presets', mobiel: false },
       { name: 'db-categories', url: 'http://localhost:8080/index.php?route=/sql&db=lxrs_webshop&table=categories', mobiel: false },
+      { name: 'presets-uit-database', url: 'http://localhost:8000/presets' },
     ],
   },
   'v0.3-api': {
@@ -289,7 +290,7 @@ async function main() {
   if (!(await bereikbaar(eerste))) {
     console.error('\nServer niet bereikbaar op ' + new URL(eerste).host + '.');
     console.error('Start je containers eerst:  docker compose up -d');
-    console.error('Voor phpMyAdmin: start Apache en MySQL in het XAMPP-configuratiescherm.\n');
+    console.error('phpMyAdmin draait mee in Docker, op localhost:8080.\n');
     process.exit(1);
   }
 

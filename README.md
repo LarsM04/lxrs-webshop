@@ -83,7 +83,7 @@ De catalogus wordt gegenereerd uit de mappenstructuur van het echte edit pack:
 node tools/catalogus-genereren.mjs "<pad naar het uitgepakte pack>"
 ```
 
-Dat schrijft `app/Support/preset-data.php`. De `.ffx`-bestanden zelf komen
+Dat schrijft `database/data/presets.php`. De `.ffx`-bestanden zelf komen
 **niet** in deze repo — dat is het product. Ze staan in `.gitignore`.
 
 ---

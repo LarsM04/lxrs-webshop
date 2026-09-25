@@ -54,15 +54,22 @@ Drie dingen om te weten voordat we beginnen:
 
 **Doel:** de twee gekoppelde tabellen uit het leerdoel, gevuld met testdata.
 
-- [ ] Migration `categories`: `name`, `slug`
-- [ ] Migration `presets`: `category_id` (foreign key), `name`, `slug`, `description`,
-      `price`, `image_path`, `download_path`, `is_featured`
-- [ ] Model `Category` met `hasMany(Preset::class)`
-- [ ] Model `Preset` met `belongsTo(Category::class)`
-- [ ] Seeder met de vier categorieën: Color Corrections, Text Presets, Shakes, Zooms
-- [ ] Seeder met een stuk of acht voorbeeldpresets
-- [ ] `php artisan migrate:fresh --seed` draait zonder fouten
-- [ ] `PresetCatalog` van binnen vervangen door Eloquent — de views blijven gelijk
+- [x] Migration `categories`: `name`, `slug`, plus `afkorting` en `omschrijving` voor de tegels
+- [x] Migration `presets`: `category_id` (foreign key), `name`, `slug`, `description`,
+      `price`, `image_path`, `download_path`, `is_featured`, plus wat de echte catalogus
+      nodig heeft: `soort`, `aantal`, `tagline`, `includes` (JSON), `bestandsgrootte`, `ae_version`
+- [x] Model `Category` met `hasMany(Preset::class)`
+- [x] Model `Preset` met `belongsTo(Category::class)`
+- [x] Seeder met de categorieën — inmiddels acht, want de catalogus volgt het echte pack
+- [x] Seeder met presets — niet acht voorbeelden, maar alle 63 producten uit het echte pack
+      (`database/data/presets.php`)
+- [x] `php artisan migrate:fresh --seed` draait zonder fouten
+- [x] `PresetCatalog` van binnen vervangen door Eloquent — de views blijven gelijk
+- [x] Factories en feature tests voor overzicht, filters, zoeken, detailpagina en de foreign key
+
+> **Keuze:** een categorie waar nog presets in zitten kan niet verwijderd worden
+> (`restrictOnDelete`). Anders zou één klik in de beheeromgeving (fase 4) een hele
+> categorie aan producten meenemen.
 
 > Dit is het stuk waar je bij de demo de databasestructuur op uitlegt. De foreign key
 > `presets.category_id → categories.id` ís de koppeling waar het keuzedeel om vraagt.
@@ -107,7 +114,7 @@ Drie dingen om te weten voordat we beginnen:
 - [x] **Homepage** — hero, uitgelicht aanbod, categorie-tegels, vertrouwensbalk
 - [x] **Presets-overzicht** — alle presets, met categoriefilter en zoekveld
 - [x] **Productdetailpagina** — beeld, prijs, wat je krijgt, specs, gerelateerde presets
-- [ ] Data uit de database halen in plaats van uit `PresetCatalog` (volgt in fase 1)
+- [x] Data uit de database halen in plaats van uit een vaste lijst (gedaan in fase 1)
 
 ### 3c. Verbeteringen meegenomen
 - [x] `prefers-reduced-motion` — ontbrak volledig bij 12 animaties

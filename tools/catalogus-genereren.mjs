@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Genereert app/Support/PresetCatalog.php uit de mappenstructuur van het
+ * Genereert database/data/presets.php uit de mappenstructuur van het
  * echte edit pack.
  *
  *   node tools/catalogus-genereren.mjs "<pad naar de uitgepakte map>"
@@ -220,9 +220,9 @@ const uit = [
   '',
 ].join('\n');
 
-const doel = path.resolve('app/Support/preset-data.php');
+const doel = path.resolve('database/data/presets.php');
 await writeFile(doel, uit, 'utf8');
-console.log(`${rijen.length} producten weggeschreven naar app/Support/preset-data.php`);
+console.log(`${rijen.length} producten weggeschreven naar database/data/presets.php`);
 console.log(`  ${totaal} losse presets`);
 for (const cat of CATEGORIEEN.filter((c) => c.map !== null)) {
   console.log(`    ${cat.name.padEnd(20)} ${String(perCategorie[cat.id] ?? 0).padStart(2)}`);
