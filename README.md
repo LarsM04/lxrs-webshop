@@ -112,6 +112,10 @@ Daarna draait alles:
 
 Stoppen doe je met `docker compose down`.
 
+Op Windows kan het ook met een dubbelklik op **`start-webshop.bat`**: dat start Docker
+Desktop als die nog uit staat, zet de containers aan en opent de site in Brave (of in
+je standaardbrowser als Brave er niet is).
+
 ### Veelvoorkomende problemen
 
 **`Permission denied` op `storage/logs/laravel.log`** — op Windows staan bind-mounted
