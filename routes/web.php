@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PresetController as AdminPresetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PresetController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+
+        Route::resource('presets', AdminPresetController::class)->only(['index']);
     });
 });

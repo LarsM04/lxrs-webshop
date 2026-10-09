@@ -159,7 +159,7 @@ met een git tag, zodat de voortgang ook tussendoor zichtbaar is.
 | Stap | Wat | CRUD | Streefdatum | Tag | Status |
 |---|---|---|---|---|---|
 | 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | ✅ |
-| 2 | [Overzicht van alle presets](#stap-2--overzicht-van-alle-presets) | **R** | 23 okt | | ⬜ |
+| 2 | [Overzicht van alle presets](#stap-2--overzicht-van-alle-presets) | **R** | 23 okt | | ✅ |
 | 3 | [Preset toevoegen en bewerken](#stap-3--preset-toevoegen-en-bewerken) | **C U** | 6 nov | | ⬜ |
 | 4 | [Preset verwijderen](#stap-4--preset-verwijderen) | **D** | 13 nov | `v0.8-admin-presets` | ⬜ |
 | 5 | [Afbeelding uploaden](#stap-5--afbeelding-uploaden) | | 20 nov | `v0.9-afbeeldingen` | ⬜ |
@@ -167,6 +167,16 @@ met een git tag, zodat de voortgang ook tussendoor zichtbaar is.
 | 7 | [Afronden en demo-test](#stap-7--afronden-en-demo-test) | | 4 dec | `v1.0-crud` | ⬜ |
 
 Status: ⬜ nog niet begonnen · 🔄 mee bezig · ✅ af
+
+**Snapshot maken (PowerShell).** Zet eerst je inloggegevens, dan kan het script ook de
+beheeromgeving fotograferen. Ze blijven alleen bewaard zolang het terminalvenster open is.
+Vink de stap eerst af in dit bestand: het script commit alles in `docs/` mee.
+
+```powershell
+$env:ADMIN_EMAIL="…"; $env:ADMIN_PASSWORD="…"
+node tools/snapshot.mjs <tag> "<wat er nu werkt>"
+git push; git push --tags
+```
 
 ### Stap 1 — Inloggen voor de beheerder
 
@@ -191,22 +201,27 @@ melding · goed wachtwoord laat je binnen · uitloggen werkt · na 5 foute pogin
 
 **Klaar als:** ik met de gegevens uit `.env` kan inloggen en `/admin` zonder login niet te zien is.
 
-**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.7-login "Beheerder kan inloggen, /admin is afgeschermd"`
+**Snapshot:** `node tools/snapshot.mjs v0.7-login "Beheerder kan inloggen, /admin is afgeschermd"`
 
 ### Stap 2 — Overzicht van alle presets
 
 De **R** van CRUD: alles op een rij, zodat ik snel vind wat ik wil aanpassen.
 
-- [ ] `/admin/presets`: tabel met afbeelding, naam, categorie, soort, prijs en uitgelicht
-- [ ] Zoeken op naam en filteren op categorie en soort, net als op de website
-- [ ] 25 per pagina, want 63 rijen is te veel voor één scherm
-- [ ] De categorie in één keer meeladen (`with('category')`), anders doet elke rij een
+- [x] `/admin/presets`: tabel met afbeelding, naam, categorie, soort, prijs en uitgelicht
+- [x] Zoeken op naam en filteren op categorie en soort, net als op de website. Dezelfde
+      code: `PresetCatalog::filterQuery()` wordt door allebei gebruikt
+- [x] 25 per pagina, want 63 rijen is te veel voor één scherm. Bij het bladeren blijven
+      je filters staan
+- [x] De categorie in één keer meeladen (`with('category')`), anders doet elke rij een
       eigen query (het N+1-probleem)
-- [ ] Per rij: *Bekijk op de site* · *Bewerken* · *Verwijderen* (werken na stap 3 en 4)
-- [ ] Lege staat als zoeken niets oplevert
-- [ ] *Presets* in het menu van de beheeromgeving
+- [x] Per rij een link *Bekijk op de site*. *Bewerken* en *Verwijderen* komen erbij in
+      stap 3 en 4
+- [x] Lege staat als zoeken niets oplevert
+- [x] *Presets* in het menu van de beheeromgeving
 
-**Testen:** beheerder ziet de lijst · gast niet · zoeken en filteren geven de juiste presets
+**Testen:** gast wordt doorgestuurd · tabel toont categorie, soort, prijs en uitgelicht ·
+de drie filters samen · 25 per pagina · filters blijven staan bij bladeren · lege staat ·
+de categorieën in één query · HTML in een naam wordt niet uitgevoerd
 
 **Klaar als:** alle 63 producten in de tabel staan en ik er met zoeken snel eentje vind.
 
@@ -225,6 +240,7 @@ De **C** en de **U**. Toevoegen en bewerken delen één formulier.
 - [ ] Bij een fout: de melding staat bij het veld zelf en wat je al had ingevuld blijft staan
 - [ ] Foutmeldingen in het Nederlands: `APP_LOCALE=nl` en een eigen `lang/nl/validation.php`
 - [ ] Na opslaan terug naar het overzicht, met de melding *"Preset opgeslagen"*
+- [ ] Knop *Nieuwe preset* boven de tabel en per rij een link *Bewerken*
 
 **Testen:** toevoegen slaat op · bewerken past aan · lege naam of prijs `abc` geeft een
 fout · slug wordt automatisch gemaakt · *wat je krijgt* wordt een lijst
@@ -239,12 +255,13 @@ De **D**. Daarmee is de CRUD voor presets compleet.
       door een browser of bot worden geopend zonder dat iemand erop klikt
 - [ ] Eerst bevestigen: *"Weet je zeker dat je Midnight CC wilt verwijderen?"*
 - [ ] Na verwijderen de melding *"Preset verwijderd"*
+- [ ] Per rij in het overzicht een knop *Verwijderen*
 
 **Testen:** verwijderen haalt de preset uit de database · een gast kan niets verwijderen
 
 **Klaar als:** ik een preset kan toevoegen, bewerken en verwijderen zonder Postman.
 
-**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.8-admin-presets "Presets toevoegen, bewerken en verwijderen in de beheeromgeving"`
+**Snapshot:** `node tools/snapshot.mjs v0.8-admin-presets "Presets toevoegen, bewerken en verwijderen in de beheeromgeving"`
 
 ### Stap 5 — Afbeelding uploaden
 
@@ -266,7 +283,7 @@ een pdf wordt geweigerd · de oude afbeelding wordt opgeruimd
 
 **Klaar als:** een geüploade afbeelding op de kaart en op de detailpagina staat.
 
-**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.9-afbeeldingen "Afbeeldingen uploaden vanuit de beheeromgeving"`
+**Snapshot:** `node tools/snapshot.mjs v0.9-afbeeldingen "Afbeeldingen uploaden vanuit de beheeromgeving"`
 
 ### Stap 6 — Categorieën beheren
 
@@ -298,8 +315,8 @@ categorie met presets niet
 **Snapshot:** twee screenshots naast elkaar — adminpaneel en de website die meteen
 de nieuwe preset toont · tag `v1.0-crud`
 
-```bash
-ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v1.0-crud "Beheeromgeving werkt: aanbod aanpassen zonder code"
+```powershell
+node tools/snapshot.mjs v1.0-crud "Beheeromgeving werkt: aanbod aanpassen zonder code"
 ```
 
 > Na deze fase is het volledige leerdoel behaald. Alles hierna is bonus.

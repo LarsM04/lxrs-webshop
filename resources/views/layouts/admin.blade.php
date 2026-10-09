@@ -32,6 +32,7 @@
             @auth
                 <nav class="beheer-nav" aria-label="Beheer">
                     <a href="{{ route('admin.dashboard') }}" @if(request()->routeIs('admin.dashboard')) aria-current="page" @endif>Start</a>
+                    <a href="{{ route('admin.presets.index') }}" @if(request()->routeIs('admin.presets.*')) aria-current="page" @endif>Presets</a>
                     <a href="{{ route('home') }}">Naar de website</a>
 
                     {{-- Uitloggen is een POST met CSRF-token, zodat een vreemde

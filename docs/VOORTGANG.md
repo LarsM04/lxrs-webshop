@@ -83,6 +83,15 @@ node tools/snapshot.mjs --url http://localhost:8000/presets?categorie=shakes --n
 Het adminpaneel zit achter een login. Zet je gegevens in de omgeving voordat je het
 script draait, dan logt Playwright zelf in:
 
+In PowerShell (de terminal in VS Code op Windows):
+
+```powershell
+$env:ADMIN_EMAIL="lars@lxrs2004.com"; $env:ADMIN_PASSWORD="..."
+node tools/snapshot.mjs v1.0-crud "Admin CRUD werkt"
+```
+
+In Git Bash kan het op één regel:
+
 ```bash
 ADMIN_EMAIL="lars@lxrs2004.com" ADMIN_PASSWORD="..." node tools/snapshot.mjs v1.0-crud "Admin CRUD werkt"
 ```

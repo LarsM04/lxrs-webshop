@@ -95,6 +95,17 @@ class PresetCatalog
     /** Filteren op categorie, soort en zoekterm. */
     public static function filter(?string $categorySlug = null, ?string $zoekterm = null, ?string $soort = null): Collection
     {
+        return static::filterQuery($categorySlug, $zoekterm, $soort)->get();
+    }
+
+    /**
+     * Dezelfde filters als filter(), maar nog als query. De beheeromgeving
+     * gebruikt dit om de uitkomst over pagina's te verdelen.
+     *
+     * @return Builder<Preset>
+     */
+    public static function filterQuery(?string $categorySlug = null, ?string $zoekterm = null, ?string $soort = null): Builder
+    {
         $query = Preset::query()
             ->with('category')
             ->when($categorySlug, fn (Builder $q) => $q->whereRelation('category', 'slug', $categorySlug))
@@ -109,7 +120,7 @@ class PresetCatalog
                     ->orWhereRelation('category', 'name', 'like', $naald));
             });
 
-        return static::gesorteerd($query)->get();
+        return static::gesorteerd($query);
     }
 
     /** Hoeveel producten er per categorie zijn, voor de tegels op de homepage. */

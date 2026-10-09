@@ -114,6 +114,106 @@
 }
 
 /* --------------------------------------------------------------------------
+   Filterbalk — de zoekbalk en .filters komen uit style.css
+   -------------------------------------------------------------------------- */
+
+.keuze { flex: 0 1 200px; }
+.keuze select {
+  width: 100%;
+  padding: 11px 38px 11px 16px;
+  background: rgba(7, 6, 12, 0.6)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b9b3cf' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r-pil);
+  color: var(--tekst);
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+}
+.keuze select:hover { border-color: var(--lijn-sterk); }
+.keuze select:focus-visible { border-color: var(--paars); }
+.keuze option { background: var(--bg-verhoogd); color: var(--tekst); }
+
+.filters__knoppen { display: flex; gap: 10px; }
+.filters__knoppen .knop { padding-block: 11px; }
+
+/* --------------------------------------------------------------------------
+   Tabel
+   -------------------------------------------------------------------------- */
+
+.tabel-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r-groot);
+}
+
+.tabel {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabel th,
+.tabel td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--lijn);
+}
+.tabel tbody tr:last-child > * { border-bottom: 0; }
+.tabel tbody tr:hover { background: var(--vlak); }
+
+.tabel thead th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tekst-dim);
+  background: var(--vlak);
+}
+
+/* De naam is de rijkop (th), maar hoeft er niet als kop uit te zien. */
+.tabel tbody th { font-weight: 700; color: var(--tekst); }
+
+.tabel__sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--tekst-dim);
+}
+
+.tabel__getal { text-align: right !important; font-variant-numeric: tabular-nums; }
+.tabel__acties { text-align: right !important; }
+
+/* Kleine versie van de productafbeelding, of het kleurvlak zolang die er niet is. */
+.duim {
+  width: 64px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.duim.plaatshouder { font-size: 8px; letter-spacing: 0.1em; }
+
+/* --------------------------------------------------------------------------
+   Paginering
+   -------------------------------------------------------------------------- */
+
+.paginering {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+.paginering .knop { padding: 10px 20px; }
+.paginering [aria-disabled='true'] { opacity: 0.35; cursor: default; }
+.paginering__stand { font-size: 14px; color: var(--tekst-zacht); }
+
+/* --------------------------------------------------------------------------
    Loginpagina
    -------------------------------------------------------------------------- */
 
