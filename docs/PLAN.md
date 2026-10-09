@@ -158,7 +158,7 @@ met een git tag, zodat de voortgang ook tussendoor zichtbaar is.
 
 | Stap | Wat | CRUD | Streefdatum | Tag | Status |
 |---|---|---|---|---|---|
-| 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | 🔄 |
+| 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | ✅ |
 | 2 | [Overzicht van alle presets](#stap-2--overzicht-van-alle-presets) | **R** | 23 okt | | ⬜ |
 | 3 | [Preset toevoegen en bewerken](#stap-3--preset-toevoegen-en-bewerken) | **C U** | 6 nov | | ⬜ |
 | 4 | [Preset verwijderen](#stap-4--preset-verwijderen) | **D** | 13 nov | `v0.8-admin-presets` | ⬜ |
