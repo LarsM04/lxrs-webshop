@@ -125,6 +125,15 @@ docker compose exec laravel.test php artisan key:generate
 docker compose exec laravel.test php artisan migrate --seed
 ```
 
+Vul vóór `migrate --seed` in `.env` je eigen `ADMIN_NAME`, `ADMIN_EMAIL` en
+`ADMIN_PASSWORD` in, dan maakt de seeder het beheerdersaccount voor `/admin` aan.
+Zonder die gegevens komt er geen account. Later toegevoegd of je wachtwoord veranderd?
+Dan kan het los, zonder dat je presets kwijtraakt:
+
+```bash
+docker compose exec laravel.test php artisan db:seed --class=AdminSeeder
+```
+
 Wil je via de API kunnen toevoegen of verwijderen, zet dan een eigen sleutel bij
 `LXRS_API_KEY` in `.env` (zie [API](#api)).
 
@@ -133,6 +142,7 @@ Daarna draait alles:
 | Wat | Waar |
 |---|---|
 | De website | http://localhost:8000 |
+| Beheeromgeving | http://localhost:8000/admin — inloggen met de `ADMIN_`-gegevens uit `.env` |
 | phpMyAdmin | http://localhost:8080 |
 | MySQL (extern) | `localhost:3307`, gebruiker `sail`, wachtwoord `password` |
 

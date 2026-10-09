@@ -158,7 +158,7 @@ met een git tag, zodat de voortgang ook tussendoor zichtbaar is.
 
 | Stap | Wat | CRUD | Streefdatum | Tag | Status |
 |---|---|---|---|---|---|
-| 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | ⬜ |
+| 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | 🔄 |
 | 2 | [Overzicht van alle presets](#stap-2--overzicht-van-alle-presets) | **R** | 23 okt | | ⬜ |
 | 3 | [Preset toevoegen en bewerken](#stap-3--preset-toevoegen-en-bewerken) | **C U** | 6 nov | | ⬜ |
 | 4 | [Preset verwijderen](#stap-4--preset-verwijderen) | **D** | 13 nov | `v0.8-admin-presets` | ⬜ |
@@ -172,24 +172,26 @@ Status: ⬜ nog niet begonnen · 🔄 mee bezig · ✅ af
 
 Alles wat hierna komt zit achter deze login, dus die moet er als eerste staan.
 
-- [ ] `ADMIN_NAME`, `ADMIN_EMAIL` en `ADMIN_PASSWORD` in `.env` — dezelfde namen die
+- [x] `ADMIN_NAME`, `ADMIN_EMAIL` en `ADMIN_PASSWORD` in `.env` — dezelfde namen die
       het snapshot-script al gebruikt
-- [ ] `DatabaseSeeder` maakt met die gegevens de beheerder aan, in plaats van de `Test User`
-- [ ] Loginpagina op `/admin/login`: e-mail, wachtwoord en een knop *Inloggen*
-- [ ] Inloggen en uitloggen in een eigen `Admin\LoginController`, zonder starterkit
-- [ ] Na het inloggen een nieuw sessie-id, zodat niemand een oude sessie kan overnemen
-- [ ] Na 5 foute pogingen een minuut wachten, tegen het raden van wachtwoorden
-- [ ] Alles onder `/admin` achter de `auth`-middleware; zonder login → naar `/admin/login`
-- [ ] Eigen layout `layouts/admin.blade.php`, met de kleuren en het lettertype van de site
-      en een menu: Presets · Categorieën · Naar de website · Uitloggen
-- [ ] Startpagina `/admin` met een paar tellers: presets, categorieën, uitgelicht
+- [x] Een eigen `AdminSeeder` maakt met die gegevens de beheerder aan, in plaats van de
+      `Test User`. Ook los te draaien: `php artisan db:seed --class=AdminSeeder`
+- [x] Loginpagina op `/admin/login`: e-mail, wachtwoord en een knop *Inloggen*
+- [x] Inloggen en uitloggen in een eigen `Admin\LoginController`, zonder starterkit
+- [x] Na het inloggen een nieuw sessie-id, zodat niemand een oude sessie kan overnemen
+- [x] Na 5 foute pogingen een minuut wachten, tegen het raden van wachtwoorden
+- [x] Alles onder `/admin` achter de `auth`-middleware; zonder login → naar `/admin/login`
+- [x] Eigen layout `layouts/admin.blade.php`, met de kleuren en het lettertype van de site
+      en een menu: Start · Naar de website · Uitloggen. *Presets* en *Categorieën*
+      komen erbij in stap 2 en 6
+- [x] Startpagina `/admin` met een paar tellers: presets, categorieën, uitgelicht
 
 **Testen:** gast wordt doorgestuurd naar de loginpagina · fout wachtwoord geeft een
 melding · goed wachtwoord laat je binnen · uitloggen werkt · na 5 foute pogingen geblokkeerd
 
 **Klaar als:** ik met de gegevens uit `.env` kan inloggen en `/admin` zonder login niet te zien is.
 
-**Snapshot:** `node tools/snapshot.mjs v0.7-login "Beheerder kan inloggen, /admin is afgeschermd"`
+**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.7-login "Beheerder kan inloggen, /admin is afgeschermd"`
 
 ### Stap 2 — Overzicht van alle presets
 
@@ -202,6 +204,7 @@ De **R** van CRUD: alles op een rij, zodat ik snel vind wat ik wil aanpassen.
       eigen query (het N+1-probleem)
 - [ ] Per rij: *Bekijk op de site* · *Bewerken* · *Verwijderen* (werken na stap 3 en 4)
 - [ ] Lege staat als zoeken niets oplevert
+- [ ] *Presets* in het menu van de beheeromgeving
 
 **Testen:** beheerder ziet de lijst · gast niet · zoeken en filteren geven de juiste presets
 
@@ -275,6 +278,7 @@ Volledige CRUD voor de tweede tabel.
 - [ ] Een categorie met presets erin verwijderen geeft een duidelijke melding
       (*"Er zitten nog 8 presets in Shakes"*) in plaats van een databasefout.
       `restrictOnDelete` uit fase 1 blijft als vangnet
+- [ ] *Categorieën* in het menu van de beheeromgeving
 
 **Testen:** toevoegen, bewerken en verwijderen · een lege categorie kan weg · een
 categorie met presets niet

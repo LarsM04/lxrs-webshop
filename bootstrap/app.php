@@ -13,7 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Alleen de beheeromgeving heeft een login. Zonder login ga je naar
+        // die loginpagina; ben je al ingelogd, dan sla je hem over.
+        $middleware->redirectTo(
+            guests: fn () => route('admin.login'),
+            users: fn () => route('admin.dashboard'),
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

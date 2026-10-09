@@ -32,6 +32,12 @@ return [
         'key' => env('LXRS_API_KEY'),
     ],
 
+    'lxrs_admin' => [
+        'name' => env('ADMIN_NAME', 'Beheerder'),
+        'email' => env('ADMIN_EMAIL'),
+        'password' => env('ADMIN_PASSWORD'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
