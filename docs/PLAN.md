@@ -135,20 +135,168 @@ Drie dingen om te weten voordat we beginnen:
 
 ---
 
-## Fase 4 — Beheeromgeving / CRUD (eind november – begin december)
+## Fase 4 — Beheeromgeving / CRUD (oktober – begin december)
 
 **Doel:** het aanbod aanpassen zonder één regel code te wijzigen. Dit is het hart
 van het leerdoel.
 
-- [ ] Filament installeren en een admin-account aanmaken
-- [ ] Resource voor `Preset` — **C**reate, **R**ead, **U**pdate, **D**elete
-- [ ] Resource voor `Category`
-- [ ] Afbeelding uploaden vanuit het adminpaneel
-- [ ] Inloggen verplicht voor `/admin`
-- [ ] Testen: preset toevoegen in admin → verschijnt direct op de website
+> **Keuze: zelf bouwen in plaats van Filament.** Filament levert in een middag een
+> compleet adminpaneel, maar dan doet een pakket het werk. Zelf bouwen kost meer tijd,
+> maar zo laat ik zien dat ik inloggen, formulieren, validatie en uploads zelf kan
+> maken — en daar gaat het om bij *Verdieping* Software. Er komt ook geen extra pakket bij.
+
+> **Keuze: één beheerder, geen registratie.** Alleen ik beheer de shop. Het account
+> komt uit de seeder, met de gegevens uit `.env`. Wie geen account heeft, komt er niet in.
+
+> **De API blijft zoals hij is.** Die werkt met de sleutel, de beheeromgeving met een
+> login. Twee ingangen, maar dezelfde validatie (`PresetRequest`).
+
+### Overzicht
+
+Elke stap is los af te ronden en te testen. Na stap 1, 4, 5 en 7 komt er een snapshot
+met een git tag, zodat de voortgang ook tussendoor zichtbaar is.
+
+| Stap | Wat | CRUD | Streefdatum | Tag | Status |
+|---|---|---|---|---|---|
+| 1 | [Inloggen voor de beheerder](#stap-1--inloggen-voor-de-beheerder) | | 16 okt | `v0.7-login` | ⬜ |
+| 2 | [Overzicht van alle presets](#stap-2--overzicht-van-alle-presets) | **R** | 23 okt | | ⬜ |
+| 3 | [Preset toevoegen en bewerken](#stap-3--preset-toevoegen-en-bewerken) | **C U** | 6 nov | | ⬜ |
+| 4 | [Preset verwijderen](#stap-4--preset-verwijderen) | **D** | 13 nov | `v0.8-admin-presets` | ⬜ |
+| 5 | [Afbeelding uploaden](#stap-5--afbeelding-uploaden) | | 20 nov | `v0.9-afbeeldingen` | ⬜ |
+| 6 | [Categorieën beheren](#stap-6--categorieën-beheren) | **CRUD** | 27 nov | | ⬜ |
+| 7 | [Afronden en demo-test](#stap-7--afronden-en-demo-test) | | 4 dec | `v1.0-crud` | ⬜ |
+
+Status: ⬜ nog niet begonnen · 🔄 mee bezig · ✅ af
+
+### Stap 1 — Inloggen voor de beheerder
+
+Alles wat hierna komt zit achter deze login, dus die moet er als eerste staan.
+
+- [ ] `ADMIN_NAME`, `ADMIN_EMAIL` en `ADMIN_PASSWORD` in `.env` — dezelfde namen die
+      het snapshot-script al gebruikt
+- [ ] `DatabaseSeeder` maakt met die gegevens de beheerder aan, in plaats van de `Test User`
+- [ ] Loginpagina op `/admin/login`: e-mail, wachtwoord en een knop *Inloggen*
+- [ ] Inloggen en uitloggen in een eigen `Admin\LoginController`, zonder starterkit
+- [ ] Na het inloggen een nieuw sessie-id, zodat niemand een oude sessie kan overnemen
+- [ ] Na 5 foute pogingen een minuut wachten, tegen het raden van wachtwoorden
+- [ ] Alles onder `/admin` achter de `auth`-middleware; zonder login → naar `/admin/login`
+- [ ] Eigen layout `layouts/admin.blade.php`, met de kleuren en het lettertype van de site
+      en een menu: Presets · Categorieën · Naar de website · Uitloggen
+- [ ] Startpagina `/admin` met een paar tellers: presets, categorieën, uitgelicht
+
+**Testen:** gast wordt doorgestuurd naar de loginpagina · fout wachtwoord geeft een
+melding · goed wachtwoord laat je binnen · uitloggen werkt · na 5 foute pogingen geblokkeerd
+
+**Klaar als:** ik met de gegevens uit `.env` kan inloggen en `/admin` zonder login niet te zien is.
+
+**Snapshot:** `node tools/snapshot.mjs v0.7-login "Beheerder kan inloggen, /admin is afgeschermd"`
+
+### Stap 2 — Overzicht van alle presets
+
+De **R** van CRUD: alles op een rij, zodat ik snel vind wat ik wil aanpassen.
+
+- [ ] `/admin/presets`: tabel met afbeelding, naam, categorie, soort, prijs en uitgelicht
+- [ ] Zoeken op naam en filteren op categorie en soort, net als op de website
+- [ ] 25 per pagina, want 63 rijen is te veel voor één scherm
+- [ ] De categorie in één keer meeladen (`with('category')`), anders doet elke rij een
+      eigen query (het N+1-probleem)
+- [ ] Per rij: *Bekijk op de site* · *Bewerken* · *Verwijderen* (werken na stap 3 en 4)
+- [ ] Lege staat als zoeken niets oplevert
+
+**Testen:** beheerder ziet de lijst · gast niet · zoeken en filteren geven de juiste presets
+
+**Klaar als:** alle 63 producten in de tabel staan en ik er met zoeken snel eentje vind.
+
+### Stap 3 — Preset toevoegen en bewerken
+
+De **C** en de **U**. Toevoegen en bewerken delen één formulier.
+
+- [ ] `/admin/presets/create` en `/admin/presets/{id}/edit`, met één gedeeld formulier
+      in `admin/presets/_formulier.blade.php`
+- [ ] Velden: categorie (keuzelijst), naam, slug (leeg = automatisch), soort, aantal,
+      prijs, tagline, omschrijving, *wat je krijgt* (één per regel), bestandsgrootte,
+      AE-versie en uitgelicht (vinkje)
+- [ ] Dezelfde validatie als de API: een `Admin\PresetFormRequest` bouwt voort op
+      `PresetRequest` en zet alleen het tekstvak *wat je krijgt* om naar een lijst en
+      het vinkje naar `true`/`false`
+- [ ] Bij een fout: de melding staat bij het veld zelf en wat je al had ingevuld blijft staan
+- [ ] Foutmeldingen in het Nederlands: `APP_LOCALE=nl` en een eigen `lang/nl/validation.php`
+- [ ] Na opslaan terug naar het overzicht, met de melding *"Preset opgeslagen"*
+
+**Testen:** toevoegen slaat op · bewerken past aan · lege naam of prijs `abc` geeft een
+fout · slug wordt automatisch gemaakt · *wat je krijgt* wordt een lijst
+
+**Klaar als:** een preset die ik in de beheeromgeving toevoeg meteen op `/presets` staat.
+
+### Stap 4 — Preset verwijderen
+
+De **D**. Daarmee is de CRUD voor presets compleet.
+
+- [ ] *Verwijderen* is een klein formulier met `DELETE`, geen gewone link — een link kan
+      door een browser of bot worden geopend zonder dat iemand erop klikt
+- [ ] Eerst bevestigen: *"Weet je zeker dat je Midnight CC wilt verwijderen?"*
+- [ ] Na verwijderen de melding *"Preset verwijderd"*
+
+**Testen:** verwijderen haalt de preset uit de database · een gast kan niets verwijderen
+
+**Klaar als:** ik een preset kan toevoegen, bewerken en verwijderen zonder Postman.
+
+**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.8-admin-presets "Presets toevoegen, bewerken en verwijderen in de beheeromgeving"`
+
+### Stap 5 — Afbeelding uploaden
+
+Nog geen enkel product heeft een afbeelding: `image_path` is overal leeg. De views
+zoeken al in `storage/`, dus zodra uploaden werkt verschijnen ze vanzelf op de site.
+
+- [ ] `php artisan storage:link`, en die stap ook in de installatie van de README
+- [ ] Bestandsveld in het formulier (`enctype="multipart/form-data"`)
+- [ ] Alleen afbeeldingen: jpg, png of webp, maximaal 2 MB
+- [ ] Opslaan in `storage/app/public/presets/`, het pad in `image_path`
+- [ ] Bij een nieuwe afbeelding, of als de preset weg gaat, wordt het oude bestand opgeruimd
+- [ ] In het bewerkformulier de huidige afbeelding als voorbeeld, met een vinkje
+      *afbeelding weghalen*
+- [ ] Buiten de code: previews maken. Begin met de 7 packs en het complete pack, die
+      staan het meest in beeld
+
+**Testen:** met `Storage::fake()` en een nep-afbeelding · uploaden slaat het bestand op ·
+een pdf wordt geweigerd · de oude afbeelding wordt opgeruimd
+
+**Klaar als:** een geüploade afbeelding op de kaart en op de detailpagina staat.
+
+**Snapshot:** `ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v0.9-afbeeldingen "Afbeeldingen uploaden vanuit de beheeromgeving"`
+
+### Stap 6 — Categorieën beheren
+
+Volledige CRUD voor de tweede tabel.
+
+- [ ] `/admin/categories`: lijst met per categorie het aantal presets
+- [ ] Toevoegen en bewerken: naam, slug, afkorting (max. 20 tekens) en omschrijving,
+      met een eigen `CategoryRequest`
+- [ ] Een categorie met presets erin verwijderen geeft een duidelijke melding
+      (*"Er zitten nog 8 presets in Shakes"*) in plaats van een databasefout.
+      `restrictOnDelete` uit fase 1 blijft als vangnet
+
+**Testen:** toevoegen, bewerken en verwijderen · een lege categorie kan weg · een
+categorie met presets niet
+
+**Klaar als:** een nieuwe categorie meteen als filter op `/presets` staat.
+
+### Stap 7 — Afronden en demo-test
+
+- [ ] Eén test die elke `/admin`-route als gast probeert, zodat er nooit eentje open staat
+- [ ] Alle tests groen (`php artisan test`) en Pint gedraaid
+- [ ] Demo-test: preset toevoegen in de beheeromgeving → staat direct op de website →
+      bewerken → verwijderen
+- [ ] Handig voor de demo: een link *Bewerken* op de productpagina als ik ben ingelogd
+- [ ] README bijwerken: hoe je inlogt, de `ADMIN_`-gegevens in `.env` en `storage:link`
+- [ ] De bewijs-vinkjes in de README afvinken
 
 **Snapshot:** twee screenshots naast elkaar — adminpaneel en de website die meteen
 de nieuwe preset toont · tag `v1.0-crud`
+
+```bash
+ADMIN_EMAIL=… ADMIN_PASSWORD=… node tools/snapshot.mjs v1.0-crud "Beheeromgeving werkt: aanbod aanpassen zonder code"
+```
 
 > Na deze fase is het volledige leerdoel behaald. Alles hierna is bonus.
 
@@ -159,7 +307,7 @@ de nieuwe preset toont · tag `v1.0-crud`
 Optioneel, voor een hogere beoordeling. Pak ze in deze volgorde — de eerste is het
 meest zichtbaar bij een demo.
 
-- [ ] **Zoeken en filteren op categorie** — kleinste moeite, direct resultaat
+- [x] **Zoeken en filteren op categorie** — al gebouwd in fase 3, samen met het filter op soort
 - [ ] **Winkelwagen** — sessiegebaseerd, zoals de bestelflow uit het kiosk-project
 - [ ] **Afrekenflow** — order en order_items opslaan, zonder echte betaalprovider
 - [ ] **Downloadlink na gesimuleerde aankoop** — bestand alleen bereikbaar via een
@@ -187,5 +335,5 @@ meest zichtbaar bij een demo.
 |---|---|---|
 | Fase 3 loopt uit (ontwerp omzetten is meer werk dan het lijkt) | Groot | Eerst één pagina helemaal af, pas daarna de rest |
 | Geen productafbeeldingen beschikbaar | Groot | Vroeg beginnen met previews maken, placeholders tot die tijd |
-| Filament wijkt te veel af van "zelf gebouwd" | Klein | API-endpoints schrijf ik zelf, dus het eigen werk blijft aantoonbaar |
+| Zelf bouwen kost meer tijd dan Filament | Middel | Zeven kleine stappen die elk los af zijn; begin december is er nog ruimte voor uitloop |
 | Stretch goals kosten alle tijd | Middel | Pas beginnen als fase 4 helemaal af is |

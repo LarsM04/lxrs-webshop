@@ -143,10 +143,15 @@ De tags die er aan het eind van het traject moeten staan:
 |---|---|---|---|
 | `v0.0-setup` | 0 | sep 2026 | Plan en repo — ✅ behaald |
 | `v0.1-laravel` | 0 | sep 2026 | Laravel draait in Docker — ✅ behaald |
-| `v0.2-database` | 1 | okt 2026 | Beide tabellen met data in phpMyAdmin |
-| `v0.3-api` | 2 | okt 2026 | `GET /api/presets`-response in Postman |
+| `v0.2-database` | 1 | sep 2026 | Beide tabellen met data in phpMyAdmin — ✅ behaald |
+| `v0.3-api` | 2 | sep 2026 | `GET /api/presets`-response in Postman — ✅ behaald |
 | `v0.4-frontend` | 3 | sep 2026 | Drie pagina's, filter en zoek — ✅ behaald |
-| `v1.0-crud` | 4 | dec 2026 | Adminpaneel naast de bijgewerkte website |
+| `v0.5-edits` | 3 | sep 2026 | Recente edits op de homepage — ✅ behaald |
+| `v0.6-catalogus` | 3 | sep 2026 | Echte catalogus uit het edit pack — ✅ behaald |
+| `v0.7-login` | 4 · stap 1 | okt 2026 | Loginpagina en de afgeschermde startpagina van `/admin` |
+| `v0.8-admin-presets` | 4 · stap 4 | nov 2026 | Presets-overzicht en toevoegformulier in de beheeromgeving |
+| `v0.9-afbeeldingen` | 4 · stap 5 | nov 2026 | Geüploade afbeeldingen op de website |
+| `v1.0-crud` | 4 · stap 7 | dec 2026 | Adminpaneel naast de bijgewerkte website |
 | `v1.1-shop` | 5 | jan 2027 | Winkelwagen tot en met download |
 | `v1.0-oplevering` | 6 | jan 2027 | Eindversie |
 

@@ -76,6 +76,27 @@ const MILESTONES = {
       { name: 'product-los', url: 'http://localhost:8000/presets/midnight-cc-color-corrections' },
     ],
   },
+  'v0.7-login': {
+    fase: '4 · Admin CRUD',
+    shots: [
+      { name: 'admin-login', url: 'http://localhost:8000/admin/login' },
+      { name: 'admin-start', url: 'http://localhost:8000/admin', login: true, mobiel: false },
+    ],
+  },
+  'v0.8-admin-presets': {
+    fase: '4 · Admin CRUD',
+    shots: [
+      { name: 'admin-presets', url: 'http://localhost:8000/admin/presets', login: true, mobiel: false },
+      { name: 'admin-preset-toevoegen', url: 'http://localhost:8000/admin/presets/create', login: true, mobiel: false },
+    ],
+  },
+  'v0.9-afbeeldingen': {
+    fase: '4 · Admin CRUD',
+    shots: [
+      { name: 'shop-packs-met-afbeeldingen', url: 'http://localhost:8000/presets?soort=pack' },
+      { name: 'product-met-afbeelding', url: 'http://localhost:8000/presets/complete-pack' },
+    ],
+  },
   'v1.0-crud': {
     fase: '4 · Admin CRUD',
     shots: [

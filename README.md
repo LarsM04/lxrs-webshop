@@ -30,7 +30,7 @@ beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 | API | Eigen endpoints in `routes/api.php` | Zelf geschreven, zoals in mijn kiosk-project (Happy Herbivore) |
 | Database | MySQL 8.4 | Bekend vanuit eerdere schoolprojecten |
 | Omgeving | Docker (Laravel Sail) | Iedereen draait exact dezelfde versies; één commando om op te starten |
-| Admin | Filament | Eigen beheeromgeving, vergelijkbaar met het CMS van mijn U Festival App |
+| Admin | Zelf gebouwd: Blade + de login van Laravel | Inloggen, formulieren, validatie en uploads zelf maken in plaats van een pakket als Filament; vergelijkbaar met het CMS van mijn U Festival App |
 
 ---
 
@@ -192,21 +192,22 @@ Staat de lijst leeg, dan toont de sectie je drie TikTok-accounts.
 Het snapshotlogboek — wat er wanneer werkend was, met screenshots en git tags —
 staat in [`docs/VOORTGANG.md`](docs/VOORTGANG.md).
 
-**Laatste milestone:** `v0.0-setup` — plan van aanpak vastgelegd (18 september 2026)
+**Laatste milestone:** `v0.3-api` — eigen API, CRUD getest met Postman (25 september 2026)
 
 ---
 
 ## Planning
 
-De volledige fasering staat in [`docs/PLAN.md`](docs/PLAN.md).
+De volledige fasering staat in [`docs/PLAN.md`](docs/PLAN.md). Fase 4 is daar
+uitgewerkt in zeven stappen, met per stap een streefdatum en status.
 
 | Fase | Periode | Resultaat |
 |---|---|---|
-| 0. Setup | sep 2026 | Repo, Laravel, databaseontwerp |
-| 1. Database | okt 2026 | Migrations, modellen, seeders |
-| 2. API | okt 2026 | Eigen CRUD-endpoints |
-| 3. Front-end | okt–nov 2026 | Ontwerp omgezet, live data |
-| 4. Admin CRUD | nov–dec 2026 | Beheeromgeving werkend |
+| 0. Setup | sep 2026 | Repo, Laravel, databaseontwerp — ✅ |
+| 1. Database | sep 2026 | Migrations, modellen, seeders — ✅ |
+| 2. API | sep 2026 | Eigen CRUD-endpoints — ✅ |
+| 3. Front-end | sep 2026 | Ontwerp omgezet, live data — ✅ |
+| 4. Admin CRUD | okt–dec 2026 | Beheeromgeving werkend |
 | 5. Stretch goals | dec–jan 2027 | Winkelwagen, downloads, filters |
 | 6. Afronden | jan 2027 | Testen, demo, oplevering |
 
