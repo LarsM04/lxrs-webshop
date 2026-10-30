@@ -393,6 +393,106 @@ section { padding-block: var(--sectie); }
   color: var(--tekst-dim);
 }
 
+/* Tekst links, logo rechts. Op een smal scherm komt het logo eronder. */
+.hero__raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.hero__tekst { min-width: 0; }
+.hero__logo {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Het logo zweeft op en neer, de gestippelde ring draait er langzaam omheen. */
+.zweef {
+  position: relative;
+  width: min(420px, 82%);
+  aspect-ratio: 1;
+  animation: zweven 7s ease-in-out infinite;
+}
+.zweef__ring {
+  position: absolute;
+  inset: -16px;
+  border: 1px dashed rgba(139, 116, 255, 0.3);
+  border-top-color: rgba(139, 116, 255, 0.85);
+  border-radius: 50%;
+  animation: draaien 18s linear infinite;
+}
+.zweef__beeld {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(139, 116, 255, 0.35), 0 40px 120px rgba(107, 75, 247, 0.35);
+}
+.zweef__beeld img { width: 100%; height: 100%; object-fit: cover; }
+
+/* "Open voor edits" als pil, met een pulserende stip ervoor. */
+.oogje--pil {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 1px solid rgba(139, 116, 255, 0.35);
+  border-radius: var(--r-pil);
+}
+.puls {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--paars);
+  animation: pulseren 1.6s ease-in-out infinite;
+}
+
+/* "niet stilstaan": een kleurverloop dat door de letters heen schuift. */
+.verloop-tekst {
+  background: linear-gradient(100deg, #6b4bf7 0%, #cfc4ff 22%, #6b4bf7 44%, #8b74ff 70%, #cfc4ff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: verloop 3.2s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Lopende tekstbanden onder de hero
+   -------------------------------------------------------------------------- */
+
+.band {
+  padding: 14px 0;
+  border-block: 1px solid var(--lijn);
+  background: var(--bg);
+  overflow: hidden;
+}
+.band__rij {
+  display: flex;
+  width: max-content;
+  animation: lopen 14s linear infinite;
+}
+.band__rij--terug {
+  margin-top: 10px;
+  opacity: 0.55;
+  animation: lopen-terug 18s linear infinite;
+}
+.band__tekst {
+  display: flex;
+  gap: 48px;
+  padding-right: 48px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--tekst-dim);
+}
+.band__rij--terug .band__tekst { color: var(--paars); }
+.band__streep { color: var(--paars-diep); }
+.band__rij--terug .band__streep { color: #3d3560; }
+
 /* Achtergrondgloed, puur decoratief. */
 .gloed {
   position: absolute;
@@ -404,7 +504,34 @@ section { padding-block: var(--sectie); }
   filter: blur(40px);
   pointer-events: none;
 }
-.gloed--hero { top: -180px; right: -120px; }
+.gloed--hero {
+  top: -180px;
+  right: -120px;
+  animation: gloeien 9s ease-in-out infinite;
+}
+
+/* Bewegend raster achter de hele site. Het raster is groter dan het scherm en
+   schuift één hokje op; daarna begint het opnieuw, zodat het lijkt alsof het
+   eindeloos doorloopt. Het masker laat het naar de randen toe vervagen. */
+.achtergrond-raster {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.achtergrond-raster::before {
+  content: '';
+  position: absolute;
+  inset: -100px;
+  background-image:
+    linear-gradient(rgba(139, 116, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 116, 255, 0.07) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000, transparent 75%);
+  animation: raster-schuiven 6s linear infinite;
+}
 
 /* --------------------------------------------------------------------------
    Presetkaart
@@ -445,6 +572,22 @@ section { padding-block: var(--sectie); }
   width: 100%; height: 100%;
   object-fit: cover;
 }
+
+/* Lichtstreep die over het beeld glijdt. Niet alle kaarten tegelijk, anders
+   flitst een hele rij in één keer. */
+.glans {
+  position: absolute;
+  top: -30%;
+  left: 0;
+  z-index: 1;
+  width: 45%;
+  height: 160%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(169, 150, 255, 0.22), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  animation: glanzen 3.8s ease-in-out infinite;
+}
+.raster > :nth-child(3n + 2) .glans { animation-delay: 1.2s; }
+.raster > :nth-child(3n + 3) .glans { animation-delay: 2.4s; }
 
 /* Productafbeelding zoals ingesteld in de beheeromgeving (x-preset-afbeelding).
    --x en --y: welk deel in beeld is · --zoom: hoe ver ingezoomd.
@@ -877,8 +1020,29 @@ section { padding-block: var(--sectie); }
   border-radius: var(--r-groot);
   overflow: hidden;
   transition: border-color var(--normaal), transform var(--normaal);
+  animation: rand-gloeien 2.6s ease-in-out infinite;
 }
-.reel:hover { border-color: var(--lijn-sterk); }
+/* Bij hover even stil, anders wint de animatie het van de hover-kleur. */
+.reel:hover { border-color: var(--lijn-sterk); animation: none; }
+
+/* Scanlijn: het blok is even hoog als de edit en schuift één keer zijn eigen
+   hoogte omlaag; de lijn zit bovenaan het blok en gaat dus van boven naar beneden. */
+.reel__scan {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: scannen 3.4s linear infinite;
+}
+.reel__scan::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(107, 75, 247, 0), var(--paars), rgba(107, 75, 247, 0));
+}
+.reel[data-speelt='true'] .reel__scan { display: none; }
 .reel[data-speelt='true'] { aspect-ratio: 9 / 19; }
 
 .reel iframe {
@@ -1044,7 +1208,25 @@ section { padding-block: var(--sectie); }
 [data-reveal='3'] { animation-delay: 0.16s; }
 [data-reveal='4'] { animation-delay: 0.24s; }
 
-/* Wie minder beweging wil, krijgt minder beweging. Dit ontbrak volledig. */
+/* De doorlopende animaties uit het ontwerp. */
+@keyframes zweven { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes draaien { to { transform: rotate(360deg); } }
+@keyframes gloeien { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.12); opacity: 1; } }
+@keyframes verloop { to { background-position: 220% 50%; } }
+@keyframes lopen { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes lopen-terug { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes raster-schuiven { to { transform: translate3d(-80px, -80px, 0); } }
+@keyframes glanzen { 0% { transform: translateX(-140%) rotate(8deg); } 100% { transform: translateX(240%) rotate(8deg); } }
+@keyframes scannen { from { transform: translateY(0); } to { transform: translateY(100%); } }
+@keyframes rand-gloeien { 0%, 100% { border-color: rgba(139, 116, 255, 0.2); } 50% { border-color: rgba(139, 116, 255, 0.55); } }
+@keyframes pulseren {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(139, 116, 255, 0.6); }
+  50% { transform: scale(1.5); opacity: 0.7; box-shadow: 0 0 0 8px rgba(139, 116, 255, 0); }
+}
+
+/* Wie minder beweging wil (een instelling in Windows, macOS, iOS en Android),
+   krijgt minder beweging. Alles staat dan stil in de beginstand; de
+   lichtstrepen die alleen bestaan om te bewegen, verdwijnen helemaal. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
@@ -1054,6 +1236,8 @@ section { padding-block: var(--sectie); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .glans,
+  .reel__scan { display: none; }
   [data-reveal] { opacity: 1; }
   .kaart:hover,
   .tegel:hover,

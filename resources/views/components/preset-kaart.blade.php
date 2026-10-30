@@ -14,6 +14,9 @@
                 {{ $preset->category->afkorting }}
             </div>
         @endif
+
+        {{-- Lichtstreep die over het beeld glijdt, zoals in het ontwerp. --}}
+        <span class="glans" aria-hidden="true"></span>
     </div>
 
     <div class="kaart__body">

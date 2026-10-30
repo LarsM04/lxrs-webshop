@@ -107,6 +107,15 @@ ermee kunnen werken. Alle endpoints staan in de [README](../README.md#api).
 - **Productdetailpagina:** beeld, prijs, wat je krijgt, specificaties en gerelateerde presets
 - Werkt goed op de telefoon, met het toetsenbord en voor mensen die minder beweging willen
   (`prefers-reduced-motion`)
+- **Later teruggezet (30 oktober):** bij het omzetten waren de meeste animaties uit het
+  ontwerp weggevallen. Nu staan ze er weer: het bewegende raster op de achtergrond, de
+  gloed, de pulserende stip, de kleurverloop-tekst, het zwevende logo met de draaiende
+  ring, twee lopende tekstbanden, de glans over de kaarten en de scanlijn en gloeiende
+  rand op de edits
+
+> **Keuze: minder beweging blijft gerespecteerd.** Staat bij een bezoeker "minder
+> beweging" aan (in Windows: *Animatie-effecten* uit), dan staat alles stil. Dat is fijn
+> voor mensen die duizelig of misselijk worden van beweging.
 
 ---
 

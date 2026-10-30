@@ -22,6 +22,9 @@
 <body>
     <a class="skiplink" href="#inhoud">Naar de inhoud</a>
 
+    {{-- Bewegend raster achter de hele site, zoals in het ontwerp. --}}
+    <div class="achtergrond-raster" aria-hidden="true"></div>
+
     <header class="kop">
         <div class="omhulsel kop__binnen">
             <a class="merk" href="{{ route('home') }}">

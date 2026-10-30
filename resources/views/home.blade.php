@@ -8,36 +8,73 @@
     {{-- Hero --}}
     <section class="hero">
         <div class="gloed gloed--hero" aria-hidden="true"></div>
-        <div class="omhulsel">
-            <span class="oogje" data-reveal="1">Open voor edits &amp; samenwerkingen</span>
-            <h1 data-reveal="2">Edits die<br>niet stilstaan</h1>
-            <p class="lead" data-reveal="3">
-                Ik ben Lars — TikTok editor voor F1, film en voetbal. Naast m'n edits bouw ik
-                extensies voor After Effects en verkoop ik de presets, clips en tools waar ik
-                zelf elke dag mee werk.
-            </p>
+        <div class="omhulsel hero__raster">
+            <div class="hero__tekst">
+                <span class="oogje oogje--pil" data-reveal="1">
+                    <span class="puls" aria-hidden="true"></span>
+                    Open voor edits &amp; samenwerkingen
+                </span>
+                <h1 data-reveal="2">Edits die<br><span class="verloop-tekst">niet stilstaan</span></h1>
+                <p class="lead" data-reveal="3">
+                    Ik ben Lars — TikTok editor voor F1, film en voetbal. Naast m'n edits bouw ik
+                    extensies voor After Effects en verkoop ik de presets, clips en tools waar ik
+                    zelf elke dag mee werk.
+                </p>
 
-            <div class="hero__acties" data-reveal="4">
-                <a class="knop knop--vol" href="{{ route('presets.index') }}">Bekijk de presets</a>
-                <a class="knop knop--rand" href="#werk">Recente edits</a>
+                <div class="hero__acties" data-reveal="4">
+                    <a class="knop knop--vol" href="{{ route('presets.index') }}">Bekijk de presets</a>
+                    <a class="knop knop--rand" href="#werk">Recente edits</a>
+                </div>
+
+                <div class="hero__cijfers">
+                    <div class="hero__cijfer">
+                        <strong>{{ $aantalPresets }}</strong>
+                        <span>Presets</span>
+                    </div>
+                    <div class="hero__cijfer">
+                        <strong>{{ $categorieen->count() }}</strong>
+                        <span>Categorieën</span>
+                    </div>
+                    <div class="hero__cijfer">
+                        <strong>3</strong>
+                        <span>TikTok-kanalen</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="hero__cijfers">
-                <div class="hero__cijfer">
-                    <strong>{{ $aantalPresets }}</strong>
-                    <span>Presets</span>
-                </div>
-                <div class="hero__cijfer">
-                    <strong>{{ $categorieen->count() }}</strong>
-                    <span>Categorieën</span>
-                </div>
-                <div class="hero__cijfer">
-                    <strong>3</strong>
-                    <span>TikTok-kanalen</span>
+            {{-- Zwevend logo met een draaiende ring eromheen, puur decoratief. --}}
+            <div class="hero__logo" aria-hidden="true">
+                <div class="zweef">
+                    <span class="zweef__ring"></span>
+                    <picture class="zweef__beeld">
+                        <source srcset="{{ asset('images/lxrs-logo-groot.webp') }}" type="image/webp">
+                        <img src="{{ asset('images/lxrs-logo-groot.jpeg') }}" alt="" width="420" height="420">
+                    </picture>
                 </div>
             </div>
         </div>
     </section>
+
+    {{-- Twee lopende tekstbanden, tegen elkaar in. De tekst staat er twee keer
+         in, zodat de band naadloos doorloopt: als de eerste helft uit beeld is,
+         staat de tweede precies op de plek waar de eerste begon. Decoratief,
+         dus verborgen voor schermlezers. --}}
+    <div class="band" aria-hidden="true">
+        @foreach ([
+            ['After Effects extensies', 'Edit presets', 'Clip packs', 'F1 · Film · Voetbal', 'Sound design'],
+            ['Beat sync', 'Velocity edits', 'Transitions', 'Color grades', 'Shake packs'],
+        ] as $rij => $woorden)
+            <div class="band__rij {{ $rij === 1 ? 'band__rij--terug' : '' }}">
+                @foreach ([1, 2] as $kopie)
+                    <div class="band__tekst">
+                        @foreach ($woorden as $woord)
+                            <span>{{ $woord }}</span><span class="band__streep">/</span>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
 
     {{-- Uitgelicht aanbod --}}
     <section id="shop">
@@ -145,6 +182,9 @@
                 <ul class="reels">
                     @foreach ($edits as $edit)
                         <li class="reel">
+                            {{-- Scanlijn die van boven naar beneden over de thumbnail loopt. --}}
+                            <span class="reel__scan" aria-hidden="true"></span>
+
                             @if ($edit->label)
                                 <span class="reel__label">{{ $edit->label }}</span>
                             @endif
