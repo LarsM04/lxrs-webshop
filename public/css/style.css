@@ -1224,6 +1224,33 @@ section { padding-block: var(--sectie); }
   50% { transform: scale(1.5); opacity: 0.7; box-shadow: 0 0 0 8px rgba(139, 116, 255, 0); }
 }
 
+/* GSAP (public/js/animaties.js) neemt het over:
+   - met-gsap: GSAP scrollt vloeiend, dan moet de CSS dat niet ook doen
+   - gsap-intro: de hero-intro laat de onderdelen binnenkomen, niet de CSS
+   - kantelt / magnetisch: GSAP beweegt ze met de muis mee; een CSS-transition
+     op transform zou daar achteraan lopen en het laten haperen */
+html.met-gsap { scroll-behavior: auto; }
+.gsap-intro .hero [data-reveal] { animation: none; }
+.kaart.kantelt { transition: border-color var(--normaal), background-color var(--normaal); }
+.knop.magnetisch {
+  transition: box-shadow var(--normaal), background-color var(--snel), border-color var(--snel), color var(--snel);
+}
+
+/* Pagina-overgangen: de browser laat de oude pagina vervagen en de nieuwe
+   omhoog binnenkomen (View Transitions). De header heeft een eigen naam,
+   zodat die blijft staan. Werkt in Chrome, Edge en Brave; andere browsers
+   wisselen gewoon zoals altijd. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+
+  .kop { view-transition-name: kop; }
+
+  ::view-transition-old(root) { animation: pagina-weg 0.3s cubic-bezier(0.4, 0, 1, 1) both; }
+  ::view-transition-new(root) { animation: pagina-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+}
+@keyframes pagina-weg { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes pagina-in { from { opacity: 0; transform: translateY(18px); } }
+
 /* Wie minder beweging wil (een instelling in Windows, macOS, iOS en Android),
    krijgt minder beweging. Alles staat dan stil in de beginstand; de
    lichtstrepen die alleen bestaan om te bewegen, verdwijnen helemaal. */

@@ -26,7 +26,7 @@
                     <a class="knop knop--rand" href="#werk">Recente edits</a>
                 </div>
 
-                <div class="hero__cijfers">
+                <div class="hero__cijfers" data-reveal="4">
                     <div class="hero__cijfer">
                         <strong>{{ $aantalPresets }}</strong>
                         <span>Presets</span>
@@ -43,7 +43,7 @@
             </div>
 
             {{-- Zwevend logo met een draaiende ring eromheen, puur decoratief. --}}
-            <div class="hero__logo" aria-hidden="true">
+            <div class="hero__logo" aria-hidden="true" data-reveal="4">
                 <div class="zweef">
                     <span class="zweef__ring"></span>
                     <picture class="zweef__beeld">

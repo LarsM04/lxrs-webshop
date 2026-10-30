@@ -103,6 +103,13 @@
     <div class="cursor cursor--ring" aria-hidden="true"></div>
     <div class="cursor cursor--stip" aria-hidden="true"></div>
 
+    {{-- GSAP staat lokaal in public/js/vendor/gsap, net als het lettertype: geen
+         verzoek naar een andere server. animaties.js moet vóór main.js. --}}
+    <script src="{{ asset('js/vendor/gsap/gsap.min.js') }}" defer></script>
+    <script src="{{ asset('js/vendor/gsap/ScrollTrigger.min.js') }}" defer></script>
+    <script src="{{ asset('js/vendor/gsap/ScrollToPlugin.min.js') }}" defer></script>
+    <script src="{{ asset('js/vendor/gsap/SplitText.min.js') }}" defer></script>
+    <script src="{{ asset('js/animaties.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
 </body>
 </html>

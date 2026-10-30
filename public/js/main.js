@@ -117,7 +117,8 @@
      Bij prefers-reduced-motion slaan we dit over; de CSS zet ze dan
      meteen zichtbaar.
      ------------------------------------------------------------------ */
-  if (!minderBeweging.matches && 'IntersectionObserver' in window) {
+  /* Staan de GSAP-scrollanimaties aan (animaties.js), dan doen die dit. */
+  if (!minderBeweging.matches && !window.lxrsScrollAnimaties && 'IntersectionObserver' in window) {
     const kaarten = document.querySelectorAll('.raster .kaart, .tegels .tegel');
 
     const waarnemer = new IntersectionObserver(
