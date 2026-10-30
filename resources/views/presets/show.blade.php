@@ -56,14 +56,19 @@
                             <dt>Categorie</dt>
                             <dd><a href="{{ route('presets.index', ['categorie' => $preset->category->slug]) }}">{{ $preset->category->name }}</a></dd>
                         </div>
-                        <div>
-                            <dt>Werkt met</dt>
-                            <dd>{{ $preset->ae_version }}</dd>
-                        </div>
-                        <div>
-                            <dt>Bestandsgrootte</dt>
-                            <dd>{{ $preset->bestandsgrootte }}</dd>
-                        </div>
+                        {{-- Deze twee mogen leeg blijven in de beheeromgeving; dan tonen we de rij niet. --}}
+                        @if ($preset->ae_version)
+                            <div>
+                                <dt>Werkt met</dt>
+                                <dd>{{ $preset->ae_version }}</dd>
+                            </div>
+                        @endif
+                        @if ($preset->bestandsgrootte)
+                            <div>
+                                <dt>Bestandsgrootte</dt>
+                                <dd>{{ $preset->bestandsgrootte }}</dd>
+                            </div>
+                        @endif
                         <div>
                             <dt>Licentie</dt>
                             <dd>Persoonlijk &amp; commercieel</dd>

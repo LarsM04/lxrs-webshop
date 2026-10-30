@@ -3,12 +3,15 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\PresetController;
+use App\Http\Requests\Admin\PresetFormRequest;
 use App\Models\Category;
 use App\Models\Preset;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /**
@@ -356,5 +359,133 @@ class PresetControllerTest extends TestCase
             ->assertSee('name="_method" value="DELETE"', false)
             // De aanhalingstekens in de naam zijn veilig gemaakt, zodat ze de JavaScript niet breken.
             ->assertSee("confirm('Weet je zeker dat je Rock \\u0027n\\u0027 Roll CC wilt verwijderen?')", false);
+    }
+
+    /*
+     * Afbeelding uploaden
+     *
+     * Storage::fake() zet de public-schijf in een tijdelijke map, zodat de
+     * tests geen echte bestanden achterlaten.
+     */
+
+    public function test_uploading_an_image_stores_it_and_saves_the_path(): void
+    {
+        Storage::fake('public');
+
+        $this->alsBeheerder()
+            ->post(route('admin.presets.store'), $this->formulier([
+                'afbeelding' => UploadedFile::fake()->image('preview.jpg', 1600, 1000),
+            ]))
+            ->assertSessionHasNoErrors();
+
+        $pad = Preset::sole()->image_path;
+        $this->assertStringStartsWith('presets/', $pad);
+        Storage::disk('public')->assertExists($pad);
+    }
+
+    public function test_the_uploaded_image_shows_on_the_card_and_the_product_page(): void
+    {
+        Storage::fake('public');
+
+        $this->alsBeheerder()->post(route('admin.presets.store'), $this->formulier([
+            'afbeelding' => UploadedFile::fake()->image('preview.png'),
+        ]));
+
+        $preset = Preset::sole();
+        $url = asset('storage/'.$preset->image_path);
+
+        $this->get(route('presets.index'))->assertSee($url);
+        $this->get(route('presets.show', $preset->slug))->assertSee($url);
+    }
+
+    public function test_only_jpg_png_and_webp_images_are_accepted(): void
+    {
+        Storage::fake('public');
+
+        $this->alsBeheerder()
+            ->post(route('admin.presets.store'), $this->formulier([
+                'afbeelding' => UploadedFile::fake()->create('handleiding.pdf', 100, 'application/pdf'),
+            ]))
+            ->assertSessionHasErrors('afbeelding');
+
+        $this->assertDatabaseCount('presets', 0);
+        $this->assertEmpty(Storage::disk('public')->allFiles());
+    }
+
+    public function test_images_larger_than_2_mb_are_refused(): void
+    {
+        Storage::fake('public');
+
+        $this->alsBeheerder()
+            ->post(route('admin.presets.store'), $this->formulier([
+                'afbeelding' => UploadedFile::fake()->image('groot.jpg')->size(PresetFormRequest::MAX_AFBEELDING_KB + 1),
+            ]))
+            ->assertSessionHasErrors(['afbeelding' => 'Afbeelding mag niet groter zijn dan 2048 kilobyte.']);
+    }
+
+    public function test_a_new_image_replaces_the_old_one_and_removes_its_file(): void
+    {
+        Storage::fake('public');
+        $oud = UploadedFile::fake()->image('oud.jpg')->store('presets', 'public');
+        $preset = Preset::factory()->create(['slug' => 'cold-cc', 'image_path' => $oud]);
+
+        $this->alsBeheerder()->put(route('admin.presets.update', $preset), $this->formulier([
+            'slug' => 'cold-cc',
+            'afbeelding' => UploadedFile::fake()->image('nieuw.jpg'),
+        ]));
+
+        $nieuw = $preset->fresh()->image_path;
+        $this->assertNotSame($oud, $nieuw);
+        Storage::disk('public')->assertExists($nieuw);
+        Storage::disk('public')->assertMissing($oud);
+    }
+
+    public function test_editing_without_a_new_image_keeps_the_current_one(): void
+    {
+        Storage::fake('public');
+        $pad = UploadedFile::fake()->image('blijft.jpg')->store('presets', 'public');
+        $preset = Preset::factory()->create(['slug' => 'cold-cc', 'image_path' => $pad]);
+
+        $this->alsBeheerder()->put(route('admin.presets.update', $preset), $this->formulier(['slug' => 'cold-cc']));
+
+        $this->assertSame($pad, $preset->fresh()->image_path);
+        Storage::disk('public')->assertExists($pad);
+    }
+
+    public function test_remove_image_box_clears_the_path_and_deletes_the_file(): void
+    {
+        Storage::fake('public');
+        $pad = UploadedFile::fake()->image('weg.jpg')->store('presets', 'public');
+        $preset = Preset::factory()->create(['slug' => 'cold-cc', 'image_path' => $pad]);
+
+        $this->alsBeheerder()->put(route('admin.presets.update', $preset), $this->formulier([
+            'slug' => 'cold-cc',
+            'afbeelding_weghalen' => '1',
+        ]));
+
+        $this->assertNull($preset->fresh()->image_path);
+        Storage::disk('public')->assertMissing($pad);
+    }
+
+    public function test_edit_page_shows_the_current_image_with_a_remove_box(): void
+    {
+        $preset = Preset::factory()->create(['image_path' => 'presets/voorbeeld.jpg']);
+
+        $this->alsBeheerder()
+            ->get(route('admin.presets.edit', $preset))
+            ->assertSee(asset('storage/presets/voorbeeld.jpg'))
+            ->assertSee('Afbeelding weghalen')
+            ->assertSee('enctype="multipart/form-data"', false);
+    }
+
+    public function test_deleting_a_preset_also_deletes_its_image(): void
+    {
+        Storage::fake('public');
+        $pad = UploadedFile::fake()->image('weg.jpg')->store('presets', 'public');
+        $preset = Preset::factory()->create(['image_path' => $pad]);
+
+        $this->alsBeheerder()->delete(route('admin.presets.destroy', $preset));
+
+        Storage::disk('public')->assertMissing($pad);
     }
 }

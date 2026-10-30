@@ -124,7 +124,7 @@ leerdoel. CRUD staat voor **C**reate (toevoegen), **R**ead (bekijken), **U**pdat
 | 2 | Overzicht van alle presets (**R**) | 23 okt | | ✅ |
 | 3 | Preset toevoegen en bewerken (**C U**) | 6 nov | | ✅ [#1](https://github.com/LarsM04/lxrs-webshop/issues/1) |
 | 4 | Preset verwijderen (**D**) | 13 nov | `v0.8-admin-presets` | ✅ [#2](https://github.com/LarsM04/lxrs-webshop/issues/2) |
-| 5 | Afbeelding uploaden | 20 nov | `v0.9-afbeeldingen` | ⬜ [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
+| 5 | Afbeelding uploaden | 20 nov | `v0.9-afbeeldingen` | 🔄 [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
 | 6 | Categorieën beheren (**CRUD**) | 27 nov | | ⬜ [#4](https://github.com/LarsM04/lxrs-webshop/issues/4) |
 | 7 | Afronden en demo-test | 4 dec | `v1.0-crud` | ⬜ [#5](https://github.com/LarsM04/lxrs-webshop/issues/5) |
 
@@ -178,9 +178,25 @@ leerdoel. CRUD staat voor **C**reate (toevoegen), **R**ead (bekijken), **U**pdat
 Daarmee is CRUD voor presets compleet: toevoegen, bekijken, bewerken en verwijderen
 zonder Postman.
 
-### Stap 5 t/m 7
+### Stap 5 — Afbeelding uploaden 🔄
 
-Staan als afvinklijstje in de [Issues #3 t/m #5](https://github.com/LarsM04/lxrs-webshop/milestone/1).
+De code is af, nu de previews nog.
+
+- Bestandsveld in het formulier: jpg, png of webp, maximaal 2 MB
+- De afbeelding komt in `storage/app/public/presets/`, het pad in `image_path`.
+  `php artisan storage:link` maakt die map bereikbaar voor de website.
+- Bij een nieuwe afbeelding, bij *afbeelding weghalen* en bij het verwijderen van de
+  preset wordt het oude bestand opgeruimd. Dat laatste doet het model zelf
+  (`Preset::booted()`), zodat het ook gebeurt bij verwijderen via de API.
+- **Nog te doen (buiten de code):** previews maken en uploaden, te beginnen met de 7
+  packs en het complete pack. Daarna de snapshot `v0.9-afbeeldingen`.
+
+> Geüploade afbeeldingen staan niet op GitHub (`.gitignore`), net als de database. Ze
+> horen bij de inhoud van de shop, niet bij de code.
+
+### Stap 6 en 7
+
+Staan als afvinklijstje in de [Issues #4 en #5](https://github.com/LarsM04/lxrs-webshop/milestone/1).
 
 > Na deze fase is het volledige leerdoel behaald. Alles hierna is extra.
 

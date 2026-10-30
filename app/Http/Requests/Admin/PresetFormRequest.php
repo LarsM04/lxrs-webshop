@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\PresetRequest;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
 /**
@@ -17,10 +18,29 @@ use Illuminate\Support\Str;
  *   browser het veld helemaal niet mee
  * - een lege slug wordt gemaakt van de naam, ook bij bewerken
  *
+ * Daarnaast kan het formulier een afbeelding uploaden; dat kan de API niet.
+ *
  * Wie dit mag, regelt de auth-middleware in routes/web.php.
  */
 class PresetFormRequest extends PresetRequest
 {
+    /** Maximale grootte van een afbeelding, in kilobytes (2 MB). */
+    public const MAX_AFBEELDING_KB = 2048;
+
+    /**
+     * De regels van de API, plus de afbeelding.
+     *
+     * @return array<string, ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            ...parent::rules(),
+            'afbeelding' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:'.self::MAX_AFBEELDING_KB],
+            'afbeelding_weghalen' => ['boolean'],
+        ];
+    }
+
     protected function prepareForValidation(): void
     {
         $includes = $this->input('includes');
@@ -33,6 +53,7 @@ class PresetFormRequest extends PresetRequest
                 ->values()
                 ->all(),
             'is_featured' => $this->boolean('is_featured'),
+            'afbeelding_weghalen' => $this->boolean('afbeelding_weghalen'),
         ]);
 
         if (blank($this->input('slug')) && filled($this->input('name'))) {

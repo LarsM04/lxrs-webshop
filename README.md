@@ -9,13 +9,14 @@ Gebouwd voor het **keuzedeel Verdieping Software**.
 
 ## Waar sta ik nu?
 
-**Fase 4: de beheeromgeving.** Presets toevoegen, bekijken, bewerken en verwijderen werkt.
-**Volgende taak:** [#3 Stap 5: afbeelding uploaden](https://github.com/LarsM04/lxrs-webshop/issues/3)
+**Fase 4: de beheeromgeving.** Presets beheren en afbeeldingen uploaden werkt.
+**Nu:** previews maken en uploaden ([#3](https://github.com/LarsM04/lxrs-webshop/issues/3)) ·
+**daarna:** [#4 Stap 6: categorieën beheren](https://github.com/LarsM04/lxrs-webshop/issues/4)
 
 | | |
 |---|---|
-| ✅ Af | Setup · database · eigen API · front-end · inloggen · CRUD voor presets in de beheeromgeving |
-| 🔄 Nu | Afbeeldingen uploaden |
+| ✅ Af | Setup · database · eigen API · front-end · inloggen · CRUD voor presets · afbeeldingen uploaden |
+| 🔄 Nu | Previews maken voor de 7 packs en het complete pack |
 | ⬜ Daarna | Categorieën beheren · afronden van fase 4 · extra's · afronden |
 
 ## Waar vind ik wat?
@@ -115,6 +116,7 @@ docker run --rm -v "${PWD}:/var/www/html" -w /var/www/html laravelsail/php84-com
 docker compose up -d                                                  # webshop aanzetten
 docker compose exec laravel.test php artisan key:generate             # geheime app-sleutel maken
 docker compose exec laravel.test php artisan migrate --seed           # tabellen maken en vullen
+docker compose exec laravel.test php artisan storage:link             # geüploade afbeeldingen zichtbaar maken
 ```
 
 <details>

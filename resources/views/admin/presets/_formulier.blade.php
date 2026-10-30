@@ -2,7 +2,8 @@
     Het formulier voor toevoegen én bewerken. Bestaat de preset al, dan gaat
     het naar update (PUT); anders naar store (POST).
 --}}
-<form class="formulier formulier--preset" method="POST"
+{{-- multipart/form-data is nodig om een bestand (de afbeelding) mee te sturen. --}}
+<form class="formulier formulier--preset" method="POST" enctype="multipart/form-data"
       action="{{ $preset->exists ? route('admin.presets.update', $preset) : route('admin.presets.store') }}">
     @csrf
     @if ($preset->exists)
@@ -69,6 +70,32 @@
     @error('includes.*')
         <p class="veld__fout veld--breed">{{ $message }}</p>
     @enderror
+
+    <div class="veld veld--breed">
+        <label for="veld-afbeelding">Afbeelding</label>
+
+        @if ($preset->image_path)
+            <div class="afbeelding-nu">
+                <img src="{{ asset('storage/' . $preset->image_path) }}" alt="Huidige afbeelding van {{ $preset->name }}"
+                     width="160" height="100">
+                <label class="vinkje">
+                    <input type="checkbox" name="afbeelding_weghalen" value="1" @checked(old('afbeelding_weghalen'))>
+                    Afbeelding weghalen
+                </label>
+            </div>
+        @endif
+
+        <input id="veld-afbeelding" name="afbeelding" type="file" accept=".jpg,.jpeg,.png,.webp"
+               aria-describedby="veld-afbeelding-hulp @error('afbeelding') veld-afbeelding-fout @enderror"
+               @error('afbeelding') aria-invalid="true" @enderror>
+        <p class="veld__hulp" id="veld-afbeelding-hulp">
+            jpg, png of webp, maximaal 2 MB.
+            @if ($preset->image_path) Kies een nieuwe om de huidige te vervangen. @endif
+        </p>
+        @error('afbeelding')
+            <p class="veld__fout" id="veld-afbeelding-fout">{{ $message }}</p>
+        @enderror
+    </div>
 
     <x-admin.veld naam="bestandsgrootte" label="Bestandsgrootte" :waarde="$preset->bestandsgrootte"
                   maxlength="20" hulp="Bijvoorbeeld 120 KB. Mag leeg blijven." />

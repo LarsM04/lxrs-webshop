@@ -107,6 +107,19 @@ class PresetControllerTest extends TestCase
             ->assertSee('&euro;2,50', false);
     }
 
+    public function test_detail_page_hides_empty_version_and_file_size_rows(): void
+    {
+        Preset::factory()->create(['slug' => 'leeg', 'ae_version' => null, 'bestandsgrootte' => null]);
+        Preset::factory()->create(['slug' => 'vol', 'ae_version' => 'After Effects 2022', 'bestandsgrootte' => '40 KB']);
+
+        $this->get(route('presets.show', 'leeg'))
+            ->assertDontSee('Werkt met')
+            ->assertDontSee('Bestandsgrootte');
+
+        $this->get(route('presets.show', 'vol'))
+            ->assertSeeInOrder(['Werkt met', 'After Effects 2022', 'Bestandsgrootte', '40 KB']);
+    }
+
     public function test_detail_page_returns_404_for_an_unknown_slug(): void
     {
         $this->get(route('presets.show', 'bestaat-niet'))->assertNotFound();

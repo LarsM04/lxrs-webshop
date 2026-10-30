@@ -8,6 +8,7 @@ use App\Models\Preset;
 use App\Support\PresetCatalog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 /**
@@ -60,7 +61,7 @@ class PresetController extends Controller
     /** POST /admin/presets */
     public function store(PresetFormRequest $request): RedirectResponse
     {
-        Preset::create($request->validated());
+        $this->opslaan($request, new Preset);
 
         return to_route('admin.presets.index')->with('status', 'Preset opgeslagen');
     }
@@ -78,7 +79,7 @@ class PresetController extends Controller
     /** PUT /admin/presets/{preset} */
     public function update(PresetFormRequest $request, Preset $preset): RedirectResponse
     {
-        $preset->update($request->validated());
+        $this->opslaan($request, $preset);
 
         return to_route('admin.presets.index')->with('status', 'Preset opgeslagen');
     }
@@ -91,8 +92,35 @@ class PresetController extends Controller
      */
     public function destroy(Preset $preset): RedirectResponse
     {
-        $preset->delete();
+        $preset->delete(); // de afbeelding ruimt het model zelf op, zie Preset::booted()
 
         return to_route('admin.presets.index')->with('status', 'Preset verwijderd');
+    }
+
+    /**
+     * Slaat de velden op, en de afbeelding als die er is.
+     *
+     * Een nieuwe afbeelding komt in storage/app/public/presets/ met een
+     * willekeurige naam, zodat twee uploads met dezelfde bestandsnaam elkaar
+     * niet overschrijven. Wordt een afbeelding vervangen of weggehaald, dan
+     * gaat het oude bestand pas weg als de preset goed is opgeslagen.
+     */
+    private function opslaan(PresetFormRequest $request, Preset $preset): void
+    {
+        $preset->fill($request->safe()->except(['afbeelding', 'afbeelding_weghalen']));
+
+        $oudeAfbeelding = $preset->image_path;
+
+        if ($request->hasFile('afbeelding')) {
+            $preset->image_path = $request->file('afbeelding')->store('presets', 'public');
+        } elseif ($request->boolean('afbeelding_weghalen')) {
+            $preset->image_path = null;
+        }
+
+        $preset->save();
+
+        if ($oudeAfbeelding && $oudeAfbeelding !== $preset->image_path) {
+            Storage::disk('public')->delete($oudeAfbeelding);
+        }
     }
 }

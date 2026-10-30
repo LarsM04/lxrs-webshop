@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Een product in de shop. Er zijn drie soorten:
@@ -38,6 +39,19 @@ class Preset extends Model
         'includes' => '[]',
         'is_featured' => false,
     ];
+
+    /**
+     * Gaat een preset weg, dan ook zijn afbeelding. Dat staat hier en niet in
+     * een controller, zodat het ook gebeurt bij verwijderen via de API.
+     */
+    protected static function booted(): void
+    {
+        static::deleted(function (Preset $preset) {
+            if ($preset->image_path) {
+                Storage::disk('public')->delete($preset->image_path);
+            }
+        });
+    }
 
     /**
      * De categorie waar deze preset bij hoort.

@@ -17,13 +17,16 @@ return [
     'decimal' => ':Attribute mag maximaal :decimal cijfers achter de komma hebben.',
     'email' => ':Attribute moet een geldig e-mailadres zijn.',
     'exists' => 'De gekozen :attribute bestaat niet.',
+    'image' => ':Attribute moet een afbeelding zijn.',
     'in' => 'De gekozen :attribute is ongeldig.',
     'integer' => ':Attribute moet een heel getal zijn.',
     'max' => [
         'array' => ':Attribute mag niet meer dan :max items hebben.',
+        'file' => ':Attribute mag niet groter zijn dan :max kilobyte.',
         'numeric' => ':Attribute mag niet hoger zijn dan :max.',
         'string' => ':Attribute mag niet langer zijn dan :max tekens.',
     ],
+    'mimes' => ':Attribute moet een bestand zijn van het type: :values.',
     'min' => [
         'array' => ':Attribute moet minstens :min items hebben.',
         'numeric' => ':Attribute moet minstens :min zijn.',
@@ -33,6 +36,7 @@ return [
     'required' => ':Attribute is verplicht.',
     'string' => ':Attribute moet tekst zijn.',
     'unique' => 'Deze :attribute is al in gebruik.',
+    'uploaded' => ':Attribute kon niet worden geüpload.',
 
     'attributes' => [
         'category_id' => 'categorie',
@@ -48,6 +52,7 @@ return [
         'bestandsgrootte' => 'bestandsgrootte',
         'ae_version' => 'After Effects-versie',
         'is_featured' => 'uitgelicht',
+        'afbeelding' => 'afbeelding',
         'email' => 'e-mailadres',
         'password' => 'wachtwoord',
     ],

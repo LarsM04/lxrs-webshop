@@ -171,6 +171,34 @@
 
 .formulier__knoppen { display: flex; flex-wrap: wrap; gap: 10px; }
 
+/* Voorbeeld van de huidige afbeelding in het bewerkformulier. */
+.afbeelding-nu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.afbeelding-nu img {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r-klein);
+}
+
+.veld input[type='file'] { padding: 10px 12px; cursor: pointer; }
+.veld input[type='file']::file-selector-button {
+  margin-right: 14px;
+  padding: 6px 14px;
+  background: var(--vlak-hover);
+  border: 1px solid var(--lijn-sterk);
+  border-radius: var(--r-pil);
+  color: var(--tekst);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 /* "← Alle presets" boven de kop van een formulierpagina. */
 .terug {
   display: inline-block;
