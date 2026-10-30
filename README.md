@@ -9,15 +9,15 @@ Gebouwd voor het **keuzedeel Verdieping Software**.
 
 ## Waar sta ik nu?
 
-**Fase 4: de beheeromgeving.** Presets beheren en afbeeldingen uploaden werkt.
+**Fase 4: de beheeromgeving.** Presets en categorieën beheren en afbeeldingen uploaden werkt.
 **Nu:** previews maken en uploaden ([#3](https://github.com/LarsM04/lxrs-webshop/issues/3)) ·
-**daarna:** [#4 Stap 6: categorieën beheren](https://github.com/LarsM04/lxrs-webshop/issues/4)
+**daarna:** [#5 Stap 7: afronden en demo-test](https://github.com/LarsM04/lxrs-webshop/issues/5)
 
 | | |
 |---|---|
-| ✅ Af | Setup · database · eigen API · front-end · inloggen · CRUD voor presets · afbeeldingen uploaden |
+| ✅ Af | Setup · database · eigen API · front-end · inloggen · CRUD voor presets en categorieën · afbeeldingen uploaden |
 | 🔄 Nu | Previews maken voor de 7 packs en het complete pack |
-| ⬜ Daarna | Categorieën beheren · afronden van fase 4 · extra's · afronden |
+| ⬜ Daarna | Afronden van fase 4 · extra's · afronden |
 
 ## Waar vind ik wat?
 

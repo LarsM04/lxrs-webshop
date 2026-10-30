@@ -565,6 +565,8 @@ section { padding-block: var(--sectie); }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(239, 237, 247, 0.5);
+  /* Voor een nieuwe categorie zonder eigen kleur hieronder. */
+  background: linear-gradient(135deg, #1a1530, #4a3b8f 55%, #8b74ff);
 }
 .plaatshouder[data-cat='color-corrections'] { background: linear-gradient(135deg, #2a1b4d, #6b4bf7 55%, #b4478f); }
 .plaatshouder[data-cat='text-presets']      { background: linear-gradient(135deg, #14122b, #3d3560 55%, #8b74ff); }

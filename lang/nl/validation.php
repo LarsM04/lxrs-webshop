@@ -60,6 +60,8 @@ return [
         'afbeelding_y' => 'positie boven-onder',
         'afbeelding_zoom' => 'zoom',
         'afbeelding_passend' => 'hele afbeelding tonen',
+        'afkorting' => 'afkorting',
+        'omschrijving' => 'omschrijving',
         'email' => 'e-mailadres',
         'password' => 'wachtwoord',
     ],

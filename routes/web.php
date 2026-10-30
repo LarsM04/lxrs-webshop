@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PresetController as AdminPresetController;
@@ -28,5 +29,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 
         Route::resource('presets', AdminPresetController::class)->except(['show']);
+        Route::resource('categories', CategoryController::class)->except(['show']);
     });
 });

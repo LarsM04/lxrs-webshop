@@ -141,9 +141,10 @@
 }
 
 .melding--fout { margin: 0; border-color: var(--fout); }
+.melding--los { margin-top: 24px; } /* bovenaan de pagina, niet in een formulier */
 
-/* Het presetformulier: twee kolommen, lange velden over de hele breedte. */
-.formulier--preset {
+/* Formulier in twee kolommen, lange velden (.veld--breed) over de hele breedte. */
+.formulier--kolommen {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px 28px;
   max-width: 880px;
@@ -152,7 +153,7 @@
 .veld--breed { grid-column: 1 / -1; }
 
 @media (max-width: 640px) {
-  .formulier--preset { grid-template-columns: minmax(0, 1fr); }
+  .formulier--kolommen { grid-template-columns: minmax(0, 1fr); }
 }
 
 .vinkje {
@@ -322,6 +323,13 @@
 
 .tabel__getal { text-align: right !important; font-variant-numeric: tabular-nums; }
 .tabel__acties { text-align: right !important; }
+
+/* Langere tekst in een cel mag wel doorlopen naar een volgende regel. */
+.tabel__tekst {
+  min-width: 240px;
+  white-space: normal !important;
+  color: var(--tekst-zacht);
+}
 .tabel__acties a + a { margin-left: 16px; }
 
 /* Verwijderen is een formulier (DELETE), maar staat in de rij als een link. */

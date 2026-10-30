@@ -3,7 +3,7 @@
     het naar update (PUT); anders naar store (POST).
 --}}
 {{-- multipart/form-data is nodig om een bestand (de afbeelding) mee te sturen. --}}
-<form class="formulier formulier--preset" method="POST" enctype="multipart/form-data"
+<form class="formulier formulier--kolommen" method="POST" enctype="multipart/form-data"
       action="{{ $preset->exists ? route('admin.presets.update', $preset) : route('admin.presets.store') }}">
     @csrf
     @if ($preset->exists)

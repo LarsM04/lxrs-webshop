@@ -14,7 +14,7 @@ Terug naar de [README](../README.md) · bewijs in [VOORTGANG.md](VOORTGANG.md)
 | 1 | [Database en modellen](#fase-1--database-en-modellen) | sep 2026 | ✅ |
 | 2 | [Eigen API](#fase-2--eigen-api) | sep 2026 | ✅ |
 | 3 | [Front-end](#fase-3--front-end) | sep 2026 | ✅ |
-| 4 | [Beheeromgeving (CRUD)](#fase-4--beheeromgeving-crud) | okt – dec 2026 | 🔄 stap 5 van 7 |
+| 4 | [Beheeromgeving (CRUD)](#fase-4--beheeromgeving-crud) | okt – dec 2026 | 🔄 previews (stap 5) en stap 7 |
 | 5 | [Extra's](#fase-5--extras) | dec 2026 – jan 2027 | ⬜ |
 | 6 | [Afronden en demo](#fase-6--afronden-en-demo) | jan 2027 | ⬜ |
 
@@ -125,7 +125,7 @@ leerdoel. CRUD staat voor **C**reate (toevoegen), **R**ead (bekijken), **U**pdat
 | 3 | Preset toevoegen en bewerken (**C U**) | 6 nov | | ✅ [#1](https://github.com/LarsM04/lxrs-webshop/issues/1) |
 | 4 | Preset verwijderen (**D**) | 13 nov | `v0.8-admin-presets` | ✅ [#2](https://github.com/LarsM04/lxrs-webshop/issues/2) |
 | 5 | Afbeelding uploaden | 20 nov | `v0.9-afbeeldingen` | 🔄 [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
-| 6 | Categorieën beheren (**CRUD**) | 27 nov | | ⬜ [#4](https://github.com/LarsM04/lxrs-webshop/issues/4) |
+| 6 | Categorieën beheren (**CRUD**) | 27 nov | | ✅ [#4](https://github.com/LarsM04/lxrs-webshop/issues/4) |
 | 7 | Afronden en demo-test | 4 dec | `v1.0-crud` | ⬜ [#5](https://github.com/LarsM04/lxrs-webshop/issues/5) |
 
 > **Keuze: zelf bouwen in plaats van Filament.** Filament is een pakket dat in een middag
@@ -200,9 +200,20 @@ De code is af, nu de previews nog.
 > Geüploade afbeeldingen staan niet op GitHub (`.gitignore`), net als de database. Ze
 > horen bij de inhoud van de shop, niet bij de code.
 
-### Stap 6 en 7
+### Stap 6 — Categorieën beheren ✅
 
-Staan als afvinklijstje in de [Issues #4 en #5](https://github.com/LarsM04/lxrs-webshop/milestone/1).
+- `/admin/categories`: lijst met per categorie het aantal presets (`withCount`)
+- Toevoegen en bewerken met een eigen `Admin\CategoryRequest`: naam, slug (leeg = van
+  de naam), afkorting (max. 20 tekens) en omschrijving. Een nieuwe categorie staat meteen
+  als filter op `/presets`
+- Een categorie met presets erin verwijderen geeft een melding (*"Er zitten nog 9 presets
+  in Shakes"*) in plaats van een databasefout. `restrictOnDelete` uit fase 1 blijft als
+  vangnet
+- Een nieuwe categorie zonder eigen kleur krijgt een standaard kleurvlak
+
+### Stap 7
+
+Staat als afvinklijstje in [Issue #5](https://github.com/LarsM04/lxrs-webshop/issues/5).
 
 > Na deze fase is het volledige leerdoel behaald. Alles hierna is extra.
 
