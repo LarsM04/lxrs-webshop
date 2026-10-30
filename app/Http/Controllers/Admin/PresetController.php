@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PresetFormRequest;
 use App\Models\Preset;
 use App\Support\PresetCatalog;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * Presets beheren. Voor nu alleen het overzicht (de R van CRUD);
- * toevoegen, bewerken en verwijderen volgen in stap 3 en 4.
+ * Presets beheren: het overzicht (de R van CRUD), toevoegen (C) en
+ * bewerken (U). Verwijderen volgt in stap 4.
  */
 class PresetController extends Controller
 {
@@ -43,5 +45,41 @@ class PresetController extends Controller
             'actieveSoort' => $soort,
             'zoekterm' => $zoekterm,
         ]);
+    }
+
+    /** GET /admin/presets/create — leeg formulier voor een nieuwe preset. */
+    public function create(): View
+    {
+        return view('admin.presets.create', [
+            'preset' => new Preset,
+            'categorieen' => PresetCatalog::categories(),
+            'soorten' => PresetCatalog::soorten(),
+        ]);
+    }
+
+    /** POST /admin/presets */
+    public function store(PresetFormRequest $request): RedirectResponse
+    {
+        Preset::create($request->validated());
+
+        return to_route('admin.presets.index')->with('status', 'Preset opgeslagen');
+    }
+
+    /** GET /admin/presets/{preset}/edit — hetzelfde formulier, ingevuld. */
+    public function edit(Preset $preset): View
+    {
+        return view('admin.presets.edit', [
+            'preset' => $preset,
+            'categorieen' => PresetCatalog::categories(),
+            'soorten' => PresetCatalog::soorten(),
+        ]);
+    }
+
+    /** PUT /admin/presets/{preset} */
+    public function update(PresetFormRequest $request, Preset $preset): RedirectResponse
+    {
+        $preset->update($request->validated());
+
+        return to_route('admin.presets.index')->with('status', 'Preset opgeslagen');
     }
 }

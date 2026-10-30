@@ -9,13 +9,13 @@ Gebouwd voor het **keuzedeel Verdieping Software**.
 
 ## Waar sta ik nu?
 
-**Fase 4: de beheeromgeving.** Inloggen en het overzicht van alle presets werken.
-**Volgende taak:** [#1 Stap 3: preset toevoegen en bewerken](https://github.com/LarsM04/lxrs-webshop/issues/1)
+**Fase 4: de beheeromgeving.** Inloggen, het overzicht en presets toevoegen en bewerken werken.
+**Volgende taak:** [#2 Stap 4: preset verwijderen](https://github.com/LarsM04/lxrs-webshop/issues/2)
 
 | | |
 |---|---|
-| ✅ Af | Setup · database · eigen API · front-end · inloggen · presets-overzicht in de beheeromgeving |
-| 🔄 Nu | Presets toevoegen, bewerken en verwijderen in de beheeromgeving |
+| ✅ Af | Setup · database · eigen API · front-end · inloggen · presets bekijken, toevoegen en bewerken in de beheeromgeving |
+| 🔄 Nu | Presets verwijderen in de beheeromgeving |
 | ⬜ Daarna | Afbeeldingen uploaden · categorieën beheren · extra's · afronden |
 
 ## Waar vind ik wat?

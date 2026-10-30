@@ -11,7 +11,10 @@
                     <span class="oogje">Beheer</span>
                     <h1 class="kop-pagina">Presets</h1>
                 </div>
-                <p class="lead">Alles wat er in de shop staat. Zoek op naam, of filter op categorie en soort.</p>
+                <div class="sectiekop__rechts">
+                    <p class="lead">Alles wat er in de shop staat. Zoek op naam, of filter op categorie en soort.</p>
+                    <a class="knop knop--vol" href="{{ route('admin.presets.create') }}">Nieuwe preset</a>
+                </div>
             </div>
         </div>
     </section>
@@ -118,6 +121,7 @@
                                         @endif
                                     </td>
                                     <td class="tabel__acties">
+                                        <a href="{{ route('admin.presets.edit', $preset) }}">Bewerken<span class="visueel-verborgen"> {{ $preset->name }}</span></a>
                                         <a href="{{ route('presets.show', $preset->slug) }}">Bekijk op de site</a>
                                     </td>
                                 </tr>

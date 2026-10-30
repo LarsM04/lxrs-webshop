@@ -14,7 +14,7 @@ Terug naar de [README](../README.md) · bewijs in [VOORTGANG.md](VOORTGANG.md)
 | 1 | [Database en modellen](#fase-1--database-en-modellen) | sep 2026 | ✅ |
 | 2 | [Eigen API](#fase-2--eigen-api) | sep 2026 | ✅ |
 | 3 | [Front-end](#fase-3--front-end) | sep 2026 | ✅ |
-| 4 | [Beheeromgeving (CRUD)](#fase-4--beheeromgeving-crud) | okt – dec 2026 | 🔄 stap 3 van 7 |
+| 4 | [Beheeromgeving (CRUD)](#fase-4--beheeromgeving-crud) | okt – dec 2026 | 🔄 stap 4 van 7 |
 | 5 | [Extra's](#fase-5--extras) | dec 2026 – jan 2027 | ⬜ |
 | 6 | [Afronden en demo](#fase-6--afronden-en-demo) | jan 2027 | ⬜ |
 
@@ -122,7 +122,7 @@ leerdoel. CRUD staat voor **C**reate (toevoegen), **R**ead (bekijken), **U**pdat
 |---|---|---|---|---|
 | 1 | Inloggen voor de beheerder | 16 okt | `v0.7-login` | ✅ |
 | 2 | Overzicht van alle presets (**R**) | 23 okt | | ✅ |
-| 3 | Preset toevoegen en bewerken (**C U**) | 6 nov | | ⬜ [#1](https://github.com/LarsM04/lxrs-webshop/issues/1) |
+| 3 | Preset toevoegen en bewerken (**C U**) | 6 nov | | ✅ [#1](https://github.com/LarsM04/lxrs-webshop/issues/1) |
 | 4 | Preset verwijderen (**D**) | 13 nov | `v0.8-admin-presets` | ⬜ [#2](https://github.com/LarsM04/lxrs-webshop/issues/2) |
 | 5 | Afbeelding uploaden | 20 nov | `v0.9-afbeeldingen` | ⬜ [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
 | 6 | Categorieën beheren (**CRUD**) | 27 nov | | ⬜ [#4](https://github.com/LarsM04/lxrs-webshop/issues/4) |
@@ -155,9 +155,21 @@ leerdoel. CRUD staat voor **C**reate (toevoegen), **R**ead (bekijken), **U**pdat
 - De categorieën worden in één keer opgehaald (`with('category')`) in plaats van één
   databasevraag per rij. Dat heet het *N+1-probleem*.
 
-### Stap 3 t/m 7
+### Stap 3 — Preset toevoegen en bewerken ✅
 
-Staan als afvinklijstje in de [Issues #1 t/m #5](https://github.com/LarsM04/lxrs-webshop/milestone/1).
+- `/admin/presets/create` en `/admin/presets/{id}/edit` gebruiken één gedeeld formulier
+  (`admin/presets/_formulier.blade.php`)
+- Dezelfde controle als de API: `Admin\PresetFormRequest` bouwt voort op `PresetRequest`.
+  Hij zet alleen eerst het tekstvak *wat je krijgt* om naar een lijst en het vinkje
+  *uitgelicht* naar ja/nee. Een lege slug wordt gemaakt van de naam.
+- Bij een fout staat de melding bij het veld zelf, en blijft wat je had ingevuld staan.
+  Elk veld komt uit één Blade-component, `x-admin.veld`, zodat die foutmelding-code
+  niet twaalf keer in het formulier staat.
+- Foutmeldingen in het Nederlands: `APP_LOCALE=nl` en `lang/nl/validation.php`
+
+### Stap 4 t/m 7
+
+Staan als afvinklijstje in de [Issues #2 t/m #5](https://github.com/LarsM04/lxrs-webshop/milestone/1).
 
 > Na deze fase is het volledige leerdoel behaald. Alles hierna is extra.
 

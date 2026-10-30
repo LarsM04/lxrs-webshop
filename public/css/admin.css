@@ -80,7 +80,9 @@
   margin-top: 24px;
 }
 
-.veld { display: grid; gap: 7px; }
+/* align-content: start, anders rekt de invoer uit tot de hoogte van het
+   buurveld als dat een uitleg of foutmelding heeft. */
+.veld { display: grid; gap: 7px; align-content: start; }
 
 .veld label {
   font-size: 13px;
@@ -88,7 +90,9 @@
   color: var(--tekst-zacht);
 }
 
-.veld input {
+.veld input,
+.veld textarea,
+.veld select {
   width: 100%;
   padding: 12px 16px;
   background: rgba(7, 6, 12, 0.6);
@@ -99,18 +103,87 @@
   font-size: 15px;
   transition: border-color var(--snel), box-shadow var(--snel);
 }
-.veld input:hover { border-color: var(--lijn-sterk); }
-.veld input:focus {
+.veld input:hover,
+.veld textarea:hover,
+.veld select:hover { border-color: var(--lijn-sterk); }
+.veld input:focus,
+.veld textarea:focus,
+.veld select:focus {
   outline: none;
   border-color: var(--paars);
   box-shadow: 0 0 0 3px rgba(139, 116, 255, 0.25);
 }
-.veld input[aria-invalid='true'] { border-color: var(--fout); }
+.veld [aria-invalid='true'] { border-color: var(--fout); }
+
+.veld textarea { resize: vertical; line-height: 1.5; }
+
+/* Zelfde pijltje als de keuzelijsten in de filterbalk. */
+.veld select {
+  padding-right: 38px;
+  background: rgba(7, 6, 12, 0.6)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b9b3cf' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  appearance: none;
+  cursor: pointer;
+}
+.veld option { background: var(--bg-verhoogd); color: var(--tekst); }
+
+.veld__hulp {
+  margin: 0;
+  font-size: 13px;
+  color: var(--tekst-dim);
+}
 
 .veld__fout {
   margin: 0;
   font-size: 13px;
   color: var(--fout);
+}
+
+.melding--fout { margin: 0; border-color: var(--fout); }
+
+/* Het presetformulier: twee kolommen, lange velden over de hele breedte. */
+.formulier--preset {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 28px;
+  max-width: 880px;
+  margin-top: 0;
+}
+.veld--breed { grid-column: 1 / -1; }
+
+@media (max-width: 640px) {
+  .formulier--preset { grid-template-columns: minmax(0, 1fr); }
+}
+
+.vinkje {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--tekst);
+  cursor: pointer;
+}
+.vinkje input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--paars);
+}
+
+.formulier__knoppen { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* "← Alle presets" boven de kop van een formulierpagina. */
+.terug {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--tekst-zacht);
+}
+
+.sectiekop__rechts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 /* --------------------------------------------------------------------------
@@ -187,6 +260,7 @@
 
 .tabel__getal { text-align: right !important; font-variant-numeric: tabular-nums; }
 .tabel__acties { text-align: right !important; }
+.tabel__acties a + a { margin-left: 16px; }
 
 /* Kleine versie van de productafbeelding, of het kleurvlak zolang die er niet is. */
 .duim {

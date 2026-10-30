@@ -27,6 +27,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 
-        Route::resource('presets', AdminPresetController::class)->only(['index']);
+        Route::resource('presets', AdminPresetController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     });
 });
