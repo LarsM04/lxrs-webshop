@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * Presets beheren: het overzicht (de R van CRUD), toevoegen (C) en
- * bewerken (U). Verwijderen volgt in stap 4.
+ * Presets beheren: het overzicht (de R van CRUD), toevoegen (C),
+ * bewerken (U) en verwijderen (D).
  */
 class PresetController extends Controller
 {
@@ -81,5 +81,18 @@ class PresetController extends Controller
         $preset->update($request->validated());
 
         return to_route('admin.presets.index')->with('status', 'Preset opgeslagen');
+    }
+
+    /**
+     * DELETE /admin/presets/{preset}
+     *
+     * Alleen via een formulier met DELETE, nooit via een gewone link: een link
+     * kan door een browser of bot geopend worden zonder dat iemand klikt.
+     */
+    public function destroy(Preset $preset): RedirectResponse
+    {
+        $preset->delete();
+
+        return to_route('admin.presets.index')->with('status', 'Preset verwijderd');
     }
 }

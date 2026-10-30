@@ -9,14 +9,14 @@ Gebouwd voor het **keuzedeel Verdieping Software**.
 
 ## Waar sta ik nu?
 
-**Fase 4: de beheeromgeving.** Inloggen, het overzicht en presets toevoegen en bewerken werken.
-**Volgende taak:** [#2 Stap 4: preset verwijderen](https://github.com/LarsM04/lxrs-webshop/issues/2)
+**Fase 4: de beheeromgeving.** Presets toevoegen, bekijken, bewerken en verwijderen werkt.
+**Volgende taak:** [#3 Stap 5: afbeelding uploaden](https://github.com/LarsM04/lxrs-webshop/issues/3)
 
 | | |
 |---|---|
-| ✅ Af | Setup · database · eigen API · front-end · inloggen · presets bekijken, toevoegen en bewerken in de beheeromgeving |
-| 🔄 Nu | Presets verwijderen in de beheeromgeving |
-| ⬜ Daarna | Afbeeldingen uploaden · categorieën beheren · extra's · afronden |
+| ✅ Af | Setup · database · eigen API · front-end · inloggen · CRUD voor presets in de beheeromgeving |
+| 🔄 Nu | Afbeeldingen uploaden |
+| ⬜ Daarna | Categorieën beheren · afronden van fase 4 · extra's · afronden |
 
 ## Waar vind ik wat?
 
@@ -45,7 +45,7 @@ beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 ### Bewijs voor de beoordeling
 
 - [x] Presets bekijken op de website, live uit de database
-- [ ] Preset toevoegen, bewerken en verwijderen in de beheeromgeving
+- [x] Preset toevoegen, bewerken en verwijderen in de beheeromgeving
 - [ ] Laten zien dat een wijziging direct zichtbaar is op de website
 - [ ] Toelichting op de databasestructuur en de koppeling tussen de tabellen
 - [x] Snapshotlogboek in [docs/VOORTGANG.md](docs/VOORTGANG.md)

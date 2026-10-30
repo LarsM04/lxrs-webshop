@@ -123,6 +123,15 @@
                                     <td class="tabel__acties">
                                         <a href="{{ route('admin.presets.edit', $preset) }}">Bewerken<span class="visueel-verborgen"> {{ $preset->name }}</span></a>
                                         <a href="{{ route('presets.show', $preset->slug) }}">Bekijk op de site</a>
+
+                                        {{-- Eerst bevestigen; Js::from maakt van de naam een veilige JavaScript-tekst,
+                                             ook als er aanhalingstekens in staan. --}}
+                                        <form class="tabel__verwijder" method="POST" action="{{ route('admin.presets.destroy', $preset) }}"
+                                              onsubmit="return confirm({{ Js::from('Weet je zeker dat je ' . $preset->name . ' wilt verwijderen?') }})">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Verwijderen<span class="visueel-verborgen"> {{ $preset->name }}</span></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

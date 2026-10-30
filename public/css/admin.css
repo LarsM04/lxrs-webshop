@@ -262,6 +262,18 @@
 .tabel__acties { text-align: right !important; }
 .tabel__acties a + a { margin-left: 16px; }
 
+/* Verwijderen is een formulier (DELETE), maar staat in de rij als een link. */
+.tabel__verwijder { display: inline; margin-left: 16px; }
+.tabel__verwijder button {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--fout);
+  font: inherit;
+  cursor: pointer;
+}
+.tabel__verwijder button:hover { text-decoration: underline; }
+
 /* Kleine versie van de productafbeelding, of het kleurvlak zolang die er niet is. */
 .duim {
   width: 64px;

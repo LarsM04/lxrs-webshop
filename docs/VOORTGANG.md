@@ -42,7 +42,7 @@ alle versies met uitleg onder [Releases](https://github.com/LarsM04/lxrs-webshop
 | `v0.5-edits` | Recente edits op de homepage | ✅ 18 sep |
 | `v0.6-catalogus` | Echte catalogus | ✅ 18 sep |
 | `v0.7-login` | Inloggen voor de beheerder | ✅ 9 okt |
-| `v0.8-admin-presets` | Presets toevoegen, bewerken, verwijderen | ⬜ [#2](https://github.com/LarsM04/lxrs-webshop/issues/2) |
+| `v0.8-admin-presets` | Presets toevoegen, bewerken, verwijderen | ✅ 30 okt |
 | `v0.9-afbeeldingen` | Afbeeldingen uploaden | ⬜ [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
 | `v1.0-crud` | Beheeromgeving af, leerdoel behaald | ⬜ [#5](https://github.com/LarsM04/lxrs-webshop/issues/5) |
 | `v1.1-shop` | Winkelwagen tot en met download (extra) | ⬜ [#8](https://github.com/LarsM04/lxrs-webshop/issues/8) |

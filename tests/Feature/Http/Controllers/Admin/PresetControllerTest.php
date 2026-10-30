@@ -307,4 +307,54 @@ class PresetControllerTest extends TestCase
 
         $this->assertSame('eigen', $preset->fresh()->slug);
     }
+
+    /*
+     * Verwijderen (D)
+     */
+
+    public function test_deleting_a_preset_removes_it_from_the_database_and_the_website(): void
+    {
+        $preset = Preset::factory()->create(['name' => 'Midnight CC']);
+
+        $this->alsBeheerder()
+            ->delete(route('admin.presets.destroy', $preset))
+            ->assertRedirect(route('admin.presets.index'))
+            ->assertSessionHas('status', 'Preset verwijderd');
+
+        $this->assertModelMissing($preset);
+        $this->get(route('presets.index'))->assertDontSee('Midnight CC');
+    }
+
+    public function test_guest_cannot_delete_a_preset(): void
+    {
+        $preset = Preset::factory()->create();
+
+        $this->delete(route('admin.presets.destroy', $preset))
+            ->assertRedirect(route('admin.login'));
+
+        $this->assertModelExists($preset);
+    }
+
+    public function test_opening_the_delete_url_as_a_link_does_not_delete(): void
+    {
+        $preset = Preset::factory()->create();
+
+        $this->alsBeheerder()
+            ->get(route('admin.presets.destroy', $preset))
+            ->assertMethodNotAllowed();
+
+        $this->assertModelExists($preset);
+    }
+
+    public function test_each_row_has_a_delete_form_that_asks_for_confirmation_first(): void
+    {
+        $preset = Preset::factory()->create(['name' => "Rock 'n' Roll CC"]);
+
+        $this->alsBeheerder()
+            ->get(route('admin.presets.index'))
+            ->assertSee('action="'.route('admin.presets.destroy', $preset).'"', false)
+            ->assertSee('name="_method" value="DELETE"', false)
+            // De aanhalingstekens in de naam zijn veilig gemaakt, zodat ze de JavaScript niet breken.
+            ->assertSee("confirm('Weet je zeker dat je Rock \\u0027n\\u0027 Roll CC wilt verwijderen?')", false);
+    }
 }
