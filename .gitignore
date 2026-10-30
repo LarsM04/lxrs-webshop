@@ -30,6 +30,14 @@ Homestead.yaml
 /.codex
 .phpactor.json
 
+# --- Hulpbestanden voor Claude Code en Laravel Boost (alleen lokaal) ---
+# Opnieuw aanmaken na een clone: php artisan boost:install
+/.claude
+/.mcp.json
+/boost.json
+/AGENTS.md
+/CLAUDE.md
+
 # --- Snapshot-tool ---
 /tools/node_modules
 npm-debug.log
