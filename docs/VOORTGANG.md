@@ -23,6 +23,7 @@ alle versies met uitleg onder [Releases](https://github.com/LarsM04/lxrs-webshop
 | 05 | 2026-09-25 | 1 · Database | Presets en categorieën komen live uit de database: 8 categorieën en 63 producten. De website ziet er precies hetzelfde uit als bij #04, alleen komt de data nu uit de database | [db presets](snapshots/2026-09-25-db-presets.png) · [db categories](snapshots/2026-09-25-db-categories.png) | `v0.2-database` |
 | 06 | 2026-09-25 | 2 · API | Eigen API: presets en categorieën als JSON, CRUD getest met Postman | [api presets](snapshots/2026-09-25-api-presets.png) · [api categories](snapshots/2026-09-25-api-categories.png) · [postman 201 toevoegen](snapshots/2026-09-25-postman-201-toevoegen.png) · [postman 401 zonder sleutel](snapshots/2026-09-25-postman-401-zonder-sleutel.png) | `v0.3-api` |
 | 07 | 2026-10-09 | 4 · Beheeromgeving | Beheerder kan inloggen, /admin is afgeschermd | [admin login](snapshots/2026-10-09-admin-login.png) · [admin login (mobiel)](snapshots/2026-10-09-admin-login-mobiel.png) · [admin start](snapshots/2026-10-09-admin-start.png) | `v0.7-login` |
+| 08 | 2026-10-30 | 4 · Beheeromgeving | Presets toevoegen, bewerken en verwijderen in de beheeromgeving | [admin presets](snapshots/2026-10-30-admin-presets.png) · [admin preset toevoegen](snapshots/2026-10-30-admin-preset-toevoegen.png) | `v0.8-admin-presets` |
 
 > **Waarom staan de tags niet op volgorde?** De nummers volgen de fases uit het plan,
 > niet de tijd. De front-end (fase 3, `v0.4`–`v0.6`) heb ik naar voren gehaald, dus
