@@ -54,8 +54,19 @@ beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 
 ## De webshop starten
 
-**Normaal gebruik (Windows):** dubbelklik op **`start-webshop.bat`**. Dat start Docker
-Desktop, zet de webshop aan en opent hem in je browser.
+### Elke keer dat je gaat werken
+
+1. **Dubbelklik op `start-webshop.bat`** in de projectmap. Dat zet Docker Desktop aan,
+   start de webshop en opent hem in je browser. Dit duurt ongeveer een halve minuut.
+2. Klaar met werken? Typ in de terminal van VS Code `docker compose down`, of sluit
+   gewoon Docker Desktop af.
+
+Liever zelf in de terminal? Open eerst Docker Desktop en wacht tot het walvisje stil
+staat. Typ dan in de terminal van VS Code:
+
+```powershell
+docker compose up -d
+```
 
 | Wat | Adres |
 |---|---|
@@ -63,9 +74,23 @@ Desktop, zet de webshop aan en opent hem in je browser.
 | De beheeromgeving | http://localhost:8000/admin |
 | phpMyAdmin (database bekijken) | http://localhost:8080 |
 
-Stoppen: `docker compose down`
+**Inloggen op de beheeromgeving:** je e-mailadres en wachtwoord staan in het bestand
+`.env`, bij `ADMIN_EMAIL` en `ADMIN_PASSWORD`. Wil je een ander wachtwoord, verander het
+daar en voer dit uit:
+
+```powershell
+docker compose exec laravel.test php artisan db:seed --class=AdminSeeder
+```
+
+**Tests draaien:**
+
+```powershell
+docker compose exec laravel.test php artisan test
+```
 
 ### Eerste keer installeren
+
+Dit hoef je maar één keer te doen, op een nieuwe computer of na een nieuwe clone.
 
 Je hebt alleen **Docker Desktop** nodig. PHP en MySQL draaien in Docker, dus je hoeft
 verder niets te installeren. Voer dit uit in PowerShell:
@@ -105,12 +130,8 @@ docker compose exec -u root laravel.test chmod -R 777 storage bootstrap/cache
 **`port is already allocated`.** Er draait al iets op die poort. De poorten staan in
 `.env` (`APP_PORT`, `FORWARD_DB_PORT`, `FORWARD_PHPMYADMIN_PORT`); pas ze daar aan.
 
-**Wachtwoord van de beheerder veranderd?** Pas `.env` aan en draai alleen de AdminSeeder.
-Je presets blijven staan:
-
-```powershell
-docker compose exec laravel.test php artisan db:seed --class=AdminSeeder
-```
+**`failed to connect to the docker API`.** Docker Desktop staat nog niet aan. Start het
+en probeer het opnieuw zodra het walvisje stil staat.
 
 </details>
 
