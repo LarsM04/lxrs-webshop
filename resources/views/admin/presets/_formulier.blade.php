@@ -73,18 +73,6 @@
 
     <div class="veld veld--breed">
         <label for="veld-afbeelding">Afbeelding</label>
-
-        @if ($preset->image_path)
-            <div class="afbeelding-nu">
-                <img src="{{ asset('storage/' . $preset->image_path) }}" alt="Huidige afbeelding van {{ $preset->name }}"
-                     width="160" height="100">
-                <label class="vinkje">
-                    <input type="checkbox" name="afbeelding_weghalen" value="1" @checked(old('afbeelding_weghalen'))>
-                    Afbeelding weghalen
-                </label>
-            </div>
-        @endif
-
         <input id="veld-afbeelding" name="afbeelding" type="file" accept=".jpg,.jpeg,.png,.webp"
                aria-describedby="veld-afbeelding-hulp @error('afbeelding') veld-afbeelding-fout @enderror"
                @error('afbeelding') aria-invalid="true" @enderror>
@@ -96,6 +84,63 @@
             <p class="veld__fout" id="veld-afbeelding-fout">{{ $message }}</p>
         @enderror
     </div>
+
+    {{-- Hoe de afbeelding in het kader staat. Zonder afbeelding verborgen;
+         admin.js toont het blok zodra je er een kiest. De schuifjes werken ook
+         zonder JavaScript, slepen en het live voorbeeld niet. --}}
+    <fieldset class="beeld-instellen veld--breed" data-beeld-instellen @unless ($preset->image_path) hidden @endunless>
+        <legend>Hoe staat de afbeelding in beeld?</legend>
+        <p class="veld__hulp">
+            Zo staat hij op de productkaart en de productpagina. Sleep de afbeelding om hem
+            te verplaatsen, of gebruik de schuifjes.
+        </p>
+
+        <div class="beeld-instellen__voorbeeld">
+            <x-preset-afbeelding :preset="$preset" alt="Voorbeeld van hoe de afbeelding in beeld staat" />
+        </div>
+
+        <div class="beeld-instellen__knoppen">
+            <div class="schuif">
+                <label for="veld-afbeelding_x">Links ↔ rechts</label>
+                <input id="veld-afbeelding_x" name="afbeelding_x" type="range" min="0" max="100" step="1"
+                       value="{{ old('afbeelding_x', $preset->afbeelding_x) }}">
+            </div>
+            <div class="schuif">
+                <label for="veld-afbeelding_y">Boven ↔ onder</label>
+                <input id="veld-afbeelding_y" name="afbeelding_y" type="range" min="0" max="100" step="1"
+                       value="{{ old('afbeelding_y', $preset->afbeelding_y) }}">
+            </div>
+            <div class="schuif">
+                <label for="veld-afbeelding_zoom">Zoom</label>
+                <input id="veld-afbeelding_zoom" name="afbeelding_zoom" type="range" min="100"
+                       max="{{ \App\Http\Requests\Admin\PresetFormRequest::MAX_ZOOM }}" step="5"
+                       value="{{ old('afbeelding_zoom', $preset->afbeelding_zoom) }}">
+            </div>
+        </div>
+
+        <div class="beeld-instellen__opties">
+            <label class="vinkje">
+                <input type="checkbox" name="afbeelding_passend" value="1"
+                       @checked($errors->any() ? old('afbeelding_passend') : $preset->afbeelding_passend)>
+                Hele afbeelding tonen (niets afsnijden)
+            </label>
+
+            <button type="button" class="knop knop--rand knop--klein" data-beeld-reset>Terug naar het midden</button>
+
+            @if ($preset->image_path)
+                <label class="vinkje">
+                    <input type="checkbox" name="afbeelding_weghalen" value="1" @checked(old('afbeelding_weghalen'))>
+                    Afbeelding weghalen
+                </label>
+            @endif
+        </div>
+
+        @foreach (['afbeelding_x', 'afbeelding_y', 'afbeelding_zoom'] as $instelling)
+            @error($instelling)
+                <p class="veld__fout">{{ $message }}</p>
+            @enderror
+        @endforeach
+    </fieldset>
 
     <x-admin.veld naam="bestandsgrootte" label="Bestandsgrootte" :waarde="$preset->bestandsgrootte"
                   maxlength="20" hulp="Bijvoorbeeld 120 KB. Mag leeg blijven." />

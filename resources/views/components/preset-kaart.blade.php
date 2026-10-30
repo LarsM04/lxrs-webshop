@@ -6,9 +6,8 @@
 <article class="kaart" @if($vertraging) data-reveal="{{ $vertraging }}" @endif>
     <div class="kaart__beeld">
         @if ($preset->image_path ?? false)
-            <img src="{{ asset('storage/' . $preset->image_path) }}"
-                 alt="Voorbeeld van de preset {{ $preset->name }}"
-                 loading="lazy" width="560" height="350">
+            <x-preset-afbeelding :preset="$preset" :alt="'Voorbeeld van de preset ' . $preset->name"
+                                 loading="lazy" width="560" height="350" />
         @else
             {{-- Tot er echte previews zijn: een kleurvlak per categorie. --}}
             <div class="plaatshouder" data-cat="{{ $preset->category->slug }}" aria-hidden="true">

@@ -188,6 +188,12 @@ De code is af, nu de previews nog.
 - Bij een nieuwe afbeelding, bij *afbeelding weghalen* en bij het verwijderen van de
   preset wordt het oude bestand opgeruimd. Dat laatste doet het model zelf
   (`Preset::booted()`), zodat het ook gebeurt bij verwijderen via de API.
+- In het bewerkformulier stel je in hoe de afbeelding in het kader staat: verslepen,
+  zoomen, of *hele afbeelding tonen* (niets afsnijden, de rand wordt een vervaagde
+  versie van dezelfde afbeelding). Dat geldt voor de kaart én de productpagina, want
+  die zijn allebei 16:10. De waarden staan in `afbeelding_x`, `afbeelding_y`,
+  `afbeelding_zoom` en `afbeelding_passend`; de component `x-preset-afbeelding` toont
+  de afbeelding overal op dezelfde manier.
 - **Nog te doen (buiten de code):** previews maken en uploaden, te beginnen met de 7
   packs en het complete pack. Daarna de snapshot `v0.9-afbeeldingen`.
 

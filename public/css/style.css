@@ -446,6 +446,40 @@ section { padding-block: var(--sectie); }
   object-fit: cover;
 }
 
+/* Productafbeelding zoals ingesteld in de beheeromgeving (x-preset-afbeelding).
+   --x en --y: welk deel in beeld is · --zoom: hoe ver ingezoomd.
+   Inzoomen gebeurt vanuit hetzelfde punt, zodat dat deel in beeld blijft. */
+.beeld-kader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.beeld-kader__img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--x, 50%) var(--y, 50%);
+  transform: scale(var(--zoom, 1));
+  transform-origin: var(--x, 50%) var(--y, 50%);
+}
+
+/* Hele afbeelding tonen: niets afsnijden, en de lege ruimte opvullen met een
+   vervaagde, donkere versie van dezelfde afbeelding. */
+.beeld-kader--passend .beeld-kader__img { object-fit: contain; }
+.beeld-kader__waas { display: none; }
+.beeld-kader--passend .beeld-kader__waas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(28px) brightness(0.55);
+  transform: scale(1.2);
+}
+
 .kaart__body {
   display: flex;
   flex-direction: column;

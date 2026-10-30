@@ -18,7 +18,8 @@ use Illuminate\Support\Str;
  *   browser het veld helemaal niet mee
  * - een lege slug wordt gemaakt van de naam, ook bij bewerken
  *
- * Daarnaast kan het formulier een afbeelding uploaden; dat kan de API niet.
+ * Daarnaast kan het formulier een afbeelding uploaden en instellen hoe die
+ * in het kader staat (positie, zoom, hele afbeelding tonen); dat kan de API niet.
  *
  * Wie dit mag, regelt de auth-middleware in routes/web.php.
  */
@@ -26,6 +27,9 @@ class PresetFormRequest extends PresetRequest
 {
     /** Maximale grootte van een afbeelding, in kilobytes (2 MB). */
     public const MAX_AFBEELDING_KB = 2048;
+
+    /** Hoe ver je mag inzoomen, in procenten (300 = drie keer zo groot). */
+    public const MAX_ZOOM = 300;
 
     /**
      * De regels van de API, plus de afbeelding.
@@ -38,6 +42,10 @@ class PresetFormRequest extends PresetRequest
             ...parent::rules(),
             'afbeelding' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:'.self::MAX_AFBEELDING_KB],
             'afbeelding_weghalen' => ['boolean'],
+            'afbeelding_x' => ['integer', 'between:0,100'],
+            'afbeelding_y' => ['integer', 'between:0,100'],
+            'afbeelding_zoom' => ['integer', 'between:100,'.self::MAX_ZOOM],
+            'afbeelding_passend' => ['boolean'],
         ];
     }
 
@@ -54,6 +62,7 @@ class PresetFormRequest extends PresetRequest
                 ->all(),
             'is_featured' => $this->boolean('is_featured'),
             'afbeelding_weghalen' => $this->boolean('afbeelding_weghalen'),
+            'afbeelding_passend' => $this->boolean('afbeelding_passend'),
         ]);
 
         if (blank($this->input('slug')) && filled($this->input('name'))) {

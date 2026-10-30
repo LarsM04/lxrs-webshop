@@ -93,8 +93,9 @@
                                 <tr>
                                     <td>
                                         @if ($preset->image_path)
-                                            <img class="duim" src="{{ asset('storage/' . $preset->image_path) }}"
-                                                 alt="" width="64" height="40" loading="lazy">
+                                            <div class="duim">
+                                                <x-preset-afbeelding :preset="$preset" width="64" height="40" loading="lazy" />
+                                            </div>
                                         @else
                                             <div class="duim plaatshouder" data-cat="{{ $preset->category->slug }}" aria-hidden="true">
                                                 {{ $preset->category->afkorting }}

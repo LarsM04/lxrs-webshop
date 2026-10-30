@@ -478,6 +478,75 @@ class PresetControllerTest extends TestCase
             ->assertSee('enctype="multipart/form-data"', false);
     }
 
+    public function test_saves_how_the_image_is_framed(): void
+    {
+        $preset = Preset::factory()->create(['slug' => 'cold-cc', 'image_path' => 'presets/poster.jpg']);
+
+        $this->alsBeheerder()
+            ->put(route('admin.presets.update', $preset), $this->formulier([
+                'slug' => 'cold-cc',
+                'afbeelding_x' => '30',
+                'afbeelding_y' => '85',
+                'afbeelding_zoom' => '140',
+                'afbeelding_passend' => '1',
+            ]))
+            ->assertSessionHasNoErrors();
+
+        $preset->refresh();
+        $this->assertSame([30, 85, 140, true], [
+            $preset->afbeelding_x, $preset->afbeelding_y, $preset->afbeelding_zoom, $preset->afbeelding_passend,
+        ]);
+    }
+
+    public function test_framing_values_outside_the_sliders_are_refused(): void
+    {
+        $preset = Preset::factory()->create(['slug' => 'cold-cc']);
+
+        $this->alsBeheerder()
+            ->put(route('admin.presets.update', $preset), $this->formulier([
+                'slug' => 'cold-cc',
+                'afbeelding_x' => '150',
+                'afbeelding_zoom' => '50',
+            ]))
+            ->assertSessionHasErrors([
+                'afbeelding_x' => 'Positie links-rechts moet tussen 0 en 100 liggen.',
+                'afbeelding_zoom',
+            ]);
+
+        $this->assertSame(50, $preset->fresh()->afbeelding_x);
+    }
+
+    public function test_the_website_shows_the_image_the_way_it_was_framed(): void
+    {
+        Preset::factory()->create([
+            'slug' => 'cold-cc',
+            'image_path' => 'presets/poster.jpg',
+            'afbeelding_x' => 30,
+            'afbeelding_y' => 85,
+            'afbeelding_zoom' => 140,
+            'afbeelding_passend' => true,
+        ]);
+
+        foreach ([route('presets.index'), route('presets.show', 'cold-cc')] as $pagina) {
+            $this->get($pagina)
+                ->assertSee('--x: 30%; --y: 85%; --zoom: 1.4', false)
+                ->assertSee('beeld-kader--passend');
+        }
+    }
+
+    public function test_framing_controls_are_hidden_until_there_is_an_image(): void
+    {
+        $verborgen = '/data-beeld-instellen\s+hidden/';
+
+        $nieuw = $this->alsBeheerder()->get(route('admin.presets.create'));
+        $this->assertMatchesRegularExpression($verborgen, $nieuw->getContent());
+
+        $preset = Preset::factory()->create(['image_path' => 'presets/poster.jpg']);
+
+        $bewerken = $this->get(route('admin.presets.edit', $preset))->assertSee('Hele afbeelding tonen');
+        $this->assertDoesNotMatchRegularExpression($verborgen, $bewerken->getContent());
+    }
+
     public function test_deleting_a_preset_also_deletes_its_image(): void
     {
         Storage::fake('public');

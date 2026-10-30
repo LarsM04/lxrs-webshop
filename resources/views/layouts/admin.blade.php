@@ -14,6 +14,8 @@
     {{-- Zelfde basis als de website, met daarbovenop wat alleen de beheeromgeving nodig heeft. --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+    <script src="{{ asset('js/admin.js') }}" defer></script>
 </head>
 <body>
     <a class="skiplink" href="#inhoud">Naar de inhoud</a>

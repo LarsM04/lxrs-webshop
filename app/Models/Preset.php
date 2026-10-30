@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 #[Fillable([
     'category_id', 'name', 'slug', 'soort', 'aantal', 'price', 'tagline', 'description',
     'includes', 'bestandsgrootte', 'ae_version', 'image_path', 'download_path', 'is_featured',
+    'afbeelding_x', 'afbeelding_y', 'afbeelding_zoom', 'afbeelding_passend',
 ])]
 class Preset extends Model
 {
@@ -38,6 +39,10 @@ class Preset extends Model
         'aantal' => 1,
         'includes' => '[]',
         'is_featured' => false,
+        'afbeelding_x' => 50,
+        'afbeelding_y' => 50,
+        'afbeelding_zoom' => 100,
+        'afbeelding_passend' => false,
     ];
 
     /**
@@ -75,6 +80,10 @@ class Preset extends Model
             'includes' => 'array',
             'is_featured' => 'boolean',
             'aantal' => 'integer',
+            'afbeelding_x' => 'integer',
+            'afbeelding_y' => 'integer',
+            'afbeelding_zoom' => 'integer',
+            'afbeelding_passend' => 'boolean',
         ];
     }
 }

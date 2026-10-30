@@ -13,6 +13,9 @@ return [
 
     'alpha_dash' => ':Attribute mag alleen letters, cijfers, streepjes en lage streepjes bevatten.',
     'array' => ':Attribute moet een lijst zijn.',
+    'between' => [
+        'numeric' => ':Attribute moet tussen :min en :max liggen.',
+    ],
     'boolean' => ':Attribute moet ja of nee zijn.',
     'decimal' => ':Attribute mag maximaal :decimal cijfers achter de komma hebben.',
     'email' => ':Attribute moet een geldig e-mailadres zijn.',
@@ -53,6 +56,10 @@ return [
         'ae_version' => 'After Effects-versie',
         'is_featured' => 'uitgelicht',
         'afbeelding' => 'afbeelding',
+        'afbeelding_x' => 'positie links-rechts',
+        'afbeelding_y' => 'positie boven-onder',
+        'afbeelding_zoom' => 'zoom',
+        'afbeelding_passend' => 'hele afbeelding tonen',
         'email' => 'e-mailadres',
         'password' => 'wachtwoord',
     ],

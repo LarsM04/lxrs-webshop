@@ -21,9 +21,8 @@
                 {{-- Beeld --}}
                 <div class="detail__beeld">
                         @if ($preset->image_path ?? false)
-                        <img src="{{ asset('storage/' . $preset->image_path) }}"
-                             alt="Voorbeeld van de preset {{ $preset->name }}"
-                             width="900" height="562">
+                        <x-preset-afbeelding :preset="$preset" :alt="'Voorbeeld van de preset ' . $preset->name"
+                                             width="900" height="562" />
                     @else
                         <div class="plaatshouder" data-cat="{{ $preset->category->slug }}" aria-hidden="true">
                             {{ $preset->name }}
