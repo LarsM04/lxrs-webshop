@@ -93,32 +93,37 @@
      staat er alleen een lokale thumbnail, dus er gaat niets naar TikTok
      zolang de bezoeker er niet om vraagt.
      ------------------------------------------------------------------ */
-  document.querySelectorAll('.reel__start').forEach((knop) => {
-    knop.addEventListener('click', () => {
-      const reel = knop.closest('.reel');
-      if (!reel || reel.dataset.speelt === 'true') return;
+  /* Eén luisteraar op het hele document in plaats van één per knop: dan
+     werkt hij ook nadat animaties.js de inhoud van de pagina heeft verwisseld. */
+  document.addEventListener('click', (e) => {
+    const knop = e.target.closest('.reel__start');
+    if (!knop) return;
 
-      const frame = document.createElement('iframe');
-      frame.src = knop.dataset.embed + '?autoplay=1';
-      frame.title = knop.dataset.titel || 'TikTok-edit';
-      frame.allow = 'autoplay; encrypted-media; fullscreen';
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.setAttribute('scrolling', 'no');
+    const reel = knop.closest('.reel');
+    if (!reel || reel.dataset.speelt === 'true') return;
 
-      reel.dataset.speelt = 'true';
-      knop.remove();
-      reel.appendChild(frame);
-      frame.focus();
-    });
+    const frame = document.createElement('iframe');
+    frame.src = knop.dataset.embed + '?autoplay=1';
+    frame.title = knop.dataset.titel || 'TikTok-edit';
+    frame.allow = 'autoplay; encrypted-media; fullscreen';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.setAttribute('scrolling', 'no');
+
+    reel.dataset.speelt = 'true';
+    knop.remove();
+    reel.appendChild(frame);
+    frame.focus();
   });
 
   /* ------------------------------------------------------------------
      Scroll-reveal: kaarten komen op zodra ze in beeld schuiven.
      Bij prefers-reduced-motion slaan we dit over; de CSS zet ze dan
-     meteen zichtbaar.
+     meteen zichtbaar. Staan de GSAP-scrollanimaties aan (animaties.js),
+     dan doen die dit. Opnieuw na elke pagina die animaties.js inwisselt.
      ------------------------------------------------------------------ */
-  /* Staan de GSAP-scrollanimaties aan (animaties.js), dan doen die dit. */
-  if (!minderBeweging.matches && !window.lxrsScrollAnimaties && 'IntersectionObserver' in window) {
+  const kaartenBinnenlaten = () => {
+    if (minderBeweging.matches || window.lxrsScrollAnimaties || !('IntersectionObserver' in window)) return;
+
     const kaarten = document.querySelectorAll('.raster .kaart, .tegels .tegel');
 
     const waarnemer = new IntersectionObserver(
@@ -135,5 +140,8 @@
     );
 
     kaarten.forEach((k) => waarnemer.observe(k));
-  }
+  };
+
+  kaartenBinnenlaten();
+  document.addEventListener('lxrs:pagina', kaartenBinnenlaten);
 })();
