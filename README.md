@@ -3,12 +3,36 @@
 Webshop voor het verkopen van mijn eigen video-editing presets, extensies en clip packs.
 Gebouwd voor het **keuzedeel Verdieping Software**.
 
-**Naam:** Lars Mudde · **GitHub:** [LarsM04](https://github.com/LarsM04)
-**Deadline:** eind januari 2027
+**Naam:** Lars Mudde · **GitHub:** [LarsM04](https://github.com/LarsM04) · **Deadline:** eind januari 2027
 
 ---
 
-## Leerdoel (SMART)
+## Waar sta ik nu?
+
+**Fase 4: de beheeromgeving.** Inloggen en het overzicht van alle presets werken.
+**Volgende taak:** [#1 Stap 3: preset toevoegen en bewerken](https://github.com/LarsM04/lxrs-webshop/issues/1)
+
+| | |
+|---|---|
+| ✅ Af | Setup · database · eigen API · front-end · inloggen · presets-overzicht in de beheeromgeving |
+| 🔄 Nu | Presets toevoegen, bewerken en verwijderen in de beheeromgeving |
+| ⬜ Daarna | Afbeeldingen uploaden · categorieën beheren · extra's · afronden |
+
+## Waar vind ik wat?
+
+| Wat zoek je? | Waar |
+|---|---|
+| Wat moet ik nog doen? | [Issues](https://github.com/LarsM04/lxrs-webshop/issues): één taak per stap, met een afvinklijstje |
+| Hoe ver is elke fase? | [Milestones](https://github.com/LarsM04/lxrs-webshop/milestones): één per fase, met een voortgangsbalk |
+| Het hele plan en waarom ik keuzes maakte | [docs/PLAN.md](docs/PLAN.md) |
+| Bewijs: wat werkte wanneer, met screenshots | [docs/VOORTGANG.md](docs/VOORTGANG.md) |
+| Elke versie met uitleg en een screenshot | [Releases](https://github.com/LarsM04/lxrs-webshop/releases) |
+| De API testen in Postman | [docs/postman/](docs/postman/) |
+| Het originele ontwerp | [design/](design/) |
+
+---
+
+## Leerdoel
 
 > Uiterlijk eind januari 2027 kan ik een webshop bouwen voor het verkopen van mijn eigen
 > editing-presets, met een front-end op basis van mijn bestaande ontwerp, een eigen
@@ -18,25 +42,97 @@ Gebouwd voor het **keuzedeel Verdieping Software**.
 Aangetoond door: een productoverzicht dat live uit de database geladen wordt, plus een
 beheeromgeving waarmee ik het aanbod aanpas **zonder de code te wijzigen**.
 
+### Bewijs voor de beoordeling
+
+- [x] Presets bekijken op de website, live uit de database
+- [ ] Preset toevoegen, bewerken en verwijderen in de beheeromgeving
+- [ ] Laten zien dat een wijziging direct zichtbaar is op de website
+- [ ] Toelichting op de databasestructuur en de koppeling tussen de tabellen
+- [x] Snapshotlogboek in [docs/VOORTGANG.md](docs/VOORTGANG.md)
+
 ---
 
-## Tech stack
+## De webshop starten
 
-| Laag | Keuze | Waarom |
+**Normaal gebruik (Windows):** dubbelklik op **`start-webshop.bat`**. Dat start Docker
+Desktop, zet de webshop aan en opent hem in je browser.
+
+| Wat | Adres |
+|---|---|
+| De website | http://localhost:8000 |
+| De beheeromgeving | http://localhost:8000/admin |
+| phpMyAdmin (database bekijken) | http://localhost:8080 |
+
+Stoppen: `docker compose down`
+
+### Eerste keer installeren
+
+Je hebt alleen **Docker Desktop** nodig. PHP en MySQL draaien in Docker, dus je hoeft
+verder niets te installeren. Voer dit uit in PowerShell:
+
+```powershell
+git clone https://github.com/LarsM04/lxrs-webshop.git
+cd lxrs-webshop
+copy .env.example .env
+```
+
+Open nu `.env` en vul in:
+
+- `ADMIN_NAME`, `ADMIN_EMAIL` en `ADMIN_PASSWORD`: hiermee log je in op `/admin`
+- `LXRS_API_KEY`: een zelfbedachte geheime sleutel voor de API
+
+Daarna:
+
+```powershell
+# Laravel en de andere PHP-pakketten downloaden (de map vendor/)
+docker run --rm -v "${PWD}:/var/www/html" -w /var/www/html laravelsail/php84-composer:latest composer install --ignore-platform-reqs
+
+docker compose up -d                                                  # webshop aanzetten
+docker compose exec laravel.test php artisan key:generate             # geheime app-sleutel maken
+docker compose exec laravel.test php artisan migrate --seed           # tabellen maken en vullen
+```
+
+<details>
+<summary>Problemen?</summary>
+
+**`Permission denied` op `storage/logs/laravel.log`.** Op Windows hoort die map bij een
+andere gebruiker dan de webserver. Oplossing:
+
+```powershell
+docker compose exec -u root laravel.test chmod -R 777 storage bootstrap/cache
+```
+
+**`port is already allocated`.** Er draait al iets op die poort. De poorten staan in
+`.env` (`APP_PORT`, `FORWARD_DB_PORT`, `FORWARD_PHPMYADMIN_PORT`); pas ze daar aan.
+
+**Wachtwoord van de beheerder veranderd?** Pas `.env` aan en draai alleen de AdminSeeder.
+Je presets blijven staan:
+
+```powershell
+docker compose exec laravel.test php artisan db:seed --class=AdminSeeder
+```
+
+</details>
+
+---
+
+## Hoe het werkt
+
+### Tech stack
+
+| Onderdeel | Keuze | Waarom |
 |---|---|---|
-| Front-end | Blade + HTML/CSS/JS (geen framework) | Mijn bestaande ontwerp uitwerken, zoals in mijn portfolio-website |
-| Typografie | Manrope (variabel, lokaal) | Één bestand van 53 KB voor alle gewichten; geen verzoek naar Google Fonts |
-| Backend | Laravel 13 (PHP 8.5) | Sluit aan bij de module OOP & Laravel; migrations en Eloquent schelen veel handwerk |
-| API | Eigen endpoints in `routes/api.php` | Zelf geschreven, zoals in mijn kiosk-project (Happy Herbivore) |
-| Database | MySQL 8.4 | Bekend vanuit eerdere schoolprojecten |
-| Omgeving | Docker (Laravel Sail) | Iedereen draait exact dezelfde versies; één commando om op te starten |
-| Admin | Zelf gebouwd: Blade + de login van Laravel | Inloggen, formulieren, validatie en uploads zelf maken in plaats van een pakket als Filament; vergelijkbaar met het CMS van mijn U Festival App |
+| Front-end | Blade + HTML/CSS/JS, geen framework | Mijn bestaande ontwerp uitwerken, zoals in mijn portfolio-website |
+| Backend | Laravel 13 (PHP 8.5) | Sluit aan bij de module OOP & Laravel |
+| Database | MySQL 8.4 | Bekend uit eerdere schoolprojecten |
+| API | Eigen endpoints in `routes/api.php` | Zelf geschreven, zoals in mijn kiosk-project |
+| Beheeromgeving | Zelf gebouwd | Inloggen, formulieren en uploads zelf maken in plaats van een pakket als Filament |
+| Omgeving | Docker (Laravel Sail) | Iedereen draait dezelfde versies, één commando om op te starten |
 
----
+### Database
 
-## Databasestructuur
-
-Twee gekoppelde tabellen (één-op-veel: een categorie heeft veel presets).
+Twee gekoppelde tabellen: **een categorie heeft veel presets**. De kolom
+`presets.category_id` verwijst naar `categories.id`.
 
 ```
 categories                      presets
@@ -44,51 +140,35 @@ categories                      presets
 id            PK        1 ---┐  id                PK
 name                         └- category_id       FK -> categories.id
 slug                    ∞       name
-omschrijving                    slug
-created_at                      tagline           korte regel op de kaart
-updated_at                      description
-                                price             DECIMAL(8,2)
+afkorting                       slug
+omschrijving                    tagline           korte regel op de kaart
+created_at                      description
+updated_at                      price             DECIMAL(8,2)
                                 image_path
                                 download_path
-                                is_featured       BOOLEAN
-                                soort             los|pack|bundel
+                                is_featured       uitgelicht op de homepage
+                                soort             los | pack | bundel
                                 aantal            hoeveel presets erin zitten
-                                includes          JSON  'wat je krijgt'
-                                ae_version        welke AE-versie
+                                includes          JSON: 'wat je krijgt'
+                                ae_version        welke After Effects-versie
                                 bestandsgrootte
                                 created_at
                                 updated_at
 ```
 
-De laatste vijf velden zijn erbij gekomen tijdens het bouwen van de front-end: een
-webshop verkoopt niet zonder te vertellen wat je krijgt en waar het mee werkt.
-
-`includes` is een lijstje, dus dat wordt een JSON-kolom. Kan ook een derde tabel
-worden (`preset_items`), maar het keuzedeel vraagt om twee gekoppelde tabellen en
-JSON houdt het simpel.
-
 **Categorieën:** Color Corrections · Text Presets · Zooms · Shakes · Effects · Twixtor · Audio · Bundels
 
-**Drie soorten producten**, want je kunt op drie manieren kopen:
-
-| soort | wat het is | voorbeeld |
+| Soort | Wat het is | Voorbeeld |
 |---|---|---|
-| `los` | één preset | Midnight CC — €4 |
-| `pack` | alle presets uit één categorie | Shakes Pack (8 presets) — €10 |
-| `bundel` | het complete pack | LXRS Complete Pack (55 presets) — €39 |
+| `los` | één preset | Midnight CC, €4 |
+| `pack` | alle presets uit één categorie | Shakes Pack (8 presets), €10 |
+| `bundel` | het complete pack | LXRS Complete Pack (55 presets), €39 |
 
-De catalogus wordt gegenereerd uit de mappenstructuur van het echte edit pack:
+De catalogus komt uit de mappen van het echte edit pack:
+`node tools/catalogus-genereren.mjs "<pad naar het pack>"` schrijft `database/data/presets.php`.
+De `.ffx`-bestanden zelf staan **niet** in deze repo, want die zijn het product.
 
-```bash
-node tools/catalogus-genereren.mjs "<pad naar het uitgepakte pack>"
-```
-
-Dat schrijft `database/data/presets.php`. De `.ffx`-bestanden zelf komen
-**niet** in deze repo — dat is het product. Ze staan in `.gitignore`.
-
----
-
-## API
+### API
 
 Dezelfde data als de website, maar als JSON. Alles staat onder `/api`.
 
@@ -99,137 +179,26 @@ Dezelfde data als de website, maar als JSON. Alles staat onder `/api`.
 | `POST` | `/api/presets` | preset toevoegen → `201` | ja |
 | `PUT` / `PATCH` | `/api/presets/{id}` | bewerken (PUT: alles, PATCH: alleen wat verandert) | ja |
 | `DELETE` | `/api/presets/{id}` | verwijderen → `204` | ja |
-| `GET` | `/api/categories` | alle categorieën, met aantal presets | nee |
+| `GET` | `/api/categories` | alle categorieën, met het aantal presets | nee |
 
-**Sleutel:** schrijven kan alleen met de header `X-API-Key`, met de waarde van
-`LXRS_API_KEY` uit `.env`. Zonder of met een foute sleutel: `401`. Foute invoer
-(geen naam, prijs geen getal, categorie bestaat niet): `422` met per veld wat er mis is.
+**Sleutel:** zet de header `X-API-Key` op de waarde van `LXRS_API_KEY` uit `.env`. Zonder
+of met een foute sleutel krijg je `401`. Foute invoer geeft `422`, met per veld wat er mis is.
 
 **Postman:** importeer [`docs/postman/lxrs-api.postman_collection.json`](docs/postman/lxrs-api.postman_collection.json)
-en vul bij *Variables* je `api_key` in. Na *Preset toevoegen* onthoudt de collectie het
-nieuwe id, dus bewerken en verwijderen werken daarna direct op die preset.
+en vul bij *Variables* je `api_key` in.
 
----
+### Recente edits op de homepage
 
-## Installatie (lokaal draaien)
+De TikTok-video's op de homepage staan in [`config/edits.php`](config/edits.php). Plak
+een link (via **Delen → Link kopiëren**, geen `vm.tiktok.com`-link) en haal daarna de
+thumbnails op:
 
-Je hebt alleen **Docker Desktop** nodig. PHP, MySQL en phpMyAdmin draaien in containers,
-dus er hoeft niets op je eigen computer geïnstalleerd te worden.
-
-```bash
-git clone https://github.com/LarsM04/lxrs-webshop.git
-cd lxrs-webshop
-cp .env.example .env
-docker compose up -d
-docker compose exec laravel.test php artisan key:generate
-docker compose exec laravel.test php artisan migrate --seed
-```
-
-Vul vóór `migrate --seed` in `.env` je eigen `ADMIN_NAME`, `ADMIN_EMAIL` en
-`ADMIN_PASSWORD` in, dan maakt de seeder het beheerdersaccount voor `/admin` aan.
-Zonder die gegevens komt er geen account. Later toegevoegd of je wachtwoord veranderd?
-Dan kan het los, zonder dat je presets kwijtraakt:
-
-```bash
-docker compose exec laravel.test php artisan db:seed --class=AdminSeeder
-```
-
-Wil je via de API kunnen toevoegen of verwijderen, zet dan een eigen sleutel bij
-`LXRS_API_KEY` in `.env` (zie [API](#api)).
-
-Daarna draait alles:
-
-| Wat | Waar |
-|---|---|
-| De website | http://localhost:8000 |
-| Beheeromgeving | http://localhost:8000/admin — inloggen met de `ADMIN_`-gegevens uit `.env` |
-| phpMyAdmin | http://localhost:8080 |
-| MySQL (extern) | `localhost:3307`, gebruiker `sail`, wachtwoord `password` |
-
-Stoppen doe je met `docker compose down`.
-
-Op Windows kan het ook met een dubbelklik op **`start-webshop.bat`**: dat start Docker
-Desktop als die nog uit staat, zet de containers aan en opent de site in Brave (of in
-je standaardbrowser als Brave er niet is).
-
-### Veelvoorkomende problemen
-
-**`Permission denied` op `storage/logs/laravel.log`** — op Windows staan bind-mounted
-bestanden op `root`, terwijl de webserver als `sail` draait:
-
-```bash
-docker compose exec -u root laravel.test chmod -R 777 storage bootstrap/cache
-```
-
-**`port is already allocated`** — er draait al iets op die poort. De poorten staan in
-`.env` (`APP_PORT`, `FORWARD_DB_PORT`, `FORWARD_PHPMYADMIN_PORT`), pas ze daar aan.
-
----
-
-## Recente edits op de homepage
-
-De 'Recente edits'-sectie toont TikTok-video's. De links staan in
-[`config/edits.php`](config/edits.php) — plakken en opslaan is genoeg,
-er hoeft niets aan de code te veranderen.
-
-```php
-'reels' => [
-    'https://www.tiktok.com/@lxrs2004/video/7301234567890123456',
-],
-```
-
-Zo'n link haal je via **Delen → Link kopiëren**. Een korte link
-(`https://vm.tiktok.com/...`) werkt niet, want daar staat het videonummer niet in:
-open die eerst in je browser en kopieer dan de link uit de adresbalk.
-
-Haal daarna de thumbnails op:
-
-```bash
+```powershell
 docker compose exec laravel.test php artisan edits:thumbnails
 ```
 
-Dat zet de voorbeeldafbeelding en de titel lokaal neer in `public/images/edits/`.
-De homepage laadt dus niks van TikTok tot een bezoeker op play drukt — dat scheelt
-ruim 150 verzoeken per paginabezoek, en je bezoekers krijgen geen vier
-cookiebanners van TikTok over je edits heen.
-
-Staat de lijst leeg, dan toont de sectie je drie TikTok-accounts.
-
----
-
-## Voortgang
-
-Het snapshotlogboek — wat er wanneer werkend was, met screenshots en git tags —
-staat in [`docs/VOORTGANG.md`](docs/VOORTGANG.md).
-
-**Laatste milestone:** `v0.3-api` — eigen API, CRUD getest met Postman (25 september 2026)
-
----
-
-## Planning
-
-De volledige fasering staat in [`docs/PLAN.md`](docs/PLAN.md). Fase 4 is daar
-uitgewerkt in zeven stappen, met per stap een streefdatum en status.
-
-| Fase | Periode | Resultaat |
-|---|---|---|
-| 0. Setup | sep 2026 | Repo, Laravel, databaseontwerp — ✅ |
-| 1. Database | sep 2026 | Migrations, modellen, seeders — ✅ |
-| 2. API | sep 2026 | Eigen CRUD-endpoints — ✅ |
-| 3. Front-end | sep 2026 | Ontwerp omgezet, live data — ✅ |
-| 4. Admin CRUD | okt–dec 2026 | Beheeromgeving werkend |
-| 5. Stretch goals | dec–jan 2027 | Winkelwagen, downloads, filters |
-| 6. Afronden | jan 2027 | Testen, demo, oplevering |
-
----
-
-## Bewijs voor de beoordeling
-
-- [ ] Live demo: presets bekijken via de front-end
-- [ ] Live demo: preset toevoegen, bewerken en verwijderen in de beheeromgeving
-- [ ] Laten zien dat een wijziging direct zichtbaar is op de website
-- [ ] Toelichting op de databasestructuur en de koppeling tussen de tabellen
-- [ ] Snapshotlogboek in `docs/VOORTGANG.md` als bewijs van vordering
+De homepage laadt pas iets van TikTok als een bezoeker op play drukt. Dat scheelt ruim
+150 verzoeken per bezoek, en geen cookiebanners over je edits heen.
 
 ---
 
@@ -237,11 +206,47 @@ uitgewerkt in zeven stappen, met per stap een streefdatum en status.
 
 ```
 lxrs-webshop/
-├── design/          Origineel ontwerp (Claude artifact-export, referentie)
-├── tools/           Snapshot-script (Playwright)
-├── docs/
-│   ├── PLAN.md      Gefaseerde planning
-│   ├── VOORTGANG.md Snapshotlogboek en milestones
-│   └── snapshots/   Screenshots per milestone
-└── ...              Laravel-project (volgt in fase 0)
+├── app/                 PHP-code: controllers, modellen en de rest van de logica
+├── config/              Instellingen, zoals edits.php voor de TikTok-video's
+├── database/            Migrations (tabellen), seeders (vullen) en de catalogus
+├── public/              CSS, JavaScript, afbeeldingen en lettertypes voor de website
+├── resources/views/     De pagina's (Blade-templates); admin/ is de beheeromgeving
+├── routes/              Welke URL naar welke code gaat: web.php en api.php
+├── tests/               Automatische tests
+├── docs/                PLAN.md, VOORTGANG.md, screenshots en de Postman-collectie
+├── design/              Het originele ontwerp, als voorbeeld
+├── tools/               Scripts voor snapshots en het genereren van de catalogus
+└── start-webshop.bat    Dubbelklik om de webshop te starten
 ```
+
+---
+
+## Zo werk ik
+
+1. **Kies een taak** uit de [Issues](https://github.com/LarsM04/lxrs-webshop/issues).
+   Pak de laagste open stap van de huidige fase.
+2. **Bouw en commit vaak**, met een bericht dat zegt wat er nu werkt. Zet het nummer van
+   de taak erin, bijvoorbeeld `Stap 3: formulier voor nieuwe preset (#1)`.
+3. **Klaar?** Schrijf `Closes #1` in de laatste commit. Zodra die op GitHub staat, gaat de
+   taak vanzelf dicht.
+4. **Hoort er een tag bij?** Maak dan een snapshot, zie [VOORTGANG.md](docs/VOORTGANG.md#zo-maak-je-een-snapshot).
+5. **Werk op `main`.** Maakt Claude Code een eigen branch (`claude/...`)? Voeg die samen
+   met `main` zodra de stap af is, anders raakt het werk zoek.
+
+### Begrippen
+
+| Woord | Betekenis |
+|---|---|
+| **Commit** | Een opgeslagen moment in je code, met een bericht wat je hebt veranderd |
+| **Branch** | Een aparte lijn van commits. `main` is de hoofdlijn, waar alles uiteindelijk hoort |
+| **Tag** | Een vast label op één commit, bijvoorbeeld `v0.7-login`, zodat je een versie terugvindt |
+| **Release** | Een tag met uitleg en screenshot op GitHub |
+| **Issue** | Een taak op GitHub, met een afvinklijstje |
+| **Milestone** | Een groep issues die samen één fase vormen, met een voortgangsbalk |
+| **Migration** | Een bestand dat een databasetabel aanmaakt of aanpast |
+| **Seeder** | Een bestand dat de database met beginwaarden vult |
+| **Model** | Een PHP-class die bij een tabel hoort, bijvoorbeeld `Preset` bij `presets` |
+| **API** | Een ingang waarmee programma's data ophalen of aanpassen, in JSON |
+| **CRUD** | Create, Read, Update, Delete: toevoegen, bekijken, bewerken, verwijderen |
+| **`.env`** | Bestand met geheime instellingen (wachtwoorden, sleutels). Staat **niet** op GitHub |
+| **Docker / container** | Een afgesloten mini-computer met precies de juiste PHP- en MySQL-versie |

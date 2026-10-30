@@ -105,14 +105,14 @@ const MILESTONES = {
     ],
   },
   'v1.1-shop': {
-    fase: '5 · Stretch goals',
+    fase: "5 · Extra's",
     shots: [
       { name: 'winkelwagen', url: 'http://localhost:8000/winkelwagen' },
       { name: 'download-na-aankoop', url: 'http://localhost:8000/downloads' },
     ],
   },
-  'v1.0-oplevering': {
-    fase: '6 · Oplevering',
+  'v1.2-oplevering': {
+    fase: '6 · Afronden',
     shots: [
       { name: 'eindversie-home', url: 'http://localhost:8000' },
       { name: 'eindversie-overzicht', url: 'http://localhost:8000/presets' },
@@ -257,10 +257,16 @@ async function logboekBijwerken({ datum, fase, beschrijving, bestanden, tag }) {
   const vorigNr = parseInt(regels[laatste].split('|')[1].trim(), 10);
   const nr = String(vorigNr + 1).padStart(2, '0');
 
+  /* Linktekst uit de bestandsnaam: 2026-10-09-admin-login-mobiel.png → "admin login (mobiel)" */
+  const label = (b) =>
+    b
+      .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+      .replace(/\.\w+$/, '')
+      .replace(/-mobiel$/, ' (mobiel)')
+      .replaceAll('-', ' ');
+
   const links = bestanden.length
-    ? bestanden
-        .map((b) => '[' + (b.includes('mobiel') ? 'mobiel' : 'bekijk') + '](snapshots/' + b + ')')
-        .join(' · ')
+    ? bestanden.map((b) => '[' + label(b) + '](snapshots/' + b + ')').join(' · ')
     : '—';
 
   regels.splice(
@@ -317,7 +323,8 @@ async function main() {
 
   console.log('\nSnapshot ' + tag + ' - ' + datum + '\n');
   const browser = await chromium.launch();
-  const context = await browser.newContext({ deviceScaleFactor: 2 });
+  /* Gewone resolutie: op 2x werden hele pagina's tot 10 MB per screenshot. */
+  const context = await browser.newContext({ deviceScaleFactor: 1 });
   const gemaakt = [];
   let ingelogd = false;
 
@@ -381,7 +388,7 @@ async function main() {
     git(['push', '--tags']);
     console.log('  Gepusht naar GitHub');
   } else {
-    console.log('\n  Nog niet gepusht. Doe dat met:  git push && git push --tags');
+    console.log('\n  Nog niet gepusht. Doe dat met:  git push; git push --tags');
   }
   console.log('');
 }

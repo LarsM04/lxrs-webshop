@@ -1,12 +1,13 @@
-# Voortgang en snapshots
+# Voortgang
 
 Bewijs van vordering voor het keuzedeel Verdieping Software.
 
-Elke regel hieronder is een moment waarop er iets nieuws aantoonbaar werkt. Bij elke
-milestone hoort een screenshot in [`snapshots/`](snapshots/) en een git tag, zodat de
-staat van het project op dat moment terug te halen is.
+Elke regel in het logboek is een moment waarop er iets nieuws werkte. Daarbij horen
+screenshots in [`snapshots/`](snapshots/) en een **git tag**: een vast label op die
+versie van de code, zodat je later precies kunt terugzien hoe het project er toen uitzag.
 
-Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
+Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md) ·
+alle versies met uitleg onder [Releases](https://github.com/LarsM04/lxrs-webshop/releases)
 
 ---
 
@@ -14,163 +15,95 @@ Terug naar de [README](../README.md) · planning in [PLAN.md](PLAN.md)
 
 | # | Datum | Fase | Wat werkt er nu | Snapshot | Tag |
 |---|---|---|---|---|---|
-| 00 | 2026-09-18 | Setup | Repo aangemaakt, ontwerp geanalyseerd, plan van aanpak vastgelegd | — | `v0.0-setup` |
-| 01 | 2026-09-18 | 0 · Setup | Laravel 13 draait in Docker met MySQL en phpMyAdmin | [bekijk](snapshots/2026-09-18-laravel-welkom.png) | `v0.1-laravel` |
-| 02 | 2026-09-18 | 3 · Front-end | Front-end af: homepage, presets-overzicht met filter en zoek, en productdetailpagina | [bekijk](snapshots/2026-09-18-home.png) · [mobiel](snapshots/2026-09-18-home-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-overzicht.png) · [mobiel](snapshots/2026-09-18-presets-overzicht-mobiel.png) · [bekijk](snapshots/2026-09-18-preset-detail.png) · [mobiel](snapshots/2026-09-18-preset-detail-mobiel.png) · [bekijk](snapshots/2026-09-18-presets-gefilterd.png) · [mobiel](snapshots/2026-09-18-presets-gefilterd-mobiel.png) | `v0.4-frontend` |
-| 03 | 2026-09-18 | 3 · Front-end | Recente edits op de homepage, met klik-om-te-spelen in plaats van automatische embeds | [bekijk](snapshots/2026-09-18-home-met-edits.png) · [mobiel](snapshots/2026-09-18-home-met-edits-mobiel.png) | `v0.5-edits` |
-| 04 | 2026-09-18 | 3 · Front-end | Echte catalogus uit het edit pack: 55 losse presets, 7 packs en het complete pack | [bekijk](snapshots/2026-09-18-shop-alles.png) · [mobiel](snapshots/2026-09-18-shop-alles-mobiel.png) · [bekijk](snapshots/2026-09-18-shop-packs.png) · [mobiel](snapshots/2026-09-18-shop-packs-mobiel.png) · [bekijk](snapshots/2026-09-18-product-complete-pack.png) · [mobiel](snapshots/2026-09-18-product-complete-pack-mobiel.png) · [bekijk](snapshots/2026-09-18-product-los.png) · [mobiel](snapshots/2026-09-18-product-los-mobiel.png) | `v0.6-catalogus` |
-| 05 | 2026-09-25 | 1 · Database | Presets en categorieen komen live uit de database: 8 categorieen en 63 producten | [bekijk](snapshots/2026-09-25-db-presets.png) · [bekijk](snapshots/2026-09-25-db-categories.png) · [bekijk](snapshots/2026-09-25-presets-uit-database.png) · [mobiel](snapshots/2026-09-25-presets-uit-database-mobiel.png) | `v0.2-database` |
-| 06 | 2026-09-25 | 2 · API | Eigen API: presets en categorieen als JSON, CRUD getest met Postman | [bekijk](snapshots/2026-09-25-api-presets.png) · [bekijk](snapshots/2026-09-25-api-categories.png) · [Postman 201](snapshots/2026-09-25-postman-201-toevoegen.png) · [Postman 401](snapshots/2026-09-25-postman-401-zonder-sleutel.png) | `v0.3-api` |
-| 07 | 2026-10-09 | 4 · Admin CRUD | Beheerder kan inloggen, /admin is afgeschermd | [bekijk](snapshots/2026-10-09-admin-login.png) · [mobiel](snapshots/2026-10-09-admin-login-mobiel.png) · [bekijk](snapshots/2026-10-09-admin-start.png) | `v0.7-login` |
+| 00 | 2026-09-18 | 0 · Setup | Repo aangemaakt, ontwerp geanalyseerd, plan van aanpak vastgelegd | — | `v0.0-setup` |
+| 01 | 2026-09-18 | 0 · Setup | Laravel 13 draait in Docker met MySQL en phpMyAdmin | [laravel welkom](snapshots/2026-09-18-laravel-welkom.png) | `v0.1-laravel` |
+| 02 | 2026-09-18 | 3 · Front-end | Front-end af: homepage, presets-overzicht met filter en zoek, en productdetailpagina | [home](snapshots/2026-09-18-home.png) · [home (mobiel)](snapshots/2026-09-18-home-mobiel.png) · [presets overzicht](snapshots/2026-09-18-presets-overzicht.png) · [presets overzicht (mobiel)](snapshots/2026-09-18-presets-overzicht-mobiel.png) · [preset detail](snapshots/2026-09-18-preset-detail.png) · [preset detail (mobiel)](snapshots/2026-09-18-preset-detail-mobiel.png) · [presets gefilterd](snapshots/2026-09-18-presets-gefilterd.png) · [presets gefilterd (mobiel)](snapshots/2026-09-18-presets-gefilterd-mobiel.png) | `v0.4-frontend` |
+| 03 | 2026-09-18 | 3 · Front-end | Recente edits op de homepage, met klik-om-te-spelen in plaats van automatische embeds | [home met edits](snapshots/2026-09-18-home-met-edits.png) · [home met edits (mobiel)](snapshots/2026-09-18-home-met-edits-mobiel.png) | `v0.5-edits` |
+| 04 | 2026-09-18 | 3 · Front-end | Echte catalogus uit het edit pack: 55 losse presets, 7 packs en het complete pack | [shop alles](snapshots/2026-09-18-shop-alles.png) · [shop alles (mobiel)](snapshots/2026-09-18-shop-alles-mobiel.png) · [shop packs](snapshots/2026-09-18-shop-packs.png) · [shop packs (mobiel)](snapshots/2026-09-18-shop-packs-mobiel.png) · [product complete pack](snapshots/2026-09-18-product-complete-pack.png) · [product complete pack (mobiel)](snapshots/2026-09-18-product-complete-pack-mobiel.png) · [product los](snapshots/2026-09-18-product-los.png) · [product los (mobiel)](snapshots/2026-09-18-product-los-mobiel.png) | `v0.6-catalogus` |
+| 05 | 2026-09-25 | 1 · Database | Presets en categorieën komen live uit de database: 8 categorieën en 63 producten. De website ziet er precies hetzelfde uit als bij #04, alleen komt de data nu uit de database | [db presets](snapshots/2026-09-25-db-presets.png) · [db categories](snapshots/2026-09-25-db-categories.png) | `v0.2-database` |
+| 06 | 2026-09-25 | 2 · API | Eigen API: presets en categorieën als JSON, CRUD getest met Postman | [api presets](snapshots/2026-09-25-api-presets.png) · [api categories](snapshots/2026-09-25-api-categories.png) · [postman 201 toevoegen](snapshots/2026-09-25-postman-201-toevoegen.png) · [postman 401 zonder sleutel](snapshots/2026-09-25-postman-401-zonder-sleutel.png) | `v0.3-api` |
+| 07 | 2026-10-09 | 4 · Beheeromgeving | Beheerder kan inloggen, /admin is afgeschermd | [admin login](snapshots/2026-10-09-admin-login.png) · [admin login (mobiel)](snapshots/2026-10-09-admin-login-mobiel.png) · [admin start](snapshots/2026-10-09-admin-start.png) | `v0.7-login` |
 
-<!-- Nieuwe regel bovenaan of onderaan toevoegen bij elke milestone.
-     Snapshot-kolom: [bekijk](snapshots/2026-10-05-presets-overzicht.png) -->
+> **Waarom staan de tags niet op volgorde?** De nummers volgen de fases uit het plan,
+> niet de tijd. De front-end (fase 3, `v0.4`–`v0.6`) heb ik naar voren gehaald, dus
+> die was eerder af dan de database (fase 1, `v0.2`). Het logboek staat wél op datum.
 
 ---
 
-## Snapshot maken — automatisch
+## Alle tags
 
-Eenmalig, na het clonen van de repo:
+| Tag | Wat | Status |
+|---|---|---|
+| `v0.0-setup` | Plan en repo | ✅ 18 sep |
+| `v0.1-laravel` | Laravel draait in Docker | ✅ 18 sep |
+| `v0.2-database` | Data uit de database | ✅ 25 sep |
+| `v0.3-api` | Eigen API, getest met Postman | ✅ 25 sep |
+| `v0.4-frontend` | Drie pagina's, filter en zoek | ✅ 18 sep |
+| `v0.5-edits` | Recente edits op de homepage | ✅ 18 sep |
+| `v0.6-catalogus` | Echte catalogus | ✅ 18 sep |
+| `v0.7-login` | Inloggen voor de beheerder | ✅ 9 okt |
+| `v0.8-admin-presets` | Presets toevoegen, bewerken, verwijderen | ⬜ [#2](https://github.com/LarsM04/lxrs-webshop/issues/2) |
+| `v0.9-afbeeldingen` | Afbeeldingen uploaden | ⬜ [#3](https://github.com/LarsM04/lxrs-webshop/issues/3) |
+| `v1.0-crud` | Beheeromgeving af, leerdoel behaald | ⬜ [#5](https://github.com/LarsM04/lxrs-webshop/issues/5) |
+| `v1.1-shop` | Winkelwagen tot en met download (extra) | ⬜ [#8](https://github.com/LarsM04/lxrs-webshop/issues/8) |
+| `v1.2-oplevering` | Eindversie | ⬜ [#9](https://github.com/LarsM04/lxrs-webshop/issues/9) |
 
-```bash
+---
+
+## Zo maak je een snapshot
+
+Dat doet het script [`tools/snapshot.mjs`](../tools/snapshot.mjs) voor je. Het maakt de
+screenshots (computer én telefoon), zet een regel in het logboek hierboven en maakt een
+commit met een tag. De commando's hieronder zijn voor PowerShell, de terminal in VS Code.
+
+**Eenmalig**, na het clonen van de repo:
+
+```powershell
 cd tools
 npm install
+npx playwright install chromium
+cd ..
 ```
 
-Daarna, telkens als een milestone af is. **Zorg dat je containers draaien**:
+**Elke keer als er een tag af is:**
 
-```bash
-docker compose up -d
+```powershell
+docker compose up -d                                       # 1. webshop aanzetten
+$env:ADMIN_EMAIL="..."; $env:ADMIN_PASSWORD="..."          # 2. alleen nodig voor /admin-pagina's
+node tools/snapshot.mjs v0.8-admin-presets "Wat er nu werkt"  # 3. snapshot maken
+git push; git push --tags                                  # 4. naar GitHub
 ```
 
-En draai dan het script met de tag van de milestone:
+Kijk vóór stap 4 even naar de screenshots in `docs/snapshots/`. Welke pagina's bij welke
+tag horen, staat bovenin `tools/snapshot.mjs` onder `MILESTONES`.
 
-```bash
-node tools/snapshot.mjs v0.4-frontend "Presets-overzicht laadt live uit de database"
-```
-
-Dat doet in één keer:
-
-1. Screenshots van alle pagina's die bij die milestone horen — desktop **en** telefoon
-2. Een regel toevoegen aan het logboek hierboven
-3. Een commit maken met een git tag
-
-Nog niet gepusht. Controleer de screenshots en push daarna zelf:
-
-```bash
-git push && git push --tags
-```
-
-Of laat het script het meteen doen met `--push`.
-
-### Vlaggen
+<details>
+<summary>Extra opties van het script</summary>
 
 | Vlag | Wat het doet |
 |---|---|
-| `--push` | Pusht commit en tag direct naar GitHub |
+| `--push` | Meteen naar GitHub pushen (stap 4 overslaan) |
 | `--no-git` | Alleen screenshots maken, niets committen |
-| `--url <u> --name <n>` | Losse pagina vastleggen, buiten de vaste milestones om |
-| `--json` | Behandel de URL als API-endpoint: response opslaan én netjes renderen |
+| `--url <u> --name <n>` | Een losse pagina vastleggen |
+| `--json` | De URL is een API-endpoint: antwoord opslaan en netjes tonen |
 
-Voorbeeld van een losse opname:
+</details>
 
-```bash
-node tools/snapshot.mjs --url http://localhost:8000/presets?categorie=shakes --name filter v0.5-filter "Filter op categorie werkt"
-```
+<details>
+<summary>Zelf een screenshot toevoegen (zonder script)</summary>
 
-### Adminpaneel
+Voor dingen buiten de browser, zoals VS Code, Postman of een foutmelding.
 
-Het adminpaneel zit achter een login. Zet je gegevens in de omgeving voordat je het
-script draait, dan logt Playwright zelf in:
-
-In PowerShell (de terminal in VS Code op Windows):
+1. `Win + Shift + S` en sleep het gebied
+2. Opslaan in `docs/snapshots/` als `JJJJ-MM-DD-korte-omschrijving.png`
+3. Een regel toevoegen aan het logboek: kopieer de vorige regel en zet het nummer één hoger
+4. Committen en taggen:
 
 ```powershell
-$env:ADMIN_EMAIL="lars@lxrs2004.com"; $env:ADMIN_PASSWORD="..."
-node tools/snapshot.mjs v1.0-crud "Admin CRUD werkt"
-```
-
-In Git Bash kan het op één regel:
-
-```bash
-ADMIN_EMAIL="lars@lxrs2004.com" ADMIN_PASSWORD="..." node tools/snapshot.mjs v1.0-crud "Admin CRUD werkt"
-```
-
-Staan die niet ingesteld, dan slaat het script de adminpagina over en gaat de rest gewoon door.
-
-### Als de URL's niet kloppen
-
-De pagina's per milestone staan bovenin [`tools/snapshot.mjs`](../tools/snapshot.mjs)
-in `MILESTONES`. Heten je routes anders, pas ze daar aan.
-
----
-
-## Snapshot maken — handmatig
-
-Nodig wanneer het script er niet bij kan: alles buiten de browser (VS Code, After Effects,
-een foutmelding in je terminal) of iets waar je zelf doorheen moet klikken.
-
-**1. Screenshot maken**
-
-- Windows: `Win + Shift + S` → sleep het gebied → plakken en opslaan
-- Hele venster: `Alt + PrtScn`
-
-**2. Opslaan in `docs/snapshots/`** met deze naam:
-
-```
-JJJJ-MM-DD-korte-omschrijving.png
-```
-
-Dus bijvoorbeeld `2026-11-16-presets-overzicht.png`. De datum vooraan zorgt dat ze
-vanzelf op volgorde staan.
-
-**3. Regel toevoegen** aan het logboek bovenin dit bestand. Kopieer de vorige regel en
-pas hem aan — nummer één omhoog:
-
-```
-| 04 | 2026-11-16 | 3 · Front-end | Wat er nu werkt | [bekijk](snapshots/2026-11-16-presets-overzicht.png) | `v0.4-frontend` |
-```
-
-**4. Committen en taggen:**
-
-```bash
 git add docs/
-git commit -m "Snapshot v0.4-frontend: presets-overzicht laadt live uit database"
-git tag -a v0.4-frontend -m "Presets-overzicht werkt met database-data"
-git push && git push --tags
+git commit -m "Snapshot v0.8-admin-presets: wat er nu werkt"
+git tag -a v0.8-admin-presets -m "Wat er nu werkt"
+git push; git push --tags
 ```
 
-> Tag-naam al gebruikt? Kies dan een nieuwe (`v0.4.1-frontend`). Een bestaande tag
-> verplaatsen kan, maar dan raak je het moment kwijt dat je juist wilde vastleggen.
-
----
-
-## Geplande milestones
-
-De tags die er aan het eind van het traject moeten staan:
-
-| Tag | Fase | Wanneer | Waar de snapshot van is |
-|---|---|---|---|
-| `v0.0-setup` | 0 | sep 2026 | Plan en repo — ✅ behaald |
-| `v0.1-laravel` | 0 | sep 2026 | Laravel draait in Docker — ✅ behaald |
-| `v0.2-database` | 1 | sep 2026 | Beide tabellen met data in phpMyAdmin — ✅ behaald |
-| `v0.3-api` | 2 | sep 2026 | `GET /api/presets`-response in Postman — ✅ behaald |
-| `v0.4-frontend` | 3 | sep 2026 | Drie pagina's, filter en zoek — ✅ behaald |
-| `v0.5-edits` | 3 | sep 2026 | Recente edits op de homepage — ✅ behaald |
-| `v0.6-catalogus` | 3 | sep 2026 | Echte catalogus uit het edit pack — ✅ behaald |
-| `v0.7-login` | 4 · stap 1 | okt 2026 | Loginpagina en de afgeschermde startpagina van `/admin` |
-| `v0.8-admin-presets` | 4 · stap 4 | nov 2026 | Presets-overzicht en toevoegformulier in de beheeromgeving |
-| `v0.9-afbeeldingen` | 4 · stap 5 | nov 2026 | Geüploade afbeeldingen op de website |
-| `v1.0-crud` | 4 · stap 7 | dec 2026 | Adminpaneel naast de bijgewerkte website |
-| `v1.1-shop` | 5 | jan 2027 | Winkelwagen tot en met download |
-| `v1.0-oplevering` | 6 | jan 2027 | Eindversie |
-
----
-
-## Waarom dit telt als bewijs
-
-Drie sporen die samen laten zien dat er over een langere periode aan gewerkt is:
-
-- **Dit logboek** — wat er wanneer werkend was, met beeld erbij
-- **Git tags** — terugspringen naar hoe het project er in oktober uitzag
-- **Commitgeschiedenis** — datums en berichten zijn op GitHub automatisch zichtbaar
+</details>
